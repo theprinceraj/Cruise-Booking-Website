@@ -1,4 +1,12 @@
+:root {
+    --primary-color: #3498db; /* Example primary color */
+    --secondary-color: #2ecc71; /* Example secondary color */
+    --accent-color: #e74c3c; /* Example accent color */
+    --neutral-color-light: #ecf0f1; /* Light neutral */
+    --neutral-color-dark: #2c3e50; /* Dark neutral */
+}
+
 html {
-  width: 100%;
-  height: 100vh;
+    width: 100%;
+    height: 100vh;
 }
