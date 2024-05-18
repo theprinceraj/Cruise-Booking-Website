@@ -40,10 +40,10 @@ export default function CustomNavbar() {
                                 <Nav.Link href="/">Home</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link href="/">Book</Nav.Link>
+                                <Nav.Link href="/booking">Book</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link href="/">Contact</Nav.Link>
+                                <Nav.Link href="/contacts">Contact</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Col>
