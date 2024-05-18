@@ -7,6 +7,7 @@ import Home from "./pages/Home.jsx";
 import Booking from "./pages/booking.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Contacts from "./pages/Contacts";
+import SignUpLogin from "./components/SignUpLogin";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     {
         path: "/contacts",
         element: <Contacts />,
+    },
+    {
+        path: "/authorization",
+        element: <SignUpLogin />,
     },
 ]);
 

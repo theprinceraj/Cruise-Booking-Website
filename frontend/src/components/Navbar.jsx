@@ -35,7 +35,7 @@ export default function CustomNavbar() {
                         <Navbar.Brand href="/" style={{color:"red"}}>Lenin Cruise</Navbar.Brand>
                     </Col>
                     <Col xs={12} lg={6} className="d-flex justify-content-end">
-                        <Nav onSelect={(selectedKey) => alert(`Selected ${selectedKey}`)}>
+                        <Nav>
                             <Nav.Item>
                                 <Nav.Link href="/">Home</Nav.Link>
                             </Nav.Item>
@@ -44,6 +44,9 @@ export default function CustomNavbar() {
                             </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link href="/contacts">Contact</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <a class="btn btn-success" href="/authorization" role="button">Sign In</a>
                             </Nav.Item>
                         </Nav>
                     </Col>
