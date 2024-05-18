@@ -1,0 +1,9 @@
+.nav-bg {
+    background-color: var(--secondary-color);
+}
+.nav-link {
+    color: var(--neutral-color);
+}
+.nav-link:hover {
+    color: var(--primary-color);
+}
