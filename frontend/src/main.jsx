@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import CssBaseline from "@mui/material/CssBaseline";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Booking from "./pages/Booking.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 const router = createBrowserRouter([
     {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <CssBaseline />
+        <Navbar />
         <RouterProvider router={router} />
     </React.StrictMode>
 );

@@ -1,5 +1,5 @@
 {
-    "name": "frontend",
+    "name": "cruise-booking-frontend",
     "private": true,
     "version": "0.0.0",
     "type": "module",
@@ -28,6 +28,8 @@
         "@emotion/styled": "^11.11.5",
         "@mui/icons-material": "^5.15.18",
         "@mui/material": "^5.15.18",
+        "bootstrap": "^5.3.3",
+        "react-bootstrap": "^2.10.2",
         "react-router-dom": "^6.23.1"
     }
 }
