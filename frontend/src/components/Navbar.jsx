@@ -28,22 +28,22 @@ import "../styles/Navbar.css";
 
 export default function CustomNavbar() {
     return (
-        <Navbar expand="lg" className="nav-bg" style={{background:"#303030"}}>
+        <Navbar expand="lg" className="nav-bg" style={{background: "purple"}}>
             <Container>
                 <Row className="w-100">
                     <Col xs={12} lg={6} className="d-flex align-items-center">
-                        <Navbar.Brand href="/" style={{color:"violet"}}>Lenin Cruise</Navbar.Brand>
+                        <Navbar.Brand href="/" className="NavbarColor">Lenin Cruise</Navbar.Brand>
                     </Col>
                     <Col xs={12} lg={6} className="d-flex justify-content-end">
                         <Nav>
                             <Nav.Item>
-                                <Nav.Link href="/" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">Home</Nav.Link>
+                                <Nav.Link className="NavbarColor" href="/" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">Home</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link href="/booking" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Book">Book</Nav.Link>
+                                <Nav.Link className="NavbarColor" href="/booking" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Book">Book</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link href="/contacts" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Contact">Contact</Nav.Link>
+                                <Nav.Link className="NavbarColor" href="/contacts" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Contact">Contact</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <a class="btn btn-success" href="/authorization" role="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sign In">Sign In</a>

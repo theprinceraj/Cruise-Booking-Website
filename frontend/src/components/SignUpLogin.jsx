@@ -1,14 +1,17 @@
-
+import "../styles/Login.css";
 
 function SignUpLogin() {
   return (
+    <>
     <div className="container">
         <div className="loginForm">
-            
+            login
 
         </div>
       
     </div>
+    </>
+    
   )
 }
 

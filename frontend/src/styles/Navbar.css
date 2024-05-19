@@ -7,3 +7,11 @@
 .nav-link:hover {
     color: var(--primary-color);
 }
+
+.NavbarColor{
+    color: white;
+}
+
+.NavbarColor:hover{
+    color: rgb(242, 198, 255);
+}
