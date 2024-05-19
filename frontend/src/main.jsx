@@ -4,8 +4,10 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.jsx";
-import Booking from "./pages/Booking.jsx";
+import Booking from "./pages/booking.jsx";
 import Navbar from "./components/Navbar.jsx";
+import Contacts from "./pages/Contacts";
+import SignUpLogin from "./components/SignUpLogin";
 
 const router = createBrowserRouter([
     {
@@ -15,6 +17,14 @@ const router = createBrowserRouter([
     {
         path: "/booking",
         element: <Booking />,
+    },
+    {
+        path: "/contacts",
+        element: <Contacts />,
+    },
+    {
+        path: "/authorization",
+        element: <SignUpLogin />,
     },
 ]);
 
