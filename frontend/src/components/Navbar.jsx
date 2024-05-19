@@ -1,24 +1,3 @@
-// import Nav from "react-bootstrap/Nav";
-// import "../styles/Navbar.css";
-// export default function Navbar() {
-//     return (
-//         <>
-//             <Nav
-//                 onSelect={(selectedKey) => alert(`Selected ${selectedKey}`)}
-//                 className="justify-content-end nav-bg">
-//                 <Nav.Item className="nav-link">
-//                     <Nav.Link href="/home">Active</Nav.Link>
-//                 </Nav.Item>
-//                 <Nav.Item className="nav-link">
-//                     <Nav.Link href="/home">Link</Nav.Link>
-//                 </Nav.Item>
-//                 <Nav.Item className="nav-link">
-//                     <Nav.Link href="/home">Link</Nav.Link>
-//                 </Nav.Item>
-//             </Nav>
-//         </>
-//     );
-// }
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
