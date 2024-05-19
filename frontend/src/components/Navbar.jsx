@@ -45,7 +45,7 @@ export default function CustomNavbar() {
                             <Nav.Item>
                                 <Nav.Link className="NavbarColor" href="/contacts" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Contact">Contact</Nav.Link>
                             </Nav.Item>
-                            <Nav.Item>
+                            <Nav.Item className="mx-2">
                                 <a class="btn btn-success" href="/authorization" role="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sign In">Sign In</a>
                             </Nav.Item>
                         </Nav>
