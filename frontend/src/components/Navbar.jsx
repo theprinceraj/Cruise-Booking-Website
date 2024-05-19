@@ -37,16 +37,16 @@ export default function CustomNavbar() {
                     <Col xs={12} lg={6} className="d-flex justify-content-end">
                         <Nav>
                             <Nav.Item>
-                                <Nav.Link href="/">Home</Nav.Link>
+                                <Nav.Link href="/" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">Home</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link href="/booking">Book</Nav.Link>
+                                <Nav.Link href="/booking" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Book">Book</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link href="/contacts">Contact</Nav.Link>
+                                <Nav.Link href="/contacts" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Contact">Contact</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <a class="btn btn-success" href="/authorization" role="button">Sign In</a>
+                                <a class="btn btn-success" href="/authorization" role="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sign In">Sign In</a>
                             </Nav.Item>
                         </Nav>
                     </Col>

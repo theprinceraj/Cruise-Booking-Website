@@ -1,8 +1,12 @@
 
+
 function SignUpLogin() {
   return (
-    <div>
-        Signup/Login
+    <div className="container">
+        <div className="loginForm">
+            
+
+        </div>
       
     </div>
   )
