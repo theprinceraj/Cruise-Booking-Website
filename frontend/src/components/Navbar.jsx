@@ -1,29 +1,20 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import buyLogo from "/buyLogo.svg";
+import homeLogo from "/homeLogo.svg";
 export default function CollapsibleNavbar() {
     return (
-        <Navbar collapseOnSelect expand="lg" bg="#fafafa">
-            <Container>
-                <Navbar.Brand href="#home">Lenin Cruise</Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto"></Nav>
-                    <Nav.Item></Nav.Item>
-                    <Nav>
-                        <Nav.Link href="">
-                            <Link to={"/"}>Home</Link>
-                        </Nav.Link>
-                        <Nav.Link href="">
-                            <Link to={"/contact"}>Contact</Link>
-                        </Nav.Link>
-                        <Nav.Link href="">
-                            <Link to={"/booking"}>Book Now</Link>
-                        </Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
+        <div className="flex items-center justify-between bg-[#fafafa]">
+            <div className="w-40 m-2 font-bold text-2xl">Lenin Cruise</div>
+            <div className="flex items-center gap-1">
+                <Link to="/">
+                    <img src={homeLogo} alt="Go back to homepage" width={50} />
+                </Link>
+                <Link to="/booking">
+                    <img src={buyLogo} alt="Book Now" width={50} />
+                </Link>
+                <Link to="/contact">REGISTER</Link>
+                <Link to="/authorization">LOGIN</Link>
+            </div>
+        </div>
     );
 }

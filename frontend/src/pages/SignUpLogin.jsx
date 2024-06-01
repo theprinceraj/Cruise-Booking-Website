@@ -1,5 +1,3 @@
-import "../styles/Login.css";
-
 function SignUpLogin() {
   return (
     <>
