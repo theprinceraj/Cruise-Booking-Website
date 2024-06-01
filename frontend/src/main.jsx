@@ -5,9 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Booking from "./pages/Booking.jsx";
-import Navbar from "./components/Navbar.jsx";
-import Contacts from "./pages/Contacts";
-import SignUpLogin from "./components/SignUpLogin";
+import Contact from "./pages/Contact";
+import SignUpLogin from "./pages/SignUpLogin.jsx";
 
 const router = createBrowserRouter([
     {
@@ -19,8 +18,8 @@ const router = createBrowserRouter([
         element: <Booking />,
     },
     {
-        path: "/contacts",
-        element: <Contacts />,
+        path: "/contact",
+        element: <Contact />,
     },
     {
         path: "/authorization",
@@ -30,7 +29,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <Navbar />
         <RouterProvider router={router} />
     </React.StrictMode>
 );

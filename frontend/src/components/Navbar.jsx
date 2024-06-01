@@ -1,35 +1,28 @@
+import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import "../styles/Navbar.css";
-
-export default function CustomNavbar() {
+import { Link } from "react-router-dom";
+export default function CollapsibleNavbar() {
     return (
-        <Navbar expand="lg" className="nav-bg" style={{background: "purple"}}>
+        <Navbar collapseOnSelect expand="lg" bg="#fafafa">
             <Container>
-                <Row className="w-100">
-                    <Col xs={12} lg={6} className="d-flex align-items-center">
-                        <Navbar.Brand href="/" className="NavbarColor">Lenin Cruise</Navbar.Brand>
-                    </Col>
-                    <Col xs={12} lg={6} className="d-flex justify-content-end">
-                        <Nav>
-                            <Nav.Item>
-                                <Nav.Link className="NavbarColor" href="/" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">Home</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link className="NavbarColor" href="/booking" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Book">Book</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link className="NavbarColor" href="/contacts" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Contact">Contact</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item className="mx-2">
-                                <a class="btn btn-success" href="/authorization" role="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sign In">Sign In</a>
-                            </Nav.Item>
-                        </Nav>
-                    </Col>
-                </Row>
+                <Navbar.Brand href="#home">Lenin Cruise</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto"></Nav>
+                    <Nav.Item></Nav.Item>
+                    <Nav>
+                        <Nav.Link href="">
+                            <Link to={"/"}>Home</Link>
+                        </Nav.Link>
+                        <Nav.Link href="">
+                            <Link to={"/contact"}>Contact</Link>
+                        </Nav.Link>
+                        <Nav.Link href="">
+                            <Link to={"/booking"}>Book Now</Link>
+                        </Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
             </Container>
         </Navbar>
     );

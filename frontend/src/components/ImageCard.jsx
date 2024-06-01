@@ -1,5 +1,9 @@
-export default function ImageCard() {
-  return (
-    <div>ImageCard</div>
-  )
+export default function ImageCard({ imageName }) {
+    return (
+        <div
+            className="image-card"
+            style={{
+                backgroundImage: `url("${imageName}")`,
+            }}></div>
+    );
 }
