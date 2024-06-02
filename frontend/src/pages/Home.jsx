@@ -1,12 +1,12 @@
-import ImageCard from "../components/ImageCard.jsx";
+import Carousel from "../components/Carousel.jsx";
 import Navbar from "../components/Navbar.jsx";
 export default function Home() {
     return (
         <>
             <Navbar />
-                <ImageCard imageName="image1.jpg" />
-                <ImageCard imageName="image2.avif" />
-                <ImageCard imageName="image3.avif" />
+            <div className="object-center object-cover h-[90vh] w-100 brightness-75 overflow-hidden">
+                <img src="/home-bg.jpg" alt="home bg"/>
+            </div>
         </>
     );
 }

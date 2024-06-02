@@ -1,16 +1,12 @@
-function SignUpLogin() {
-  return (
-    <>
-    <div className="container">
-        <div className="loginForm">
-            login
+import Navbar from "../components/Navbar";
 
-        </div>
-      
-    </div>
-    </>
-    
-  )
+function SignUpLogin() {
+    return (
+        <>
+            <Navbar />
+            <div className="loginForm">login</div>
+        </>
+    );
 }
 
 export default SignUpLogin;
