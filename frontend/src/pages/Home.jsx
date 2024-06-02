@@ -3,7 +3,7 @@ export default function Home() {
     return (
         <>
             <Navbar />
-            <div className="relative object-center object-cover h-[89vh] w-100 overflow-scroll bg-cover bg-center flex items-center justify-center max-h-screen">
+            <div className="relative object-center object-cover h-[89vh] w-100 overflow-scroll bg-[url('/home-bg.jpg')]  bg-cover bg-center flex items-center justify-center max-h-screen">
                 <div className="flex flex-wrap justify-center items-start">
                     <div
                         className="relative !bg-white w-80 m-3 shadow-lg transition-transform transform hover:scale-105">
