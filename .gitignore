@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 # Custom
-./frontend/src/output.css
+frontend/src/output.css
