@@ -27,9 +27,8 @@ const router = createBrowserRouter([
 export default function App() {
     return (
         <>
-            <div className="main-overlay">
-                <RouterProvider router={router} />
-            </div>
+            <div className="main-overlay"></div>
+            <RouterProvider router={router} />
         </>
     );
 }
