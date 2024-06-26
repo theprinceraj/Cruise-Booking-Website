@@ -24,11 +24,11 @@ export default function Navbar() {
                                 BUY NOW
                             </Link>
                             <Link
-                                to="/authorization"
+                                to="/signup"
                                 className="px-4 sm:px-6 font-bold p-2 border-e-2 border-gray-700 hover:text-gray-300">
-                                REGISTER
+                                SIGN UP
                             </Link>
-                            <Link to="/authorization" className="px-4 sm:px-6 font-bold p-2 hover:text-gray-300">
+                            <Link to="/login" className="px-4 sm:px-6 font-bold p-2 hover:text-gray-300">
                                 LOG IN
                             </Link>
                         </div>

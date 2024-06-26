@@ -19,8 +19,12 @@ const router = createBrowserRouter([
         element: <Contact />,
     },
     {
-        path: "/authorization",
-        element: <SignUpLogin />,
+        path: "/signup",
+        element: <SignUpLogin isLoginForm={false} />,
+    },
+    {
+        path: "/login",
+        element: <SignUpLogin isLoginForm={true} />,
     },
 ]);
 
