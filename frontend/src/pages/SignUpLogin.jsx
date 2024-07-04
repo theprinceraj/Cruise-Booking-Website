@@ -32,7 +32,7 @@ function SignUpLogin({ isLoginForm }) {
                         />
 
                         <button class="w-full mt-12 bg-white text-[#080710] py-3 rounded-md font-semibold hover:bg-gray-200">
-                            Log In
+                            Submit
                         </button>
 
                         <div class="flex justify-center mt-8 space-x-6">
@@ -73,7 +73,7 @@ function SignUpLogin({ isLoginForm }) {
                         />
 
                         <button class="w-full mt-12 bg-white text-[#080710] py-3 rounded-md font-semibold hover:bg-gray-200">
-                            Log In
+                            Submit
                         </button>
 
                         <div class="flex justify-center mt-8 space-x-6">
