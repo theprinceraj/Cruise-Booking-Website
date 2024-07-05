@@ -21,3 +21,7 @@
     z-index: 0;
     filter: brightness(50%);
 }
+
+.backdrop-blur-dk{
+        backdrop-filter: blur(50px);
+}
