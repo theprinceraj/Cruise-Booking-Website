@@ -2,12 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-    width: 100%;
-    height: 100%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* color: white; */
 }
 
-body {
-    width: 100%;
-    height: 100%;
+.main-overlay {
+    width: 100vw;
+    height: 100vh;
+    background: url("/home-bg.jpg") center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    filter: brightness(50%);
+}
+
+.backdrop-blur-dk{
+        backdrop-filter: blur(50px);
 }
