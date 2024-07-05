@@ -44,12 +44,13 @@ export default function Home() {
                     className="border-solid border-2 rounded-3xl mx-2 mt-2 p-2 font-bold text-2xl bg-cyan-500 shadow-lg shadow-cyan-500/50"
                     style={{
                         borderColor: "white",
-                        color: isHovered ? "white" : "white",
-                        backgroundColor: isHovered ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.5)",
+                        color: isHovered ? "white" : "yellow",
+                        backgroundColor: isHovered ? "rgba(255, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.3)",
                     }}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}>
-                    BOOK NOW
+                        <a href="/booking">BOOK NOW</a>
+                    
                 </button>
             </div>
         </>
