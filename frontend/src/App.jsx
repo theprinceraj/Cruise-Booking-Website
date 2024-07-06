@@ -1,11 +1,14 @@
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { lazy, Suspense } from "react";
+
 import Home from "./pages/Home.jsx";
 import Booking from "./pages/Booking.jsx";
 import Contact from "./pages/Contact";
 import SignUpLogin from "./pages/SignUpLogin.jsx";
 import Profile from "./pages/Profile.jsx";
-import ErrorPage from "./pages/ErrorPage.jsx";
+// import ErrorPage from "./pages/ErrorPage.jsx";
+const ErrorPage = lazy(() => import("./pages/ErrorPage.jsx"));
 
 const router = createBrowserRouter([
     {
@@ -34,7 +37,11 @@ const router = createBrowserRouter([
     },
     {
         path: "*",
-        element: <ErrorPage />,
+        element: (
+            <Suspense fallback={<div>Loading...</div>}>
+                <ErrorPage />
+            </Suspense>
+        ),
     },
 ]);
 
