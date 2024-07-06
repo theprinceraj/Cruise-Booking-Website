@@ -4,6 +4,7 @@ import Home from "./pages/Home.jsx";
 import Booking from "./pages/Booking.jsx";
 import Contact from "./pages/Contact";
 import SignUpLogin from "./pages/SignUpLogin.jsx";
+import Profile from "./pages/Profile.jsx";
 
 const router = createBrowserRouter([
     {
@@ -26,14 +27,17 @@ const router = createBrowserRouter([
         path: "/login",
         element: <SignUpLogin isLoginForm={true} />,
     },
+    {
+        path: "/profile",
+        element: <Profile />,
+    },
 ]);
 
 export default function App() {
     return (
-            <>
-                <div className="main-overlay"></div>
-                <RouterProvider router={router} />
-            </>
-        );
-    
+        <>
+            <div className="main-overlay"></div>
+            <RouterProvider router={router} />
+        </>
+    );
 }
