@@ -5,10 +5,11 @@ import Booking from "./pages/Booking.jsx";
 import Contact from "./pages/Contact";
 import SignUpLogin from "./pages/SignUpLogin.jsx";
 import Profile from "./pages/Profile.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
 
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: ["/", "/home"],
         element: <Home />,
     },
     {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     {
         path: "/profile",
         element: <Profile />,
+    },
+    {
+        path: "*",
+        element: <ErrorPage />,
     },
 ]);
 
