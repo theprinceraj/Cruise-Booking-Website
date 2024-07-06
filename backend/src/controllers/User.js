@@ -1,5 +1,4 @@
-const User = require("../models/usermodel");
-
+import User from "../models/usermodel";
 export const signupUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
