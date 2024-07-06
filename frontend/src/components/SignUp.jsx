@@ -6,6 +6,7 @@ export default function SignUp(){
         email:"",
         password:"",
     };
+    const URL = "http://localhost:5173/signup";
 
     const [user, setUser] = useState(initialUserValues);
 
@@ -18,8 +19,15 @@ export default function SignUp(){
         });
     }
 
-    const handleSignup = async (e) => {
+    const handleSignup = (e) => {
         e.preventDefault();
+        const userObject={
+            username : e.target[0].value,
+            email : e.target[1].value,
+            password : e.target[2].value,
+        }
+        
+        console.log(userObject);
     };
 
     return  (

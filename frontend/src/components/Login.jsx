@@ -16,9 +16,14 @@ export default function Login(){
         });
     }
 
-    const handleLogin = async (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
+        const userObject={
+            email : e.target[0].value,
+            password : e.target[1].value,
+        }
         
+        console.log(userObject);
 
     };
     return (
