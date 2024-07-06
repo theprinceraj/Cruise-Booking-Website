@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function SignUp(){
     const initialUserValues = {
@@ -7,9 +6,6 @@ export default function SignUp(){
         email:"",
         password:"",
     };
-
-    const URL = "http://localhost:5000/signup";
-    const navigate = useNavigate();
 
     const [user, setUser] = useState(initialUserValues);
 
@@ -24,29 +20,6 @@ export default function SignUp(){
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        try{
-        const response = await fetch(URL,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-            },
-            body:JSON.stringify(user)
-        });
-
-        if(response.ok){
-            setUser(initialUserValues);
-            navigate("/login");
-        }
-        else{
-            alert("Email Already Exists, Please Login");
-        }
-
-        console.log(response);
-        }
-        catch(error){
-            console.log("register",error);
-        }
-
     };
 
     return  (

@@ -1,14 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function Login(){
     const initialUserValues = {
         email:"",
         password:"",
     };
-    
-    const navigate = useNavigate();
-    const URL = "http://localhost:5000/login" ;
     const [user, setUser] = useState(initialUserValues);
 
     const userChangeListener=(e)=>{
@@ -22,28 +18,7 @@ export default function Login(){
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        try{
-            const response = await fetch(URL,{
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json",
-                },
-                body:JSON.stringify(user)
-            });
-    
-            if(response.ok){
-                navigate("/");
-            }
-            else{
-                alert("Invalid Email or Password");
-            }
-    
-            console.log(response);
-        }
-
-        catch(error){
-                console.log("register",error);
-        }
+        
 
     };
     return (
