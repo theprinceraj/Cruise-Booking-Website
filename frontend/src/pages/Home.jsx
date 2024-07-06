@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar.jsx";
 import ImageCard from "../components/ImageCard.jsx";
+import { Link } from "react-router-dom"; 
 import { useState } from "react";
 export default function Home() {
     const [imageCardsData, setImageCardsData] = useState([
@@ -49,7 +50,7 @@ export default function Home() {
                     }}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}>
-                        <a href="/booking">BOOK NOW</a>
+                        <Link to="/booking">BOOK NOW</Link>
                     
                 </button>
             </div>
