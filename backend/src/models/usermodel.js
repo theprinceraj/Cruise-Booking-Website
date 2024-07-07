@@ -13,6 +13,14 @@ const userschema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    phone: {
+        type: Number,
+        require: true,
+    },
+    address: {
+        type: String,
+        require: false,
+    },
 });
 
 export const User = new mongoose.model("User", userschema, "users");
