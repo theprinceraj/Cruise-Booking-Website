@@ -3,23 +3,23 @@ import mongoose from "mongoose";
 const userschema = new mongoose.Schema({
     username: {
         type: String,
-        require: true,
+        required: true,
     },
     email: {
         type: String,
-        require: true,
+        required: true,
     },
     password: {
         type: String,
-        require: true,
+        required: true,
     },
     phone: {
         type: Number,
-        require: true,
+        required: true,
     },
     address: {
         type: String,
-        require: false,
+        required: false,
     },
 });
 
