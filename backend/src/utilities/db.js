@@ -1,8 +1,7 @@
-const mongoose = require("mongoose");
-
-const MONGODB_URI =
-    "mongodb+srv://json_db_user:json_db_user_14@cluster0.7chotup.mongodb.net/mern_stack?retryWrites=true&w=majority&appName=Cluster0";
-const URI = MONGODB_URI;
+import { configDotenv } from "dotenv";
+import mongoose from "mongoose";
+configDotenv();
+const URI = process.env.MONGODB_URI;
 
 export const connectDB = async () => {
     try {
@@ -10,6 +9,7 @@ export const connectDB = async () => {
         console.log("Successfully connected");
     } catch (error) {
         console.error("Failed connection");
+        console.error(error);
         process.exit(0);
     }
 };

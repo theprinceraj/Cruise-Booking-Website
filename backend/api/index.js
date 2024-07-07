@@ -7,11 +7,16 @@ const port = process.env.PORT || 3000;
 app.use(express.static("public"));
 
 app.use(express.json({ limit: "10mb" }));
-// import { scan } from "../src/controllers/scanner.js";
-// app.use("/api/scan", scan);
+
+import { connectDB } from "../src/utilities/db.js";
+connectDB();
+import { loginUser } from "../src/controllers/User.js";
+import { signupUser } from "../src/controllers/User.js";
+app.use("/api/login", loginUser);
+app.use("/api/signup", signupUser);
 
 app.get("/api", (req, res) => {
-    res.json("API is running.");
+    res.status(200).json({ response: "API is running." });
 });
 
 app.listen(port, () => {

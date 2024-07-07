@@ -1,14 +1,21 @@
-import User from "../models/usermodel";
+import { User } from "../models/usermodel.js";
 export const signupUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
-
-        const userExist = await User.findOne({ email });
-        if (!userExist) {
-            await User.create({ username, email, password });
+        if (username && email && password) {
+            const userExist = await User.findOne({ email });
+            if (!userExist) {
+                await User.create({ username, email, password });
+                res.status(200).json({ message: "Successfully created the user" });
+            } else {
+                res.status(400).json({ message: "User already exist" });
+            }
+        } else {
+            res.status(400).json({ message: "Invalid field values provided" });
         }
     } catch (error) {
-        res.status(404).json({ message: "ERROR" });
+        console.error(error)
+        res.status(404).json({ message: "Internal Error" });
     }
 };
 
@@ -18,16 +25,17 @@ export const loginUser = async (req, res) => {
 
         const userExist = await User.findOne({ email });
         if (!userExist) {
-            return res.status(400).json({ msg: "invalid login" });
+            return res.status(400).json({ message: "Invalid Login" });
         }
 
         const isPasswordValid = password == userExist.password;
         if (isPasswordValid) {
-            res.status(200).json({ msg: "login successful" });
+            res.status(200).json({ message: "Login Successful" });
         } else {
-            res.status(401).json({ msg: "invalid password" });
+            res.status(401).json({ message: "Invalid email and password combination" });
         }
     } catch (error) {
-        res.status(500).json("Internal error");
+        console.error(error);
+        res.status(500).json({ message: "Internal Error" });
     }
 };
