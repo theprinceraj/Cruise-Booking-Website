@@ -55,6 +55,7 @@ export const deleteExistingBookingById = async (req, res) => {
     try {
         const { bookingId } = req.body;
         if (!bookingId && !mongoose.Types.ObjectId.isValid(bookingId)) {
+            console.log(bookingId);
             return res.status(400).json({ message: "Invalid values provided" });
         }
         const deletedBooking = await Booking.findOneAndDelete({ bookingId });

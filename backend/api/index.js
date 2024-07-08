@@ -17,11 +17,11 @@ app.post("/api/login", loginUser);
 app.post("/api/signup", signupUser);
 
 import { createNewBooking, deleteExistingBookingById } from "../src/controllers/Booking.js";
-app.post("/api/createbooking", createNewBooking);
-app.post("/api/deletebooking", deleteExistingBookingById);
+app.post("/api/booking", createNewBooking);
+app.delete("/api/booking", deleteExistingBookingById);
 
 import { findBookingsByUserId } from "../src/controllers/Booking.js";
-app.post("/api/bookings/:userId", findBookingsByUserId);
+app.get("/api/bookings/:userId", findBookingsByUserId);
 
 app.get("/api", (req, res) => {
     res.status(200).json({ response: "API is running." });
