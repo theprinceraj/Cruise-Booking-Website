@@ -39,6 +39,11 @@ const bookingSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    qrCode: {
+        type: String,
+        default: "",
+        unique: true,
+    },
     paymentStatus: {
         type: String,
         required: true,
