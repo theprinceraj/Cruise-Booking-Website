@@ -26,7 +26,7 @@ const profileSchema = mongoose.Schema(
             type: String,
             default: "",
         },
-        foodPreferences: {
+        foodPreference: {
             type: String,
             enum: ["Veg", "Non-Veg", "Vegan"],
             default: "Veg",
