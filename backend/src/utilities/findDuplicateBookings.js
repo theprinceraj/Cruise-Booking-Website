@@ -1,7 +1,7 @@
 import { Booking } from "../models/bookingmodel.js";
-import { validateUser } from "./validateUser.js";
+import { validateUserId } from "./validateUserId.js";
 export const findDuplicateBookings = async (userId, cruiseDate, passengerDetails) => {
-    if (!(await validateUser(userId))) {
+    if (!(await validateUserId(userId))) {
         throw new Error("User Id is not valid");
     }
     const bookings = await Booking.find({ userId: userId, cruiseDate: cruiseDate });

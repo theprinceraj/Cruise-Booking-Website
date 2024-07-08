@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Booking } from "../models/bookingmodel.js";
 import { findDuplicateBookings } from "../utilities/findDuplicateBookings.js";
-import { validateUser } from "../utilities/validateUser.js";
+import { validateUserId } from "../utilities/validateUserId.js";
 
 export const createNewBooking = async (req, res) => {
     try {
@@ -18,6 +18,11 @@ export const createNewBooking = async (req, res) => {
         ) {
             console.log(userId, numberOfPassengers, passengerDetails, totalCost, paymentStatus);
             return res.status(400).json({ message: "Invalid values provided" });
+        }
+
+        if (!(await validateUserId(userId))) {
+            console.log(userId);
+            return res.status(400).json({ message: "User Id is not valid" });
         }
 
         const bookingId = new mongoose.Types.ObjectId().toString();
@@ -66,7 +71,7 @@ export const deleteExistingBookingById = async (req, res) => {
 export const findBookingsByUserId = async (req, res) => {
     try {
         const { userId } = req.params;
-        if (!(await validateUser(userId))) {
+        if (!(await validateUserId(userId))) {
             console.log(userId);
             return res.status(400).json({ message: "User Id is not valid" });
         }
