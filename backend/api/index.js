@@ -16,12 +16,13 @@ import { signupUser } from "../src/controllers/User.js";
 app.post("/api/login", loginUser);
 app.post("/api/signup", signupUser);
 
-import { createNewBooking, deleteExistingBookingById } from "../src/controllers/Booking.js";
-app.post("/api/bookings", createNewBooking);
+import { createBooking, deleteExistingBookingById, findBookingsByUserId } from "../src/controllers/Booking.js";
+app.post("/api/bookings", createBooking);
 app.delete("/api/bookings", deleteExistingBookingById);
-
-import { findBookingsByUserId } from "../src/controllers/Booking.js";
 app.get("/api/bookings/:userId", findBookingsByUserId);
+
+import { createProfile } from "../src/controllers/Profile.js";
+app.post("/api/profile/:userId", createProfile);
 
 app.get("/api", (req, res) => {
     res.status(200).json({ response: "API is running." });

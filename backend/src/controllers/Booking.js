@@ -3,7 +3,7 @@ import { Booking } from "../models/bookingmodel.js";
 import { findDuplicateBookings } from "../utilities/findDuplicateBookings.js";
 import { validateUserId } from "../utilities/validateUserId.js";
 
-export const createNewBooking = async (req, res) => {
+export const createBooking = async (req, res) => {
     try {
         const { userId, cruiseDate, numberOfPassengers, bookingDate, passengerDetails, totalCost, paymentStatus } =
             req.body;
