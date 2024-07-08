@@ -17,8 +17,8 @@ app.post("/api/login", loginUser);
 app.post("/api/signup", signupUser);
 
 import { createNewBooking, deleteExistingBookingById } from "../src/controllers/Booking.js";
-app.post("/api/booking", createNewBooking);
-app.delete("/api/booking", deleteExistingBookingById);
+app.post("/api/bookings", createNewBooking);
+app.delete("/api/bookings", deleteExistingBookingById);
 
 import { findBookingsByUserId } from "../src/controllers/Booking.js";
 app.get("/api/bookings/:userId", findBookingsByUserId);
