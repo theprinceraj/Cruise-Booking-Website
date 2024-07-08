@@ -1,3 +1,5 @@
+import { Booking } from "../models/bookingmodel.js";
+import { Profile } from "../models/profilemodel.js";
 import { User } from "../models/usermodel.js";
 export const signupUser = async (req, res) => {
     try {
@@ -40,4 +42,18 @@ export const loginUser = async (req, res) => {
         console.error(error);
         res.status(500).json({ message: "Internal Error" });
     }
+};
+
+export const deleteUser = async (req, res) => {
+    const { userId } = req.params;
+
+    const user = await User.findById(userId);
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+    await User.findByIdAndDelete(userId);
+    await Profile.findOneAndDelete({ userId });
+    await Booking.deleteMany({ userId: userId });
+
+    res.status(200).json({ message: "User deleted successfully" });
 };

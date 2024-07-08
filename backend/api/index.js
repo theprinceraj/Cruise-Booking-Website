@@ -6,15 +6,15 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.static("public"));
 
-app.use(express.json({ limit: "10mb" }));
+app.use(express.json({ limit: "2mb" }));
 
 import { connectDB } from "../src/utilities/db.js";
 connectDB();
 
-import { loginUser } from "../src/controllers/User.js";
-import { signupUser } from "../src/controllers/User.js";
+import { loginUser, signupUser, deleteUser } from "../src/controllers/User.js";
 app.post("/api/login", loginUser);
 app.post("/api/signup", signupUser);
+app.delete("/api/user/:userId", deleteUser);
 
 import { createBooking, deleteExistingBookingById, findBookingsByUserId } from "../src/controllers/Booking.js";
 app.post("/api/bookings", createBooking);
