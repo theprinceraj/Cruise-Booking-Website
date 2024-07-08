@@ -1,15 +1,75 @@
-export const createNewBooking = (req, res) => {
+import mongoose from "mongoose";
+import { Booking } from "../models/bookingmodel.js";
+import { findDuplicateBookings } from "../utilities/findDuplicateBookings.js";
+
+export const createNewBooking = async (req, res) => {
     try {
+        const { userId, cruiseDate, numberOfPassengers, bookingDate, passengerDetails, totalCost, paymentStatus } =
+            req.body;
+        if (
+            !userId ||
+            !cruiseDate ||
+            !bookingDate ||
+            !numberOfPassengers ||
+            !passengerDetails ||
+            !totalCost ||
+            !paymentStatus
+        ) {
+            console.log(userId, numberOfPassengers, passengerDetails, totalCost, paymentStatus);
+            return res.status(400).json({ message: "Invalid values provided" });
+        }
+
+        const bookingId = new mongoose.Types.ObjectId().toString();
+        const bookingObject = {
+            bookingId,
+            userId,
+            cruiseDate: cruiseDate,
+            bookingDate: bookingDate,
+            numberOfPassengers,
+            passengerDetails,
+            totalCost,
+            paymentStatus,
+        };
+        const duplicateBooking = await findDuplicateBookings(userId, cruiseDate, passengerDetails);
+        if (duplicateBooking) {
+            // console.log(`Duplicate Bookings:` + duplicateBooking);
+            return res.status(400).json({
+                message: "Duplicate booking found for the same user and cruise date with identical passenger details",
+            });
+        }
+        await Booking.create(bookingObject);
         res.status(200).json({ message: "New booking succesfully created" });
+    } catch (error) {
+        console.error(error);
+        res.status(404).json({ message: "Internal Error", details: error.message });
+    }
+};
+
+export const deleteExistingBooking = async (req, res) => {
+    try {
+        const { bookingId } = req.body;
+        if (!bookingId) {
+            res.status(400).json({ message: "Invalid values provided" });
+            return;
+        }
+
+        await Booking.deleteOne({ bookingId: bookingId });
+        res.status(200).json({ message: "Booking was succesfully deleted" });
     } catch (error) {
         console.error(error);
         res.status(404).json({ message: "Internal Error" });
     }
 };
 
-export const deleteExistingBooking = (req, res) => {
+export const findBookingsByUserId = async (req, res) => {
     try {
-        res.status(200).json({ message: "Booking was succesfully deleted" });
+        const { userId } = req.body;
+        if (!userId) {
+            res.status(400).json({ message: "Invalid values provided" });
+            return;
+        }
+        const bookings = await Booking.find({ userId: userId });
+        res.status(200).json({ bookings });
     } catch (error) {
         console.error(error);
         res.status(404).json({ message: "Internal Error" });

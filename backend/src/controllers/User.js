@@ -1,20 +1,22 @@
 import { User } from "../models/usermodel.js";
 export const signupUser = async (req, res) => {
     try {
-        const { username, email, password } = req.body;
-        if (username && email && password) {
-            const userExist = await User.findOne({ email });
-            if (!userExist) {
-                await User.create({ username, email, password });
-                res.status(200).json({ message: "Successfully created the user" });
-            } else {
-                res.status(400).json({ message: "User already exist" });
-            }
-        } else {
-            res.status(400).json({ message: "Invalid field values provided" });
+        const { username, email, password, phone } = req.body;
+        if (!username || !email || !password || !phone) {
+            return res.status(400).json({ message: "Invalid field values provided" });
         }
+        const userEmailExist = await User.findOne({ email });
+        if (userEmailExist) {
+            return res.status(400).json({ message: "Email already in use" });
+        }
+        const userPhoneExist = await User.findOne({ phone });
+        if (userPhoneExist) {
+            return res.status(400).json({ message: "Phone number already in use" });
+        }
+        await User.create({ username, email, password, phone });
+        res.status(200).json({ message: "Successfully created the user" });
     } catch (error) {
-        console.error(error)
+        console.error(error);
         res.status(404).json({ message: "Internal Error" });
     }
 };

@@ -1,4 +1,4 @@
-import mongoose, { mongo, Mongoose } from "mongoose";
+import mongoose from "mongoose";
 
 const bookingSchema = new mongoose.Schema({
     bookingId: {
@@ -45,9 +45,6 @@ const bookingSchema = new mongoose.Schema({
         enum: ["Pending", "Paid", "Cancelled"],
         default: "Pending",
     },
-    specialRequests: {
-        type: String,
-    },
 });
 
-export const Booking = mongoose.model("Booking", bookingSchema, "Bookings");
+export const Booking = new mongoose.model("Booking", bookingSchema, "Bookings");

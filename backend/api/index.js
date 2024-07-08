@@ -10,10 +10,15 @@ app.use(express.json({ limit: "10mb" }));
 
 import { connectDB } from "../src/utilities/db.js";
 connectDB();
+
 import { loginUser } from "../src/controllers/User.js";
 import { signupUser } from "../src/controllers/User.js";
-app.use("/api/login", loginUser);
-app.use("/api/signup", signupUser);
+app.post("/api/login", loginUser);
+app.post("/api/signup", signupUser);
+
+import { createNewBooking, deleteExistingBooking } from "../src/controllers/Booking.js";
+app.post("/api/createbooking", createNewBooking);
+app.post("/api/deletebooking", deleteExistingBooking);
 
 app.get("/api", (req, res) => {
     res.status(200).json({ response: "API is running." });
