@@ -45,15 +45,16 @@ export const createNewBooking = async (req, res) => {
     }
 };
 
-export const deleteExistingBooking = async (req, res) => {
+export const deleteExistingBookingById = async (req, res) => {
     try {
         const { bookingId } = req.body;
-        if (!bookingId) {
-            res.status(400).json({ message: "Invalid values provided" });
-            return;
+        if (!bookingId && !mongoose.Types.ObjectId.isValid(bookingId)) {
+            return res.status(400).json({ message: "Invalid values provided" });
         }
-
-        await Booking.deleteOne({ bookingId: bookingId });
+        const deletedBooking = await Booking.findOneAndDelete({ bookingId });
+        if (!deletedBooking) {
+            return res.status(400).json({ message: "Booking not found" });
+        }
         res.status(200).json({ message: "Booking was succesfully deleted" });
     } catch (error) {
         console.error(error);
