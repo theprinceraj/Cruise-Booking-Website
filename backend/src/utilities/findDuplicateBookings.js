@@ -1,6 +1,5 @@
-import mongoose from "mongoose";
 import { Booking } from "../models/bookingmodel.js";
-import { User } from "../models/usermodel.js";
+import { validateUser } from "./validateUser.js";
 export const findDuplicateBookings = async (userId, cruiseDate, passengerDetails) => {
     if (!(await validateUser(userId))) {
         throw new Error("User Id is not valid");
@@ -28,15 +27,4 @@ export const findDuplicateBookings = async (userId, cruiseDate, passengerDetails
     }
     // console.log(bookings);
     return null;
-};
-
-const validateUser = async (userId) => {
-    if (!mongoose.Types.ObjectId.isValid(userId)) {
-        console.log(userId);
-        throw new Error("Invalid User Id");
-    }
-    const userExists = await User.findOne({ _id: userId });
-    if (userExists) {
-        return true;
-    } else return false;
 };

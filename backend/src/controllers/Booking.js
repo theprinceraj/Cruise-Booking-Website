@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { Booking } from "../models/bookingmodel.js";
 import { findDuplicateBookings } from "../utilities/findDuplicateBookings.js";
+import { validateUser } from "../utilities/validateUser.js";
 
 export const createNewBooking = async (req, res) => {
     try {
@@ -64,15 +65,15 @@ export const deleteExistingBookingById = async (req, res) => {
 
 export const findBookingsByUserId = async (req, res) => {
     try {
-        const { userId } = req.body;
-        if (!userId) {
-            res.status(400).json({ message: "Invalid values provided" });
-            return;
+        const { userId } = req.params;
+        if (!(await validateUser(userId))) {
+            console.log(userId);
+            return res.status(400).json({ message: "User Id is not valid" });
         }
         const bookings = await Booking.find({ userId: userId });
         res.status(200).json({ bookings });
     } catch (error) {
         console.error(error);
-        res.status(404).json({ message: "Internal Error" });
+        res.status(404).json({ message: "Internal Error", details: error.message });
     }
 };

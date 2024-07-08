@@ -20,6 +20,9 @@ import { createNewBooking, deleteExistingBookingById } from "../src/controllers/
 app.post("/api/createbooking", createNewBooking);
 app.post("/api/deletebooking", deleteExistingBookingById);
 
+import { findBookingsByUserId } from "../src/controllers/Booking.js";
+app.post("/api/bookings/:userId", findBookingsByUserId);
+
 app.get("/api", (req, res) => {
     res.status(200).json({ response: "API is running." });
 });
