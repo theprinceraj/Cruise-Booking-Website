@@ -1,9 +1,9 @@
-import jwt from "jsonwebtoken";
-import QRCode from "qrcode";
-import { Booking } from "../models/bookingmodel.js";
 import { configDotenv } from "dotenv";
 configDotenv();
 const secretKey = process.env.QR_CODE_SECRET_KEY;
+import jwt from "jsonwebtoken";
+import QRCode from "qrcode";
+import { Booking } from "../models/bookingmodel.js";
 
 export const generateQRCode = async (bookingId) => {
     const booking = await Booking.findOne({ bookingId });
