@@ -31,23 +31,25 @@ export const verifyQRCode = async (req, res) => {
         const decoded = jwt.verify(token, secret);
         if (!decoded) {
             console.log(decoded);
-            return res.status(400).json({ message: "Failed to decode QR code" });
+            return res.status(400).json({ message: "Failed to decode QR code", verificationStatus: false });
         }
         const { bookingId, userId } = decoded;
         if (!(await validateUserId(userId))) {
-            return res.status(400).json({ message: "User Id is invalid" });
+            return res.status(400).json({ message: "User Id is invalid", verificationStatus: false });
         }
         const profile = await Profile.findOne({ userId });
         const booking = await Booking.findOne({ bookingId, userId });
         if (!booking) {
-            return res.status(400).json({ message: "Booking Id is invalid" });
+            return res.status(400).json({ message: "Booking Id is invalid", verificationStatus: false });
         }
         if (booking.userId.toString() !== userId) {
             console.log(booking.userId, userId);
-            return res.status(400).json({ message: "Either User Id or Booking Id is invalid" });
+            return res
+                .status(400)
+                .json({ message: "Either User Id or Booking Id is invalid", verificationStatus: false });
         }
         if (booking.paymentStatus !== "Paid") {
-            return res.status(200).json({ message: "Payment for booking is not confirmed" });
+            return res.status(200).json({ message: "Payment for booking is not confirmed", verificationStatus: false });
         } else {
             return res.status(200).json({
                 message: "Booking is verified",
@@ -61,6 +63,7 @@ export const verifyQRCode = async (req, res) => {
                     totalCost: booking.totalCost,
                     paymentStatus: booking.paymentStatus,
                 },
+                verificationStatus: true,
             });
         }
     } catch (error) {
