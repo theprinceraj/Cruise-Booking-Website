@@ -24,8 +24,9 @@ app.get("/api/bookings/:userId", findBookingsByUserId);
 import { createProfile } from "../src/controllers/Profile.js";
 app.post("/api/profile/:userId", createProfile);
 
-import { getQRCode } from "../src/controllers/QRCode.js";
+import { getQRCode, verifyQRCode } from "../src/controllers/QRCode.js";
 app.get("/api/qr/:bookingId", getQRCode);
+app.post("/api/qr/verify/", verifyQRCode);
 
 app.get("/api", (req, res) => {
     res.status(200).json({ response: "API is running." });

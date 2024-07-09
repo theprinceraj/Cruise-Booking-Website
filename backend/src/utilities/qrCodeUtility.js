@@ -15,8 +15,8 @@ export const generateQRCode = async (bookingId) => {
     }
     const payload = { bookingId, userId: booking.userId };
     const token = jwt.sign(payload, secretKey);
+    console.log(token);
     const qrCodeData = await QRCode.toDataURL(token);
-
     booking.qrCode = qrCodeData;
     await booking.save();
 
