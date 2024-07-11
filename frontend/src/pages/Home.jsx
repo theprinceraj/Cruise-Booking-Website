@@ -49,6 +49,7 @@ export default function Home() {
                         backgroundColor: isHovered ? "rgb(0, 202, 180, 0.9)" : "rgba(0, 0, 0, 0.1)",
 
                     }}
+                    
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}>
                         <Link to="/booking">BOOK NOW</Link>
