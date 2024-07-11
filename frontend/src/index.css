@@ -25,3 +25,22 @@
 .backdrop-blur-dk{
         backdrop-filter: blur(50px);
 }
+
+.container{
+    backdrop-filter: blur(300px);
+
+}
+.second-container{
+    backdrop-filter: blur(500px);
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px black;
+
+}
+
+.container-bordershadow{
+    border: 2px solid rgb(0, 202, 179);
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px black;
+}
+
+

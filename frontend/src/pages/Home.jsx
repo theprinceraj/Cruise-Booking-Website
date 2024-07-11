@@ -31,9 +31,9 @@ export default function Home() {
         <>
             <Navbar />
             <div className="relative h-[89vh] w-100 flex flex-col items-center justify-center">
-                <div className="flex flex-wrap justify-center items-start">
+                <div className="flex flex-wrap justify-center items-start ">
                     {imageCardsData.map((data) => (
-                        <ImageCard
+                        <ImageCard 
                             imageUrl={data.imageUrl}
                             category={data.category}
                             customText={data.customText}
@@ -42,11 +42,12 @@ export default function Home() {
                     ))}
                 </div>
                 <button
-                    className="border-solid border-2 rounded-3xl mx-2 mt-2 p-2 font-bold text-2xl bg-cyan-500 shadow-lg shadow-cyan-500/50"
+                    className="border-solid border-2 rounded-3xl mx-2 mt-2 p-2 font-bold text-2xl bg-cyan-500 shadow-lg shadow-cyan-500/50 "
                     style={{
-                        borderColor: "white",
+                        borderColor: "cyan",
                         color: isHovered ? "white" : "yellow",
-                        backgroundColor: isHovered ? "rgba(255, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.3)",
+                        backgroundColor: isHovered ? "rgb(0, 202, 180, 0.9)" : "rgba(0, 0, 0, 0.1)",
+
                     }}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}>

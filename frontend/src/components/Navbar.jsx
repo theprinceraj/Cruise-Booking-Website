@@ -3,13 +3,15 @@ import buyLogo from "/buyLogo.svg";
 import homeLogo from "/homeLogo.svg";
 export default function Navbar() {
     return (
-        <>(
+        <>
             <nav
                 className="bg-black/80 backdrop-blur-dk fixed w-full z-10 top-0 left-0 shadow-md"
                 style={{ color: "white" }}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16 border-b border-gray-700">
-                        <div className="w-40 m-2 font-bold text-2xl">Lenin Cruise</div>
+                        <div className="w-40 m-2 font-bold text-2xl">
+                            <Link to="/">Lenin Cruise</Link>
+                        </div>
                         <div className="flex items-center m-3">
                             <Link
                                 to="/"
@@ -35,7 +37,7 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
-            );
+            ;
         </>
     );
 }

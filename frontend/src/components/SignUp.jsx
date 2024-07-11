@@ -31,12 +31,12 @@ export default function SignUp(){
     };
 
     return  (
-        <div className="flex items-center justify-center" style={{ marginTop: 60 }}>
+        <div className="flex items-center justify-center " style={{ marginTop: 60 }}>
             {/* form changes -> relative removed, height changed(480px), border border-white/10 removed, shadow-xl removed, bg-white/10 removed */}
             <form
                 onSubmit={handleSignup}
-                className=" w-[420px] h-[540px] bg-white/10 backdrop-blur-dk rounded-2xl  p-12"
-                style={{ border: "5px solid grey" }}>
+                className=" w-[420px] h-[540px] bg-white/10 backdrop-blur-dk rounded-2xl container-bordershadow p-12"
+                >
                 <h3 className="text-3xl font-medium text-white text-center" style={{ color: "white" }}>
                     Signup
                 </h3>

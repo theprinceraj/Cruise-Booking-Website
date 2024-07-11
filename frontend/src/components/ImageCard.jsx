@@ -1,7 +1,7 @@
 export default function ImageCard({ imageUrl, category, customText, author }) {
     return (
         <div
-            className="relative !bg-white rounded-xl overflow-hidden w-80 m-3 shadow-lg transition-transform transform hover:scale-105"
+            className="relative !bg-white rounded-xl overflow-hidden w-80 m-3 shadow-lg transition-transform transform hover:scale-105 container-bordershadow"
             style={{ backgroundColor: "white" }}>
             <div className="bg-cover bg-center h-52" style={{ backgroundImage: `url('${imageUrl}')` }}></div>
             <a
