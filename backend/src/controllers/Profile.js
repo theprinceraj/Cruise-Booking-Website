@@ -1,6 +1,7 @@
 import { validateUserId } from "../utilities/validateUserId.js";
 import { Profile } from "../models/profilemodel.js";
 import { User } from "../models/usermodel.js";
+import validator from "validator";
 
 export const createProfile = async (req, res) => {
     try {
@@ -44,12 +45,38 @@ export const updateProfile = async (req, res) => {
         }
 
         const updatedFields = {};
-        if (fullName !== undefined) updatedFields.fullName = fullName;
-        if (email !== undefined) updatedFields.email = email;
-        if (phone !== undefined) updatedFields.phone = phone;
-        if (address !== undefined) updatedFields.address = address;
-        if (profilePicture !== undefined) updatedFields.profilePicture = profilePicture;
-        if (foodPreference !== undefined) updatedFields.foodPreference = foodPreference;
+        if (fullName !== undefined) {
+            updatedFields.fullName = validator.trim(validator.escape(fullName));
+        }
+        if (email !== undefined) {
+            if (validator.isEmail(email)) {
+                updatedFields.email = validator.normalizeEmail(email);
+            } else {
+                return res.status(400).json({ message: "Invalid email format" });
+            }
+        }
+        if (phone !== undefined) {
+            if (validator.isMobilePhone(phone.toString(), "any")) {
+                updatedFields.phone = phone;
+            } else {
+                return res.status(400).json({ message: "Invalid phone number" });
+            }
+        }
+        if (address !== undefined) {
+            updatedFields.address = validator.trim(validator.escape(address));
+        }
+        if (profilePicture !== undefined) {
+            updatedFields.profilePicture = validator.trim(profilePicture);
+        }
+        if (foodPreference !== undefined) {
+            const validFoodPreferences = ["Veg", "Non-Veg", "Vegan"];
+            if (validFoodPreferences.includes(foodPreference.trim())) {
+                updatedFields.foodPreference = foodPreference;
+            } else {
+                return res.status(400).json({ message: "Invalid food preference" });
+            }
+        }
+
         if (Object.keys(updatedFields).length === 0) {
             return res.status(400).json({ message: "No valid fields provided for update" });
         }
