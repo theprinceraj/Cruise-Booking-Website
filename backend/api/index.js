@@ -23,7 +23,7 @@ app.get("/api/bookings/:userId", findBookingsByUserId);
 
 import { createProfile, updateProfile } from "../src/controllers/Profile.js";
 app.post("/api/profile/:userId", createProfile);
-app.post("/api/profile/update/:userId", updateProfile);
+app.patch("/api/profile/update/:userId", updateProfile);
 
 import { getQRCode, verifyQRCode } from "../src/controllers/QRCode.js";
 app.get("/api/qr/:bookingId", getQRCode);

@@ -21,7 +21,6 @@ export const createBooking = async (req, res) => {
         }
 
         if (!(await validateUserId(userId))) {
-            console.log(userId);
             return res.status(400).json({ message: "User Id is not valid" });
         }
 
@@ -72,7 +71,6 @@ export const findBookingsByUserId = async (req, res) => {
     try {
         const { userId } = req.params;
         if (!(await validateUserId(userId))) {
-            console.log(userId);
             return res.status(400).json({ message: "User Id is not valid" });
         }
         const bookings = await Booking.find({ userId: userId });

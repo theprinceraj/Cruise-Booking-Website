@@ -50,6 +50,9 @@ export const updateProfile = async (req, res) => {
         if (address !== undefined) updatedFields.address = address;
         if (profilePicture !== undefined) updatedFields.profilePicture = profilePicture;
         if (foodPreference !== undefined) updatedFields.foodPreference = foodPreference;
+        if (Object.keys(updatedFields).length === 0) {
+            return res.status(400).json({ message: "No valid fields provided for update" });
+        }
 
         const oldProfile = await Profile.findOneAndUpdate(
             { userId: userId },
@@ -59,7 +62,7 @@ export const updateProfile = async (req, res) => {
         if (!oldProfile) {
             return res.status(404).json({ message: "Profile not found" });
         }
-        
+
         res.status(200).json({ message: "Profile updated successfully" });
     } catch (error) {
         console.log("Error encountered:", error);
