@@ -55,7 +55,7 @@ export const verifyQRCode = async (req, res) => {
                 message: "Booking is verified",
                 details: {
                     bookingId: booking.bookingId,
-                    fullName: profile.fullName,
+                    fullName: profile?.fullName,
                     cruiseDate: booking.cruiseDate,
                     bookingDate: booking.bookingDate,
                     numberOfPassengers: booking.numberOfPassengers,
