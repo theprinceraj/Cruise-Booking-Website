@@ -21,7 +21,6 @@ export const createBooking = async (req, res) => {
         }
 
         if (!(await validateUserId(userId))) {
-            console.log(userId);
             return res.status(400).json({ message: "User Id is not valid" });
         }
 
@@ -38,7 +37,6 @@ export const createBooking = async (req, res) => {
         };
         const duplicateBooking = await findDuplicateBookings(userId, cruiseDate, passengerDetails);
         if (duplicateBooking) {
-            // console.log(`Duplicate Bookings:` + duplicateBooking);
             return res.status(400).json({
                 message: "Duplicate booking found for the same user and cruise date with identical passenger details",
             });
@@ -73,7 +71,6 @@ export const findBookingsByUserId = async (req, res) => {
     try {
         const { userId } = req.params;
         if (!(await validateUserId(userId))) {
-            console.log(userId);
             return res.status(400).json({ message: "User Id is not valid" });
         }
         const bookings = await Booking.find({ userId: userId });

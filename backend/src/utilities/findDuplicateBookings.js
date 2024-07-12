@@ -8,7 +8,6 @@ export const findDuplicateBookings = async (userId, cruiseDate, passengerDetails
     let isDuplicate = false;
     if (bookings.length > 0) {
         for (const booking of bookings) {
-            // console.log(passengerDetails, "\n\n", booking.passengerDetails);
             if (booking.passengerDetails.length === passengerDetails.length) {
                 for (let i = 0; i < passengerDetails.length; i++) {
                     if (
@@ -25,6 +24,5 @@ export const findDuplicateBookings = async (userId, cruiseDate, passengerDetails
             }
         }
     }
-    // console.log(bookings);
     return null;
 };
