@@ -16,9 +16,14 @@ export default function Login(){
         });
     }
 
-    const handleLogin = async (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
+        const userObject={
+            email : e.target[0].value,
+            password : e.target[1].value,
+        }
         
+        console.log(userObject);
 
     };
     return (
@@ -26,8 +31,8 @@ export default function Login(){
             {/* form changes -> relative removed, height changed(480px), border border-white/10 removed, shadow-xl removed, bg-white/10 removed */}
             <form
                 onSubmit={handleLogin}
-                className=" w-[420px] h-[440px]  backdrop-blur-dk rounded-2xl p-12"
-                style={{ border: "5px solid grey" }}>
+                className=" w-[420px] h-[440px]  backdrop-blur-dk rounded-2xl p-12 container-bordershadow"
+                >
                 <h3
                     className="text-3xl font-medium text-white text-center"
                     style={{

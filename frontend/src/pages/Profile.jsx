@@ -1,11 +1,12 @@
+import DashBoard from "../components/DashBoard";
 import Navbar from "../components/Navbar";
-
-export default function Profile() {
+function Profile() {
     return (
         <>
-            <Navbar />
-
-            <div>Profile</div>
+            {/* <div><Navbar /></div> */}
+            <div><DashBoard/></div>
         </>
     );
 }
+
+export default Profile;
