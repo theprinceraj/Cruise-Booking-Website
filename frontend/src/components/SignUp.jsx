@@ -51,7 +51,7 @@ export default function SignUp(){
             {/* form changes -> relative removed, height changed(480px), border border-white/10 removed, shadow-xl removed, bg-white/10 removed */}
             <form
                 onSubmit={handleSignup}
-                className=" w-[480px] h-[640px] bg-white/10 backdrop-blur-dk rounded-2xl container-bordershadow p-12"
+                className=" w-[480px] h-[660px] bg-white/10 backdrop-blur-dk rounded-2xl container-bordershadow p-12"
                 >
                 <h3 className="text-3xl font-medium text-white text-center" style={{ color: "white" }}>
                     Signup
@@ -127,7 +127,7 @@ export default function SignUp(){
 
                 <button
                     type="submit"
-                    className="w-full mt-6 bg-white text-[#080710] py-3 rounded-md font-semibold hover:bg-gray-200"
+                    className="container-bordershadow w-full mt-6 bg-white text-[#080710] py-3 rounded-md font-semibold hover:bg-gray-200"
                     style={{ color: "white" }}>
                     Submit
                 </button>
