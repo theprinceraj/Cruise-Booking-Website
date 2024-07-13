@@ -9,6 +9,12 @@
     /* color: white; */
 }
 
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
 .main-overlay {
     width: 100vw;
     height: 100vh;
@@ -20,6 +26,9 @@
     top: 0;
     z-index: 0;
     filter: brightness(50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .backdrop-blur-dk {
@@ -29,6 +38,7 @@
 .container {
     backdrop-filter: blur(300px);
 }
+
 .second-container {
     backdrop-filter: blur(500px);
     border-radius: 10px;
