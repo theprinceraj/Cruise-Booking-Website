@@ -12,8 +12,8 @@ import { connectDB } from "../src/utilities/db.js";
 connectDB();
 
 import { loginUser, signupUser, deleteUser } from "../src/controllers/User.js";
-app.post("/api/login", loginUser);
-app.post("/api/signup", signupUser);
+app.post("/api/user/login", loginUser);
+app.put("/api/user/signup", signupUser);
 app.delete("/api/user/:userId", deleteUser);
 
 import { createBooking, deleteExistingBookingById, findBookingsByUserId } from "../src/controllers/Booking.js";

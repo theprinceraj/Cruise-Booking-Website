@@ -30,7 +30,6 @@ export const verifyQRCode = async (req, res) => {
         const { token } = req.body;
         const decoded = jwt.verify(token, secret);
         if (!decoded) {
-            console.log(decoded);
             return res.status(400).json({ message: "Failed to decode QR code", verificationStatus: false });
         }
         const { bookingId, userId } = decoded;
