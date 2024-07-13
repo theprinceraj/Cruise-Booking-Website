@@ -26,9 +26,6 @@ body {
     top: 0;
     z-index: 0;
     filter: brightness(50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .backdrop-blur-dk {
