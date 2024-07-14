@@ -1,6 +1,7 @@
 import { Booking } from "../models/bookingmodel.js";
 import { Profile } from "../models/profilemodel.js";
 import { User } from "../models/usermodel.js";
+import { validateUserId } from "../utilities/MongoDB/validateUserId.js";
 import { sendVerificationMail } from "../utilities/sendVerificationEmail.js";
 import validator from "validator";
 export const signupUser = async (req, res) => {
@@ -63,6 +64,8 @@ export const loginUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
     const { userId } = req.params;
 
+    if (!(await validateUserId(userId))) return res.status(404).json({ message: "User id is invalid" });
+
     const user = await User.findById(userId);
     if (!user) return res.status(404).json({ message: "User id is invalid" });
     await User.findByIdAndDelete(userId);
@@ -77,12 +80,13 @@ export const verifyUserEmail = async (req, res) => {
         const { userId } = req.params;
         const { oneTimeVerificationCode } = req.body;
 
-        const user = User.findById(userId);
-
+        if (!(await validateUserId(userId))) return res.status(404).json({ message: "User id is invalid" });
+        const user = await User.findById(userId);
         if (!user) return res.status(404).json({ message: "User id is invalid" });
+        if (user.isEmailVerified) return res.status(400).json({ message: "User email already verified" });
         if (!user.emailVerificationCode || !oneTimeVerificationCode)
             return res.status(404).json({ message: "No valid verification code found" });
-        if (user.emailVerificationCode !== oneTimeVerificationCode)
+        if (user.emailVerificationCode != oneTimeVerificationCode)
             return res.status(400).json({ message: "Invalid verification code" });
         if (Date.now() > new Date(user.emailVerificationCodeExpiry))
             return res.status(400).json({ message: "Verification code expired" });

@@ -1,15 +1,24 @@
+import { configDotenv } from "dotenv";
+configDotenv();
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-    host: "smtp-relay.brevo.com",
-    port: 587,
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
     secure: false,
     auth: {
-        user: "788eee001@smtp-brevo.com",
-        pass: "UpREfv2ZhMk57jS0",
+        user: process.env.SMTP_AUTH_USER,
+        pass: process.env.SMTP_AUTH_PASSWORD,
     },
 });
 
+/**
+ * Sends a verification email to the specified email address with the provided OTP.
+ *
+ * @param {string} email - The email address to send the verification email to.
+ * @param {string} otp - The one-time password to include in the email.
+ * @return {Promise<void>} - A promise that resolves when the email is successfully sent.
+ */
 export const sendVerificationMail = async (email, otp) => {
     try {
         const info = await transporter.sendMail({
@@ -24,5 +33,3 @@ export const sendVerificationMail = async (email, otp) => {
         console.error("Error sending email:", error);
     }
 };
-
-sendVerificationMail("profile.princeraj@gmail.com", 807761);
