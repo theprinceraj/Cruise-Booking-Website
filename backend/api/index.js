@@ -7,9 +7,8 @@ const port = process.env.PORT || 3000;
 app.use(express.static("public"));
 app.use(express.json({ limit: "2mb" }));
 
-import { initializeMongoDB, initializeFirebase } from "../src/utilities/connectors.js";
+import { initializeMongoDB } from "../src/utilities/connectors.js";
 initializeMongoDB();
-initializeFirebase();
 
 import { loginUser, signupUser, deleteUser } from "../src/controllers/User.js";
 app.post("/api/user/login", loginUser);

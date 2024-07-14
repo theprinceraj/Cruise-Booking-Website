@@ -47,14 +47,14 @@ export const loginUser = async (req, res) => {
         const normalizedEmail = validator.normalizeEmail(email);
         const userExist = await User.findOne({ email: normalizedEmail });
         if (!userExist) {
-            return res.status(400).json({ message: "Invalid Login" });
+            return res.status(400).json({ message: "Invalid email and/or password combination" });
         }
 
         const isPasswordValid = password == userExist.password;
         if (isPasswordValid) {
             res.status(200).json({ message: "Login Successful" });
         } else {
-            res.status(401).json({ message: "Invalid email and password combination" });
+            res.status(401).json({ message: "Invalid email and/or password combination" });
         }
     } catch (error) {
         console.error(error);
