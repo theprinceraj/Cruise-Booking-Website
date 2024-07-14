@@ -10,10 +10,11 @@ app.use(express.json({ limit: "2mb" }));
 import { initializeMongoDB } from "../src/utilities/connectors.js";
 initializeMongoDB();
 
-import { loginUser, signupUser, deleteUser } from "../src/controllers/User.js";
+import { loginUser, signupUser, deleteUser, verifyUserEmail } from "../src/controllers/User.js";
 app.post("/api/user/login", loginUser);
 app.put("/api/user/signup", signupUser);
 app.delete("/api/user/:userId", deleteUser);
+app.post("/api/user/verify/:userId", verifyUserEmail);
 
 import { createBooking, deleteExistingBookingById, findBookingsByUserId } from "../src/controllers/Booking.js";
 app.post("/api/bookings", createBooking);
