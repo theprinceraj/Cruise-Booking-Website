@@ -75,6 +75,19 @@ export const deleteUser = async (req, res) => {
     res.status(200).json({ message: "User deleted successfully" });
 };
 
+/**
+ * Verifies the email of a user by checking the provided verification code against the user's stored code.
+ *
+ * @param {Object} req - The request object containing the userId and oneTimeVerificationCode.
+ * @param {Object} res - The response object used to send the result of the verification.
+ * @return {Promise<void>} - A promise that resolves when the email is successfully verified.
+ *                           If the user ID is invalid, an error response with status 404 is sent.
+ *                           If the user email is already verified, an error response with status 400 is sent.
+ *                           If there is no valid verification code found, an error response with status 404 is sent.
+ *                           If the verification code is invalid, an error response with status 400 is sent.
+ *                           If the verification code has expired, an error response with status 400 is sent.
+ *                           If there is an internal error, an error response with status 500 is sent.
+ */
 export const verifyUserEmail = async (req, res) => {
     try {
         const { userId } = req.params;
