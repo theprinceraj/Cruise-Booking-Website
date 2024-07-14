@@ -8,8 +8,9 @@ app.use(express.static("public"));
 
 app.use(express.json({ limit: "2mb" }));
 
-import { connectDB } from "../src/utilities/db.js";
-connectDB();
+import { initializeMongoDB, initializeFirebase } from "../src/utilities/connectors.js";
+initializeMongoDB();
+initializeFirebase();
 
 import { loginUser, signupUser, deleteUser } from "../src/controllers/User.js";
 app.post("/api/user/login", loginUser);
