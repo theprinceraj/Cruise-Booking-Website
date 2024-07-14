@@ -5,7 +5,6 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.static("public"));
-
 app.use(express.json({ limit: "2mb" }));
 
 import { initializeMongoDB, initializeFirebase } from "../src/utilities/connectors.js";
@@ -30,9 +29,7 @@ import { getQRCode, verifyQRCode } from "../src/controllers/QRCode.js";
 app.get("/api/qr/:bookingId", getQRCode);
 app.post("/api/qr/verify/", verifyQRCode);
 
-app.get("/api", (req, res) => {
-    res.status(200).json({ response: "API is running." });
-});
+app.get("/api", (req, res) => res.status(200).json({ response: "API is running." }));
 
 app.listen(port, () => {
     console.log(`Backend server live at ${port}`);

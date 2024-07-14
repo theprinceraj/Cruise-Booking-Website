@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { Booking } from "../models/bookingmodel.js";
 import { generateQRCode } from "../utilities/qrCodeUtility.js";
 import { configDotenv } from "dotenv";
-import { validateUserId } from "../utilities/validateUserId.js";
+import { validateUserId } from "../utilities/MongoDB/validateUserId.js";
 import { Profile } from "../models/profilemodel.js";
 configDotenv();
 const secret = process.env.QR_CODE_SECRET_KEY;

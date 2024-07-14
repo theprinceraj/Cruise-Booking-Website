@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Booking } from "../models/bookingmodel.js";
-import { findDuplicateBookings } from "../utilities/findDuplicateBookings.js";
-import { validateUserId } from "../utilities/validateUserId.js";
+import { findDuplicateBookings } from "../utilities/MongoDB/findDuplicateBookings.js";
+import { validateUserId } from "../utilities/MongoDB/validateUserId.js";
 
 export const createBooking = async (req, res) => {
     try {

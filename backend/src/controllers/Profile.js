@@ -1,4 +1,4 @@
-import { validateUserId } from "../utilities/validateUserId.js";
+import { validateUserId } from "../utilities/MongoDB/validateUserId.js";
 import { Profile } from "../models/profilemodel.js";
 import { User } from "../models/usermodel.js";
 import validator from "validator";

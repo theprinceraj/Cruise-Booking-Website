@@ -1,4 +1,4 @@
-import { Booking } from "../models/bookingmodel.js";
+import { Booking } from "../../models/bookingmodel.js";
 import { validateUserId } from "./validateUserId.js";
 export const findDuplicateBookings = async (userId, cruiseDate, passengerDetails) => {
     if (!(await validateUserId(userId))) {
