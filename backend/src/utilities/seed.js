@@ -42,6 +42,9 @@ const generateFakeBooking = (userId, fakeCount) => ({
 const seedDatabase = async () => {
     try {
         // await mongoose.connection.dropDatabase();
+        await User.deleteMany({});
+        await Booking.deleteMany({});
+        await Profile.deleteMany({});
 
         const users = [];
         for (let i = 0; i < 50; i++) {
