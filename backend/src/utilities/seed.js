@@ -39,6 +39,13 @@ const generateFakeBooking = (userId, fakeCount) => ({
     paymentStatus: faker.helpers.arrayElement(["Pending", "Paid", "Cancelled"]),
 });
 
+/**
+ * Seeds the database with fake data.
+ *
+ * @warning This function clears all existing entries in all existing collections of MongoDB before seeding.
+ *
+ * @return {Promise<void>} A promise that resolves when the database is seeded successfully.
+ */
 const seedDatabase = async () => {
     try {
         // await mongoose.connection.dropDatabase();
