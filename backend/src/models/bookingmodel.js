@@ -42,7 +42,6 @@ const bookingSchema = new mongoose.Schema({
     qrCode: {
         type: String,
         default: "",
-        unique: true,
     },
     paymentStatus: {
         type: String,
@@ -51,5 +50,13 @@ const bookingSchema = new mongoose.Schema({
         default: "Pending",
     },
 });
+
+bookingSchema.index(
+    { qrCode: 1 },
+    {
+        unique: true,
+        partialFilterExpression: { qrCode: { $ne: "" } },
+    }
+);
 
 export const Booking = new mongoose.model("Booking", bookingSchema, "Bookings");
