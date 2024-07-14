@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
 
 const bookingSchema = new mongoose.Schema({
-    bookingId: {
-        type: String,
-        required: true,
-        unique: true,
-    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",

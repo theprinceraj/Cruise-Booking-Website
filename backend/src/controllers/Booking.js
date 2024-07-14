@@ -56,7 +56,7 @@ export const deleteExistingBookingById = async (req, res) => {
             console.log(bookingId);
             return res.status(400).json({ message: "Invalid values provided" });
         }
-        const deletedBooking = await Booking.findOneAndDelete({ bookingId });
+        const deletedBooking = await Booking.findById(bookingId);
         if (!deletedBooking) {
             return res.status(400).json({ message: "Booking not found" });
         }

@@ -1,11 +1,11 @@
+import { configDotenv } from "dotenv";
+configDotenv();
 import mongoose from "mongoose";
 import { faker } from "@faker-js/faker";
 import { Booking } from "../models/bookingmodel.js";
 import { User } from "../models/usermodel.js";
 import { Profile } from "../models/profilemodel.js";
-
-import { configDotenv } from "dotenv";
-configDotenv();
+import { generateQRCode } from "./qrCodeUtility.js";
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -28,7 +28,6 @@ const generateFakeProfile = (userId) => ({
 
 const generateFakeBooking = (userId, fakeCount) => ({
     userId,
-    bookingId: faker.string.uuid(),
     cruiseDate: faker.date.future(),
     bookingDate: faker.date.recent(),
     numberOfPassengers: fakeCount,
@@ -60,13 +59,22 @@ const seedDatabase = async () => {
 
         const bookings = [];
         for (const user of users) {
-            const booking = new Booking(generateFakeBooking(user._id, faker.number.int({ min: 1, max: 10 })));
-            bookings.push(booking);
-            await booking.save();
+            let i = 1,
+                randomBookingCount = Math.floor(Math.random() * 3 + 1);
+            while (i <= randomBookingCount) {
+                const booking = new Booking(generateFakeBooking(user._id, faker.number.int({ min: 1, max: 10 })));
+                bookings.push(booking);
+                await booking.save();
+                if (booking.paymentStatus === "Paid") {
+                    await generateQRCode(booking._id);
+                }
+                i++;
+            }
         }
 
         console.log("Database seeded successfully!");
         mongoose.connection.close();
+        process.exit(1);
     } catch (error) {
         console.error("Error seeding database:", error);
     }

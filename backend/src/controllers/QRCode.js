@@ -10,7 +10,7 @@ const secret = process.env.QR_CODE_SECRET_KEY;
 export const getQRCode = async (req, res) => {
     try {
         const { bookingId } = req.params;
-        const booking = await Booking.findOne({ bookingId });
+        const booking = await Booking.findById(bookingId);
         if (!booking) {
             return res.status(400).json({ message: "Booking Id is invalid" });
         }
@@ -37,7 +37,7 @@ export const verifyQRCode = async (req, res) => {
             return res.status(400).json({ message: "User Id is invalid", verificationStatus: false });
         }
         const profile = await Profile.findOne({ userId });
-        const booking = await Booking.findOne({ bookingId, userId });
+        const booking = await Booking.findOne({ _id: bookingId, userId });
         if (!booking) {
             return res.status(400).json({ message: "Booking Id is invalid", verificationStatus: false });
         }
@@ -53,7 +53,7 @@ export const verifyQRCode = async (req, res) => {
             return res.status(200).json({
                 message: "Booking is verified",
                 details: {
-                    bookingId: booking.bookingId,
+                    bookingId: booking._id,
                     fullName: profile?.fullName,
                     cruiseDate: booking.cruiseDate,
                     bookingDate: booking.bookingDate,
