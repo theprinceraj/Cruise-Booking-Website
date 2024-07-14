@@ -3,12 +3,12 @@ import SignUp from "../components/SignUp";
 import Login from "../components/Login";
 
 function SignUpLogin({ isLoginForm }) {
-
-    
     return (
         <>
             <Navbar />
-            {isLoginForm ? <Login/> : <SignUp/>}
+            <div className="flex items-center justify-center" style={{ marginTop: 60 }}>
+                {isLoginForm ? <Login /> : <SignUp />}
+            </div>
         </>
     );
 }
