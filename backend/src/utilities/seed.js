@@ -52,9 +52,11 @@ const seedDatabase = async () => {
 
         const profiles = [];
         for (const user of users) {
-            const profile = new Profile(generateFakeProfile(user._id));
-            profiles.push(profile);
-            await profile.save();
+            if (Math.floor(Math.random() * 4) < 2) {
+                const profile = new Profile(generateFakeProfile(user._id));
+                profiles.push(profile);
+                await profile.save();
+            }
         }
 
         const bookings = [];
