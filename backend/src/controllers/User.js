@@ -49,7 +49,9 @@ export const loginUser = async (req, res) => {
         if (!userExist) {
             return res.status(400).json({ message: "Invalid email and/or password combination" });
         }
-
+        if (!userExist.isVerified) {
+            return res.status(401).json({ message: "Please verify your email before trying to login" });
+        }
         const isPasswordValid = password == userExist.password;
         if (isPasswordValid) {
             res.status(200).json({ message: "Login Successful" });

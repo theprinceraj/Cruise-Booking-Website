@@ -14,6 +14,7 @@ const generateFakeUser = () => ({
     email: faker.internet.email(),
     phone: faker.phone.number(),
     password: faker.internet.password(),
+    isVerified: faker.helpers.arrayElement([true, false]),
 });
 
 const generateFakeProfile = (userId) => ({
