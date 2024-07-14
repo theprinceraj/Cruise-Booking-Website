@@ -77,3 +77,24 @@ export const deleteUser = async (req, res) => {
 
     res.status(200).json({ message: "User deleted successfully" });
 };
+
+export const verifyUserEmail = (req, res) => {
+    const { userId } = req.params;
+    const { oneTimeVerificationCode } = req.body;
+    const user = User.findById(userId);
+    if (!user) {
+        return res.status(404).json({ message: "User id is invalid" });
+    }
+    if (user.emailVerificationCode) {
+        if (user.emailVerificationCode !== oneTimeVerificationCode) {
+            return res.status(400).json({ message: "Invalid verification code" });
+        }
+        if (Date.now() < new Date(user.emailVerificationCodeExpiry)) {
+            user.isEmailVerified = true;
+            user.emailVerificationCode = null;
+            user.emailVerificationCodeExpiry = null;
+        }
+    }
+    user.save();
+    return res.status(200).json({ message: "User email verified successfully" });
+};
