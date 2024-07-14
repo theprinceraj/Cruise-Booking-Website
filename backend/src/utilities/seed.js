@@ -14,7 +14,7 @@ const generateFakeUser = () => ({
     email: faker.internet.email(),
     phone: faker.phone.number(),
     password: faker.internet.password(),
-    isVerified: faker.helpers.arrayElement([true, false]),
+    isEmailVerified: faker.helpers.arrayElement([true, false]),
 });
 
 const generateFakeProfile = (userId) => ({
@@ -49,7 +49,6 @@ const generateFakeBooking = (userId, fakeCount) => ({
  */
 const seedDatabase = async () => {
     try {
-        // await mongoose.connection.dropDatabase();
         await User.deleteMany({});
         await Booking.deleteMany({});
         await Profile.deleteMany({});
@@ -60,31 +59,32 @@ const seedDatabase = async () => {
             users.push(user);
             await user.save();
         }
-
         const profiles = [];
         for (const user of users) {
             if (Math.floor(Math.random() * 4) < 2) {
-                const profile = new Profile(generateFakeProfile(user._id));
-                profiles.push(profile);
-                await profile.save();
+                if (user.isEmailVerified) {
+                    const profile = new Profile(generateFakeProfile(user._id));
+                    profiles.push(profile);
+                    await profile.save();
+                }
             }
         }
-
         const bookings = [];
         for (const user of users) {
-            let i = 1,
-                randomBookingCount = Math.floor(Math.random() * 3 + 1);
-            while (i <= randomBookingCount) {
-                const booking = new Booking(generateFakeBooking(user._id, faker.number.int({ min: 1, max: 10 })));
-                bookings.push(booking);
-                await booking.save();
-                if (booking.paymentStatus === "Paid") {
-                    await generateQRCode(booking._id);
+            if (user.isEmailVerified) {
+                let i = 1,
+                    randomBookingCount = Math.floor(Math.random() * 3 + 1);
+                while (i <= randomBookingCount) {
+                    const booking = new Booking(generateFakeBooking(user._id, faker.number.int({ min: 1, max: 10 })));
+                    bookings.push(booking);
+                    await booking.save();
+                    if (booking.paymentStatus === "Paid") {
+                        await generateQRCode(booking._id);
+                    }
+                    i++;
                 }
-                i++;
             }
         }
-
         console.log("Database seeded successfully!");
         mongoose.connection.close();
         process.exit(1);
