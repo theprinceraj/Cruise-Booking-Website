@@ -10,6 +10,8 @@ app.use(express.json({ limit: "2mb" }));
 import { initializeMongoDB } from "../src/utilities/connectors.js";
 initializeMongoDB();
 
+import { authMiddleware } from "../src/middlewares/auth.js";
+
 import { loginUser, signupUser, deleteUser, verifyUserEmail } from "../src/controllers/User.js";
 app.post("/api/user/login", loginUser);
 app.put("/api/user/signup", signupUser);

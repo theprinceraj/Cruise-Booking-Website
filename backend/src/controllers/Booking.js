@@ -19,14 +19,9 @@ export const createBooking = async (req, res) => {
             console.log(userId, numberOfPassengers, passengerDetails, totalCost, paymentStatus);
             return res.status(400).json({ message: "Invalid values provided" });
         }
+        if (!(await validateUserId(userId))) return res.status(400).json({ message: "User Id is not valid" });
 
-        if (!(await validateUserId(userId))) {
-            return res.status(400).json({ message: "User Id is not valid" });
-        }
-
-        const bookingId = new mongoose.Types.ObjectId().toString();
         const bookingObject = {
-            bookingId,
             userId,
             cruiseDate: cruiseDate,
             bookingDate: bookingDate,
@@ -36,11 +31,11 @@ export const createBooking = async (req, res) => {
             paymentStatus,
         };
         const duplicateBooking = await findDuplicateBookings(userId, cruiseDate, passengerDetails);
-        if (duplicateBooking) {
+        if (duplicateBooking)
             return res.status(400).json({
                 message: "Duplicate booking found for the same user and cruise date with identical passenger details",
             });
-        }
+
         await Booking.create(bookingObject);
         res.status(200).json({ message: "New booking succesfully created" });
     } catch (error) {
@@ -57,9 +52,8 @@ export const deleteExistingBookingById = async (req, res) => {
             return res.status(400).json({ message: "Invalid values provided" });
         }
         const deletedBooking = await Booking.findById(bookingId);
-        if (!deletedBooking) {
-            return res.status(400).json({ message: "Booking not found" });
-        }
+        if (!deletedBooking) return res.status(400).json({ message: "Booking not found" });
+
         res.status(200).json({ message: "Booking was succesfully deleted" });
     } catch (error) {
         console.error(error);
@@ -70,9 +64,8 @@ export const deleteExistingBookingById = async (req, res) => {
 export const findBookingsByUserId = async (req, res) => {
     try {
         const { userId } = req.params;
-        if (!(await validateUserId(userId))) {
-            return res.status(400).json({ message: "User Id is not valid" });
-        }
+        if (!(await validateUserId(userId))) return res.status(400).json({ message: "User Id is not valid" });
+
         const bookings = await Booking.find({ userId: userId });
         res.status(200).json({ bookings });
     } catch (error) {
