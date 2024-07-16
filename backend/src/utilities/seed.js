@@ -7,16 +7,21 @@ import { User } from "../models/usermodel.js";
 import { Profile } from "../models/profilemodel.js";
 import { generateQRCode } from "./qrCodeUtility.js";
 import validator from "validator";
+import bcrypt from "bcryptjs";
 
 mongoose.connect(process.env.MONGODB_URI);
 
-const generateFakeUser = () => ({
-    username: faker.internet.userName().toLowerCase(),
-    email: validator.normalizeEmail(faker.internet.email()),
-    phone: faker.phone.number(),
-    password: faker.internet.password(),
-    isEmailVerified: faker.helpers.arrayElement([true, false]),
-});
+const generateFakeUser = async () => {
+    const salt = await bcrypt.genSalt(10);
+    const password = await bcrypt.hash(faker.internet.password(), salt);
+    return {
+        username: faker.internet.userName().toLowerCase(),
+        email: validator.normalizeEmail(faker.internet.email()),
+        phone: faker.phone.number(),
+        password: password,
+        isEmailVerified: faker.helpers.arrayElement([true, false]),
+    };
+};
 
 const generateFakeProfile = (userId, phone, email) => ({
     userId,
@@ -56,7 +61,7 @@ const seedDatabase = async () => {
 
         const users = [];
         for (let i = 0; i < 50; i++) {
-            const user = new User(generateFakeUser());
+            const user = new User(await generateFakeUser());
             users.push(user);
             await user.save();
         }

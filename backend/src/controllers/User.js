@@ -25,7 +25,7 @@ const signupUser = async (req, res) => {
 
         const emailVerificationCode = Math.floor(100000 + Math.random() * 900000);
         const emailVerificationCodeExpiry = Date.now() + 605000;
-        await User.create({
+        const user = new User({
             username,
             email: normalizedEmail,
             password,
@@ -33,6 +33,7 @@ const signupUser = async (req, res) => {
             emailVerificationCode,
             emailVerificationCodeExpiry,
         });
+        await user.save();
         await sendVerificationMail(email, emailVerificationCode);
         res.status(200).json({ message: "Successfully created the user" });
     } catch (error) {
@@ -53,7 +54,7 @@ const loginUser = async (req, res) => {
         if (!userExist.isEmailVerified)
             return res.status(401).json({ message: "Please verify your email before trying to login" });
 
-        const isPasswordValid = password == userExist.password;
+        const isPasswordValid = await userExist.comparePassword(password);
         if (isPasswordValid) {
             const sessionId = await createSession(userExist._id);
             res.cookie("sessionId", sessionId, { httpOnly: true, maxAge: 3600000 });
