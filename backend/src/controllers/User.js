@@ -1,10 +1,11 @@
+import { createSession, destroySession } from "../middlewares/sessionAuth.js";
 import { Booking } from "../models/bookingmodel.js";
 import { Profile } from "../models/profilemodel.js";
 import { User } from "../models/usermodel.js";
 import { validateUserId } from "../utilities/MongoDB/validateUserId.js";
 import { sendVerificationMail } from "../utilities/sendVerificationEmail.js";
 import validator from "validator";
-export const signupUser = async (req, res) => {
+const signupUser = async (req, res) => {
     try {
         const { username, email, password, phone } = req.body;
         if (!username || !email || !password || !phone)
@@ -40,7 +41,7 @@ export const signupUser = async (req, res) => {
     }
 };
 
-export const loginUser = async (req, res) => {
+const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) return res.status(400).json({ message: "Invalid field values provided" });
@@ -53,15 +54,30 @@ export const loginUser = async (req, res) => {
             return res.status(401).json({ message: "Please verify your email before trying to login" });
 
         const isPasswordValid = password == userExist.password;
-        if (isPasswordValid) return res.status(200).json({ message: "Login Successful" });
-        else return res.status(401).json({ message: "Invalid email and/or password combination" });
+        if (isPasswordValid) {
+            const sessionId = await createSession(userExist._id);
+            res.cookie("sessionId", sessionId, { httpOnly: true, maxAge: 3600000 });
+            return res.status(200).json({ message: "Login Successful" });
+        } else return res.status(401).json({ message: "Invalid email and/or password combination" });
+    } catch (error) {
+        res.status(500).json({ message: "Internal Error", details: error.message });
+    }
+};
+
+const logOutUser = async (req, res) => {
+    try {
+        const sessionId = req.cookies?.sessionId;
+        if (!sessionId) return res.status(400).json({ message: "Invalid session id" });
+        await destroySession(sessionId);
+        res.clearCookie("sessionId");
+        res.status(200).json({ message: "Logout Successful" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Internal Error", details: error.message });
     }
 };
 
-export const deleteUser = async (req, res) => {
+const deleteUser = async (req, res) => {
     const { userId } = req.params;
 
     if (!(await validateUserId(userId))) return res.status(404).json({ message: "User id is invalid" });
@@ -88,7 +104,7 @@ export const deleteUser = async (req, res) => {
  *                           If the verification code has expired, an error response with status 400 is sent.
  *                           If there is an internal error, an error response with status 500 is sent.
  */
-export const verifyUserEmail = async (req, res) => {
+const verifyUserEmail = async (req, res) => {
     try {
         const { userId } = req.params;
         const { oneTimeVerificationCode } = req.body;
@@ -113,3 +129,5 @@ export const verifyUserEmail = async (req, res) => {
         res.status(500).json({ message: "Internal Error", details: error.message });
     }
 };
+
+export { signupUser, loginUser, logOutUser, deleteUser, verifyUserEmail };

@@ -6,22 +6,23 @@ import { Booking } from "../models/bookingmodel.js";
 import { User } from "../models/usermodel.js";
 import { Profile } from "../models/profilemodel.js";
 import { generateQRCode } from "./qrCodeUtility.js";
+import validator from "validator";
 
 mongoose.connect(process.env.MONGODB_URI);
 
 const generateFakeUser = () => ({
-    username: faker.internet.userName(),
-    email: faker.internet.email(),
+    username: faker.internet.userName().toLowerCase(),
+    email: validator.normalizeEmail(faker.internet.email()),
     phone: faker.phone.number(),
     password: faker.internet.password(),
     isEmailVerified: faker.helpers.arrayElement([true, false]),
 });
 
-const generateFakeProfile = (userId) => ({
+const generateFakeProfile = (userId, phone, email) => ({
     userId,
     fullName: faker.person.fullName(),
-    email: faker.internet.email(),
-    phone: faker.phone.number(),
+    email: email,
+    phone: phone,
     address: faker.location.streetAddress(),
     profilePicture: faker.image.avatar(),
     foodPreference: faker.helpers.arrayElement(["Veg", "Non-Veg", "Vegan"]),
@@ -63,7 +64,7 @@ const seedDatabase = async () => {
         for (const user of users) {
             if (Math.floor(Math.random() * 4) < 2) {
                 if (user.isEmailVerified) {
-                    const profile = new Profile(generateFakeProfile(user._id));
+                    const profile = new Profile(generateFakeProfile(user._id, user.phone, user.email));
                     profiles.push(profile);
                     await profile.save();
                 }
