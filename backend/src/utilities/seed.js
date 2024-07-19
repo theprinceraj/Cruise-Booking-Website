@@ -8,6 +8,7 @@ import { Profile } from "../models/profilemodel.js";
 import { generateQRCode } from "./qrCodeUtility.js";
 import validator from "validator";
 import bcrypt from "bcryptjs";
+import { Session } from "../models/sessionModel.js";
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -58,6 +59,7 @@ const seedDatabase = async () => {
         await User.deleteMany({});
         await Booking.deleteMany({});
         await Profile.deleteMany({});
+        await Session.deleteMany({});
 
         const users = [];
         for (let i = 0; i < 50; i++) {
@@ -84,7 +86,7 @@ const seedDatabase = async () => {
                     const booking = new Booking(generateFakeBooking(user._id, faker.number.int({ min: 1, max: 10 })));
                     bookings.push(booking);
                     await booking.save();
-                    if (booking.paymentStatus === "Paid") {
+                    if (Math.floor(Math.random() * 2) && booking.paymentStatus === "Paid") {
                         await generateQRCode(booking._id);
                     }
                     i++;

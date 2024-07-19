@@ -44,6 +44,19 @@ const bookingSchema = new mongoose.Schema({
         enum: ["Pending", "Paid", "Cancelled"],
         default: "Pending",
     },
+    status: {
+        type: String,
+        enum: ["Active", "Cancelled"],
+        default: "Active",
+    },
+    cancellationReason: {
+        type: String,
+        default: null,
+    },
+    cancelledAt: {
+        type: Date,
+        default: null,
+    },
 });
 
 bookingSchema.index(

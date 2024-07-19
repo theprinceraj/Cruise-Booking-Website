@@ -78,4 +78,12 @@ const findBookingsByUserId = async (req, res) => {
     }
 };
 
-export { createBooking, deleteExistingBookingById, findBookingsByUserId };
+const cancelBooking = async (req, res) => {
+    try {
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal Error", details: error.message });
+    }
+};
+
+export { createBooking, deleteExistingBookingById, findBookingsByUserId, cancelBooking };
