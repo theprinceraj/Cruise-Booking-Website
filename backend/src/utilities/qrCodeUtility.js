@@ -5,8 +5,15 @@ import jwt from "jsonwebtoken";
 import QRCode from "qrcode";
 import { Booking } from "../models/bookingmodel.js";
 
+/**
+ * Generates a QR code for a given booking ID and saves it in the booking document.
+ *
+ * @param {string} bookingId - The ID of the booking.
+ * @return {Promise<string>} The base64-encoded data URL of the generated QR code.
+ * @throws {Error} If the booking ID is invalid or the payment status is not "Paid".
+ */
 export const generateQRCode = async (bookingId) => {
-    const booking = await Booking.findOne({ bookingId });
+    const booking = await Booking.findById(bookingId);
     if (!booking) {
         throw new Error("Booking Id is invalid");
     }

@@ -1,4 +1,4 @@
-import { User } from "../models/usermodel.js";
+import { User } from "../../models/usermodel.js";
 import { Types } from "mongoose";
 /**
  * Validates the given user ID by checking if it is a valid ObjectId and if a user with that ID exists in the database.
