@@ -46,7 +46,6 @@ export default function SignUp() {
 
     return (
         <div className="flex items-center justify-center " style={{ marginTop: 60 }}>
-            {/* form changes -> relative removed, height changed(480px), border border-white/10 removed, shadow-xl removed, bg-white/10 removed */}
             <form
                 onSubmit={handleSignup}
                 className=" w-[480px] h-[660px] bg-white/10 backdrop-blur-dk rounded-2xl container-bordershadow p-12">
@@ -69,12 +68,13 @@ export default function SignUp() {
                     onChange={userChangeListener}
                     className="w-full h-12 mt-2 bg-white/10 rounded-md px-3 text-white placeholder-gray-300 focus:outline-none"
                     style={{ backgroundColor: "lightcyan" }}
+                    required
                 />
                 <label htmlFor="email" className="block mt-8 text-white text-lg font-medium" style={{ color: "white" }}>
                     Email
                 </label>
                 <input
-                    type="text"
+                    type="email"
                     id="email"
                     name="email"
                     placeholder="Enter Email"
@@ -82,6 +82,7 @@ export default function SignUp() {
                     onChange={userChangeListener}
                     className="w-full h-12 mt-2 bg-white/10 rounded-md px-3 text-white placeholder-gray-300 focus:outline-none"
                     style={{ backgroundColor: "lightcyan" }}
+                    required
                 />
                 <label htmlFor="phone" className="block mt-8 text-white text-lg font-medium" style={{ color: "white" }}>
                     Phone
@@ -90,7 +91,6 @@ export default function SignUp() {
                     type="text"
                     id="phone"
                     name="phone"
-                    // pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                     placeholder="Enter Phone"
                     value={user.phone}
                     onChange={phoneFieldChangeListener}
@@ -113,6 +113,7 @@ export default function SignUp() {
                     value={user.password}
                     onChange={userChangeListener}
                     className="w-full h-12 mt-2 bg-white/10 rounded-md px-3 text-white placeholder-gray-300 focus:outline-none"
+                    required
                 />
 
                 <button
@@ -121,15 +122,6 @@ export default function SignUp() {
                     style={{ color: "white" }}>
                     Submit
                 </button>
-
-                {/* <div class="flex justify-center mt-8 space-x-6">
-                    <div class="flex items-center justify-center w-36 h-12 bg-white/30 rounded-md text-white cursor-pointer hover:bg-white/50">
-                        <i class="fab fa-google mr-2"></i> Google
-                    </div>
-                    <div class="flex items-center justify-center w-36 h-12 bg-white/30 rounded-md text-white cursor-pointer hover:bg-white/50">
-                        <i class="fab fa-facebook mr-2"></i> Facebook
-                    </div>
-                </div> */}
             </form>
         </div>
     );
