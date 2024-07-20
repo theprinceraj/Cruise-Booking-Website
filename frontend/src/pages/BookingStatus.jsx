@@ -1,10 +1,10 @@
 import Navbar from "../components/Navbar";
 
-export default function Booking() {
+export default function BookingStatus() {
     return (
         <>
             <Navbar />
-            <div>Booking</div>
+            
         </>
     );
 }

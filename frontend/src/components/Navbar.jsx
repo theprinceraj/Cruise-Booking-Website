@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import buyLogo from "/buyLogo.svg";
-import homeLogo from "/homeLogo.svg";
 export default function Navbar() {
     return (
         <>
@@ -16,13 +14,11 @@ export default function Navbar() {
                             <Link
                                 to="/"
                                 className="px-4 sm:px-6 font-bold p-2 border-e-2 border-gray-700 hover:text-gray-300">
-                                {/* <img src={homeLogo} alt="Go back to homepage" width="40" /> */}
                                 HOME
                             </Link>
                             <Link
-                                to="/booking"
+                                to="/bookings"
                                 className="px-4 sm:px-6 border-e-2 font-bold p-2 border-gray-700 hover:text-gray-300">
-                                {/* <img src={buyLogo} alt="Book Now" width="40" /> */}
                                 BUY NOW
                             </Link>
                             <Link

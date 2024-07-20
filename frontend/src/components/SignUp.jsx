@@ -7,7 +7,7 @@ export default function SignUp() {
         phone: "",
         password: "",
     };
-    const URL = "http://localhost:5173/signup";
+    const URL = "http://localhost:3000/signup";
 
     const [user, setUser] = useState(initialUserValues);
 
