@@ -1,38 +1,36 @@
 import { useState } from "react";
 
-export default function Login(){
+export default function Login() {
     const initialUserValues = {
-        email:"",
-        password:"",
+        email: "",
+        password: "",
     };
     const [user, setUser] = useState(initialUserValues);
 
-    const userChangeListener=(e)=>{
+    const userChangeListener = (e) => {
         let name = e.target.name;
         let value = e.target.value;
         setUser({
             ...user,
-            [name]:value,
+            [name]: value,
         });
-    }
+    };
 
     const handleLogin = (e) => {
         e.preventDefault();
-        const userObject={
-            email : e.target[0].value,
-            password : e.target[1].value,
-        }
-        
-        console.log(userObject);
+        const userObject = {
+            email: e.target[0].value,
+            password: e.target[1].value,
+        };
 
+        console.log(userObject);
     };
     return (
         <div className="flex items-center justify-center" style={{ marginTop: 60 }}>
             {/* form changes -> relative removed, height changed(480px), border border-white/10 removed, shadow-xl removed, bg-white/10 removed */}
             <form
                 onSubmit={handleLogin}
-                className=" w-[420px] h-[440px]  backdrop-blur-dk rounded-2xl p-12 container-bordershadow"
-                >
+                className=" w-[420px] h-[440px]  backdrop-blur-dk rounded-2xl p-12 container-bordershadow">
                 <h3
                     className="text-3xl font-medium text-white text-center"
                     style={{
@@ -41,10 +39,7 @@ export default function Login(){
                     Login
                 </h3>
 
-                <label
-                    htmlFor="email"
-                    className="block mt-8 text-white text-lg font-medium"
-                    style={{ color: "white" }}>
+                <label htmlFor="email" className="block mt-8 text-white text-lg font-medium" style={{ color: "white" }}>
                     Email
                 </label>
                 <input
@@ -93,5 +88,4 @@ export default function Login(){
             </form>
         </div>
     );
-
 }
