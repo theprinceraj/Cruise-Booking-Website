@@ -38,6 +38,10 @@ const bookingSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
+    jwtString: {
+        type: String,
+        default: "",
+    },
     paymentStatus: {
         type: String,
         required: true,
