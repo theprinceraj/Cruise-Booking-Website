@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar";
 
 export default function BookingStatus() {
     const [bookingObject, setBookingObject] = useState({});
-    const [qrImage, setQrImage] = useState("");
 
     const URL = "http://localhost:3000/api/qr/verify/";
     let headersList = {
@@ -89,7 +88,7 @@ export default function BookingStatus() {
                             </h1>
                         </div>
                         <ul className="h-[80%] w-full">
-                            <ul className="h-[90%] w-full overflow-y-scroll overflow-x-hidden">
+                            <ul className="h-[90%] w-full overflow-y-scroll overflow-x-hidden scrollbar-css">
                                 {bookingObject?.details?.passengerDetails.map((passenger, index) => (
                                     <li key={passenger._id} className="py-2">
                                         <h2 className="text-xl" style={{ fontWeight: 600 }}>
