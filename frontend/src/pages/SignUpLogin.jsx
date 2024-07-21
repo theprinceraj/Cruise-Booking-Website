@@ -6,9 +6,7 @@ function SignUpLogin({ isLoginForm }) {
     return (
         <>
             <Navbar />
-            <div className="flex items-center justify-center" style={{ marginTop: 60 }}>
-                {isLoginForm ? <Login /> : <SignUp />}
-            </div>
+            {isLoginForm ? <Login /> : <SignUp />}
         </>
     );
 }

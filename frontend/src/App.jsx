@@ -3,10 +3,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 import Home from "./pages/Home.jsx";
-import Booking from "./pages/Booking.jsx";
+import Bookings from "./pages/Bookings.jsx";
 import Contact from "./pages/Contact";
 import SignUpLogin from "./pages/SignUpLogin.jsx";
 import Profile from "./pages/Profile.jsx";
+import BookingStatus from "./pages/BookingStatus.jsx";
 // import ErrorPage from "./pages/ErrorPage.jsx";
 const ErrorPage = lazy(() => import("./pages/ErrorPage.jsx"));
 
@@ -16,8 +17,8 @@ const router = createBrowserRouter([
         element: <Home />,
     },
     {
-        path: "/booking",
-        element: <Booking />,
+        path: "/bookings",
+        element: <Bookings />,
     },
     {
         path: "/contact",
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
     {
         path: "/profile",
         element: <Profile />,
+    },
+    {
+        path: "/booking-status",
+        element: <BookingStatus />,
     },
     {
         path: "*",

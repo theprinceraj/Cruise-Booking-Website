@@ -45,7 +45,7 @@ export default function Home() {
                     className="border-solid border-2 rounded-3xl mx-2 mt-2 p-2 font-bold text-2xl bg-cyan-500 shadow-lg shadow-cyan-500/50 "
                     style={{
                         borderColor: "cyan",
-                        color: isHovered ? "white" : "yellow",
+                        color: isHovered ? "white" : "cyan",
                         backgroundColor: isHovered ? "rgb(0, 202, 180, 0.9)" : "rgba(0, 0, 0, 0.1)",
 
                     }}

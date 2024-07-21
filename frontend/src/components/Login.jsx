@@ -26,51 +26,56 @@ export default function Login() {
         console.log(userObject);
     };
     return (
-        <form
-            onSubmit={handleLogin}
-            className=" w-[420px] h-[440px]  backdrop-blur-dk rounded-2xl p-12 container-bordershadow">
-            <h3
-                className="text-3xl font-medium text-white text-center"
-                style={{
-                    color: "white",
-                }}>
-                Login
-            </h3>
+        <div className="flex items-center justify-center" style={{ marginTop: 60 }}>
+            <form
+                onSubmit={handleLogin}
+                className=" w-[420px] h-[440px]  backdrop-blur-dk rounded-2xl p-12 container-bordershadow">
+                <h3
+                    className="text-3xl font-medium text-white text-center"
+                    style={{
+                        color: "white",
+                    }}>
+                    Login
+                </h3>
 
-            <label htmlFor="email" className="block mt-8 text-white text-lg font-medium" style={{ color: "white" }}>
-                Email
-            </label>
-            <input
-                type="text"
-                style={{ backgroundColor: "lightcyan" }}
-                id="email"
-                placeholder="Enter Email"
-                name="email"
-                value={user.email}
-                onChange={userChangeListener}
-                className="w-full h-12 mt-2 bg-white/10 rounded-md px-3 text-white placeholder-gray-300 focus:outline-none"
-            />
+                <label htmlFor="email" className="block mt-8 text-white text-lg font-medium" style={{ color: "white" }}>
+                    Email
+                </label>
+                <input
+                    type="text"
+                    style={{ backgroundColor: "lightcyan" }}
+                    id="email"
+                    placeholder="Enter Email"
+                    name="email"
+                    value={user.email}
+                    onChange={userChangeListener}
+                    className="w-full h-12 mt-2 bg-white/10 rounded-md px-3 text-white placeholder-gray-300 focus:outline-none"
+                />
 
-            <label htmlFor="password" className="block mt-8 text-white text-lg font-medium" style={{ color: "white" }}>
-                Password
-            </label>
-            <input
-                type="password"
-                name="password"
-                id="password"
-                style={{ backgroundColor: "lightcyan" }}
-                placeholder="Enter Password"
-                value={user.password}
-                onChange={userChangeListener}
-                className="w-full h-12 mt-2 bg-white/10 rounded-md px-3 text-white placeholder-gray-300 focus:outline-none"
-            />
+                <label
+                    htmlFor="password"
+                    className="block mt-8 text-white text-lg font-medium"
+                    style={{ color: "white" }}>
+                    Password
+                </label>
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    style={{ backgroundColor: "lightcyan" }}
+                    placeholder="Enter Password"
+                    value={user.password}
+                    onChange={userChangeListener}
+                    className="w-full h-12 mt-2 bg-white/10 rounded-md px-3 text-white placeholder-gray-300 focus:outline-none"
+                />
 
-            <button
-                type="submit"
-                className="w-full mt-8 bg-white text-[#080710] py-3 rounded-md font-semibold hover:bg-gray-200"
-                style={{ color: "white" }}>
-                Submit
-            </button>
-        </form>
+                <button
+                    type="submit"
+                    className="container-bordershadow w-full mt-8 bg-white text-[#080710] py-3 rounded-md font-semibold hover:bg-gray-200"
+                    style={{ color: "white" }}>
+                    Submit
+                </button>
+            </form>
+        </div>
     );
 }
