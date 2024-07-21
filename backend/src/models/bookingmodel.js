@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
 
 const bookingSchema = new mongoose.Schema({
-    bookingId: {
-        type: String,
-        required: true,
-        unique: true,
-    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -42,7 +37,6 @@ const bookingSchema = new mongoose.Schema({
     qrCode: {
         type: String,
         default: "",
-        unique: true,
     },
     paymentStatus: {
         type: String,
@@ -50,6 +44,27 @@ const bookingSchema = new mongoose.Schema({
         enum: ["Pending", "Paid", "Cancelled"],
         default: "Pending",
     },
+    status: {
+        type: String,
+        enum: ["Active", "Cancelled"],
+        default: "Active",
+    },
+    cancellationReason: {
+        type: String,
+        default: null,
+    },
+    cancelledAt: {
+        type: Date,
+        default: null,
+    },
 });
+
+bookingSchema.index(
+    { qrCode: 1 },
+    {
+        unique: true,
+        partialFilterExpression: { qrCode: { $ne: "" } },
+    }
+);
 
 export const Booking = new mongoose.model("Booking", bookingSchema, "Bookings");
