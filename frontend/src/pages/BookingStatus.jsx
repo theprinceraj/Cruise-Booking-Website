@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar";
 
 export default function BookingStatus() {
     const [bookingObject, setBookingObject] = useState({});
-
     const URL = "http://localhost:3000/api/qr/verify/";
     let headersList = {
         "Accept": "*/*",
@@ -14,24 +13,26 @@ export default function BookingStatus() {
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJib29raW5nSWQiOiI2NjljOWZhMjUzZGE3ODdmMjIyNjQwM2IiLCJ1c2VySWQiOiI2NjljOWY5NTUzZGE3ODdmMjIyNjNmNWEiLCJpYXQiOjE3MjE1NDA1MTR9.3wqtVunIEpWreC3VOvBdZYRTl78848UUgoCPMEelZdo",
     });
 
-    fetch(URL, {
-        method: "POST",
-        body: bodyContent,
-        headers: headersList,
-    })
-        .then((res) => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                setIsVerifiedBooking(false);
-                console.log("Failed to verify booking");
-            }
+    useEffect(() => {
+        fetch(URL, {
+            method: "POST",
+            body: bodyContent,
+            headers: headersList,
         })
-        .then((data) => {
-            setBookingObject(data);
-            console.log(data);
-        })
-        .catch((error) => console.log(error));
+            .then((res) => {
+                if (res.status === 200) {
+                    return res.json();
+                } else {
+                    setIsVerifiedBooking(false);
+                    console.log("Failed to verify booking");
+                }
+            })
+            .then((data) => {
+                setBookingObject(data);
+                console.log(data);
+            })
+            .catch((error) => console.log(error));
+    }, []);
 
     return (
         <>
@@ -39,7 +40,7 @@ export default function BookingStatus() {
                 <Navbar />
             </div>
             <div className="flex items-center justify-center">
-                <div className="flex items-center justify-evenly mt-[70px] container container-bordershadow w-[65%] h-[80vh]">
+                <div className="flex items-center justify-evenly flex-wrap mt-[70px] container container-bordershadow w-[65%] h-[80vh]">
                     <div
                         className="h-[90%]"
                         style={{
@@ -72,7 +73,22 @@ export default function BookingStatus() {
                                 <img src="" alt="Failed to fetch QR code" />
                             )}
                         </div>
-                        <div></div>
+                        <div>
+                            <div>
+                                <h3 className="text-xl" style={{ fontWeight: 700 }}>
+                                    Cruise Date:{" "}
+                                    <span style={{ fontWeight: 400 }}>
+                                        {new Date(bookingObject?.details?.cruiseDate).toLocaleDateString()}
+                                    </span>
+                                </h3>
+                                <h3 className="text-xl" style={{ fontWeight: 700 }}>
+                                    Booked On:{" "}
+                                    <span style={{ fontWeight: 400 }}>
+                                        {new Date(bookingObject?.details?.bookingDate).toLocaleDateString()}
+                                    </span>
+                                </h3>
+                            </div>
+                        </div>
                     </div>
                     <div
                         className="h-[90%]"
@@ -84,7 +100,7 @@ export default function BookingStatus() {
                         }}>
                         <div>
                             <h1 className="text-3xl" style={{ fontWeight: 700 }}>
-                                Passenger Details
+                                Passenger Details ({bookingObject.details?.numberOfPassengers})
                             </h1>
                         </div>
                         <ul className="h-[80%] w-full">
