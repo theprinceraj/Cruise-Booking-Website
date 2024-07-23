@@ -7,7 +7,7 @@ export default function BookingStatus() {
     const { token } = useParams();
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_BACKEND_VERIFICATION_BASE_URL}/`, {
+        fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/qr/verify`, {
             method: "POST",
             body: JSON.stringify({
                 "token": token,
