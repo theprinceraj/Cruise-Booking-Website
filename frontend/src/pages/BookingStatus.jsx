@@ -1,3 +1,12 @@
+
+import { useState } from "react";
+import Navbar from "../components/Navbar";
+
+export default function BookingStatus() {
+    const [isVerifiedBooking, setIsVerifiedBooking] = useState(false);
+
+    const url = "";
+
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 
@@ -33,6 +42,7 @@ export default function BookingStatus() {
         })
         .catch((error) => console.log(error));
 
+
     return (
         <>
             <div>
@@ -40,6 +50,9 @@ export default function BookingStatus() {
             </div>
             <div className="flex items-center justify-center">
                 <div className="flex items-center justify-evenly mt-[70px] container container-bordershadow w-[65%] h-[80vh]">
+
+                    <div>{isVerifiedBooking ? "VERIFIED BOOKING" : "NOT VERIFIED"}</div>
+
                     <div
                         className="h-[90%]"
                         style={{
@@ -74,6 +87,7 @@ export default function BookingStatus() {
                         </div>
                         <div></div>
                     </div>
+
                     <div
                         className="h-[90%]"
                         style={{
@@ -88,6 +102,15 @@ export default function BookingStatus() {
                             </h1>
                         </div>
                         <ul className="h-[80%] w-full">
+
+                            <li>
+                                <h2 className="text-xl" style={{ fontWeight: 600 }}>
+                                    1. Passenger 1:
+                                </h2>
+                                <h5 className="text-lg">Ankit Das</h5>
+                                <p>Age - 22 years</p>
+                            </li>
+
                             <ul className="h-[90%] w-full overflow-y-scroll overflow-x-hidden scrollbar-css">
                                 {bookingObject?.details?.passengerDetails.map((passenger, index) => (
                                     <li key={passenger._id} className="py-2">
@@ -99,6 +122,7 @@ export default function BookingStatus() {
                                     </li>
                                 ))}
                             </ul>
+
                         </ul>
                     </div>
                 </div>
