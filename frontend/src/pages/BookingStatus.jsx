@@ -43,11 +43,11 @@ export default function BookingStatus() {
             <div className="flex items-center justify-center">
                 <div className="flex items-center justify-evenly gap-10 lg:gap-0  flex-wrap mt-[70px] overflow-y-scroll lg:overflow-y-auto container container-bordershadow md:w-[75%] lg:w-[65%] h-[80vh] py-5 lg:py-3">
                     <div className="flex flex-col items-center justify-between h-[90%] mt-6 lg:mt-0">
-                        <div className="[&>*]:text-2xl [&>*]:lg:text-3xl">
+                        <div className="[&>*]:text-2xl [&>*]:lg:text-3xl [&>*]:font-extrabold">
                             {bookingObject?.verificationStatus ? (
-                                <p style={{ color: "lightgreen", fontWeight: 800 }}>VERIFIED BOOKING</p>
+                                <p style={{ color: "lightgreen" }}>VERIFIED BOOKING</p>
                             ) : (
-                                <p style={{ color: "red", fontWeight: 800 }}>NOT VERIFIED</p>
+                                <p style={{ color: "red" }}>NOT VERIFIED</p>
                             )}
                         </div>
                         <div>
@@ -63,18 +63,18 @@ export default function BookingStatus() {
                             )}
                         </div>
                         <div>
-                            <div className="[&>*]:text-xl">
-                                <h3 style={{ fontWeight: 700 }}>
+                            <div className="[&>*]:text-xl [&>*]:font-bold">
+                                <h3>
                                     Total Cost:{" "}
                                     <span style={{ fontWeight: 400 }}>&#8377; {bookingObject?.details?.totalCost}</span>
                                 </h3>
-                                <h3 style={{ fontWeight: 700 }}>
+                                <h3>
                                     Cruise Date:{" "}
                                     <span style={{ fontWeight: 400 }}>
                                         {new Date(bookingObject?.details?.cruiseDate).toLocaleDateString()}
                                     </span>
                                 </h3>
-                                <h3 style={{ fontWeight: 700 }}>
+                                <h3>
                                     Booked On:{" "}
                                     <span style={{ fontWeight: 400 }}>
                                         {new Date(bookingObject?.details?.bookingDate).toLocaleDateString()}
@@ -85,7 +85,7 @@ export default function BookingStatus() {
                     </div>
                     <div className="h-[90%] flex flex-col items-center justify-between px-1">
                         <div>
-                            <h1 className="text-2xl lg:text-3xl" style={{ fontWeight: 700 }}>
+                            <h1 className="text-2xl lg:text-3xl font-bold">
                                 Passenger Details ({bookingObject?.details?.numberOfPassengers})
                             </h1>
                         </div>
@@ -93,7 +93,7 @@ export default function BookingStatus() {
                             <ul className="h-[100%] w-full overflow-y-scroll overflow-x-hidden scrollbar-css">
                                 {bookingObject?.details?.passengerDetails.map((passenger, index) => (
                                     <li key={passenger._id} className="pt-2">
-                                        <h2 className="text-xl" style={{ fontWeight: 600 }}>
+                                        <h2 className="text-xl font-semibold">
                                             {index + 1}. Passenger {index + 1}:
                                         </h2>
                                         <h5 className="text-lg">{passenger.name}</h5>
