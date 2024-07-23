@@ -86,7 +86,7 @@ const seedDatabase = async () => {
                     const booking = new Booking(generateFakeBooking(user._id, faker.number.int({ min: 1, max: 10 })));
                     bookings.push(booking);
                     await booking.save();
-                    if (Math.floor(Math.random() * 2) && booking.paymentStatus === "Paid") {
+                    if (Math.floor(Math.random() * 10) <= 8 && booking.paymentStatus === "Paid") {
                         await generateQRCode(booking._id);
                     }
                     i++;

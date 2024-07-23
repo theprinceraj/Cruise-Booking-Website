@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import { useParams } from "react-router-dom";
 
 export default function BookingStatus() {
     const [bookingObject, setBookingObject] = useState({});
+    const { token } = useParams();
     const URL = "http://localhost:3000/api/qr/verify/";
     let headersList = {
         "Accept": "*/*",
         "Content-Type": "application/json",
     };
     let bodyContent = JSON.stringify({
-        "token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJib29raW5nSWQiOiI2NjljOWZhMjUzZGE3ODdmMjIyNjQwM2IiLCJ1c2VySWQiOiI2NjljOWY5NTUzZGE3ODdmMjIyNjNmNWEiLCJpYXQiOjE3MjE1NDA1MTR9.3wqtVunIEpWreC3VOvBdZYRTl78848UUgoCPMEelZdo",
+        "token": token,
     });
 
     useEffect(() => {
@@ -40,24 +41,13 @@ export default function BookingStatus() {
                 <Navbar />
             </div>
             <div className="flex items-center justify-center">
-                <div className="flex items-center justify-evenly flex-wrap mt-[70px] container container-bordershadow w-[65%] h-[80vh]">
-                    <div
-                        className="h-[90%]"
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                        }}>
-                        <div>
-                            {bookingObject.verificationStatus ? (
-                                <p className="text-xl" style={{ color: "lightgreen", fontWeight: 800 }}>
-                                    VERIFIED BOOKING
-                                </p>
+                <div className="flex items-center justify-evenly gap-10 lg:gap-0  flex-wrap mt-[70px] overflow-y-scroll lg:overflow-y-auto container container-bordershadow md:w-[75%] lg:w-[65%] h-[80vh] py-5 lg:py-3">
+                    <div className="flex flex-col items-center justify-between h-[90%] mt-6 lg:mt-0">
+                        <div className="[&>*]:text-2xl [&>*]:lg:text-3xl">
+                            {bookingObject?.verificationStatus ? (
+                                <p style={{ color: "lightgreen", fontWeight: 800 }}>VERIFIED BOOKING</p>
                             ) : (
-                                <p className="text-xl" style={{ color: "red", fontWeight: 800 }}>
-                                    NOT VERIFIED
-                                </p>
+                                <p style={{ color: "red", fontWeight: 800 }}>NOT VERIFIED</p>
                             )}
                         </div>
                         <div>
@@ -65,23 +55,26 @@ export default function BookingStatus() {
                                 <img
                                     src={bookingObject.details.qrData}
                                     alt="qrCode"
-                                    width={150}
-                                    className="rounded-xl"
-                                    style={{ border: "2px solid cyan" }}
+                                    className="rounded-xl border-2 border-solid w-[175px] md:w-[150px] xl:w-[200px]"
+                                    style={{ borderColor: "cyan" }}
                                 />
                             ) : (
                                 <img src="" alt="Failed to fetch QR code" />
                             )}
                         </div>
                         <div>
-                            <div>
-                                <h3 className="text-xl" style={{ fontWeight: 700 }}>
+                            <div className="[&>*]:text-xl">
+                                <h3 style={{ fontWeight: 700 }}>
+                                    Total Cost:{" "}
+                                    <span style={{ fontWeight: 400 }}>&#8377; {bookingObject?.details?.totalCost}</span>
+                                </h3>
+                                <h3 style={{ fontWeight: 700 }}>
                                     Cruise Date:{" "}
                                     <span style={{ fontWeight: 400 }}>
                                         {new Date(bookingObject?.details?.cruiseDate).toLocaleDateString()}
                                     </span>
                                 </h3>
-                                <h3 className="text-xl" style={{ fontWeight: 700 }}>
+                                <h3 style={{ fontWeight: 700 }}>
                                     Booked On:{" "}
                                     <span style={{ fontWeight: 400 }}>
                                         {new Date(bookingObject?.details?.bookingDate).toLocaleDateString()}
@@ -90,23 +83,16 @@ export default function BookingStatus() {
                             </div>
                         </div>
                     </div>
-                    <div
-                        className="h-[90%]"
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                        }}>
+                    <div className="h-[90%] flex flex-col items-center justify-between px-1">
                         <div>
-                            <h1 className="text-3xl" style={{ fontWeight: 700 }}>
-                                Passenger Details ({bookingObject.details?.numberOfPassengers})
+                            <h1 className="text-2xl lg:text-3xl" style={{ fontWeight: 700 }}>
+                                Passenger Details ({bookingObject?.details?.numberOfPassengers})
                             </h1>
                         </div>
-                        <ul className="h-[80%] w-full">
-                            <ul className="h-[90%] w-full overflow-y-scroll overflow-x-hidden scrollbar-css">
+                        <div className="h-[85%] w-full">
+                            <ul className="h-[100%] w-full overflow-y-scroll overflow-x-hidden scrollbar-css">
                                 {bookingObject?.details?.passengerDetails.map((passenger, index) => (
-                                    <li key={passenger._id} className="py-2">
+                                    <li key={passenger._id} className="pt-2">
                                         <h2 className="text-xl" style={{ fontWeight: 600 }}>
                                             {index + 1}. Passenger {index + 1}:
                                         </h2>
@@ -115,7 +101,7 @@ export default function BookingStatus() {
                                     </li>
                                 ))}
                             </ul>
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>
