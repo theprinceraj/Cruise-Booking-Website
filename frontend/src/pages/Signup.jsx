@@ -23,7 +23,6 @@ export default function SignUp() {
         });
     };
 
-    let backendResponse;
     const handleSignup = (e) => {
         e.preventDefault();
         const userObject = {
@@ -46,7 +45,7 @@ export default function SignUp() {
             .then(({ status, data }) => {
                 if (status === 200) {
                     alert(data.message);
-                    navigate(`/user/verify/${data.userId}`);
+                    navigate(`/verify-email/${data.userId}`);
                 } else {
                     alert(data.message);
                 }

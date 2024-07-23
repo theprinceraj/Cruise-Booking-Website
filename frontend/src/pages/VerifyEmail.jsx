@@ -7,7 +7,7 @@ export default function VerifyEmail() {
                 <Navbar />
             </div>
             <div className="flex items-center justify-center">
-                hi
+                <div className=""></div>
             </div>
         </>
     );
