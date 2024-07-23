@@ -5,9 +5,11 @@ import { lazy, Suspense } from "react";
 import Home from "./pages/Home.jsx";
 import Bookings from "./pages/Bookings.jsx";
 import Contact from "./pages/Contact";
-import SignUpLogin from "./pages/SignUpLogin.jsx";
 import Profile from "./pages/Profile.jsx";
 import BookingStatus from "./pages/BookingStatus.jsx";
+import VerifyEmail from "./pages/VerifyEmail.jsx";
+import SignUp from "./pages/Signup.jsx";
+import Login from "./pages/Login.jsx";
 // import ErrorPage from "./pages/ErrorPage.jsx";
 const ErrorPage = lazy(() => import("./pages/ErrorPage.jsx"));
 
@@ -26,11 +28,15 @@ const router = createBrowserRouter([
     },
     {
         path: "/signup",
-        element: <SignUpLogin isLoginForm={false} />,
+        element: <SignUp />,
     },
     {
         path: "/login",
-        element: <SignUpLogin isLoginForm={true} />,
+        element: <Login />,
+    },
+    {
+        path: "/verify-email",
+        element: <VerifyEmail />,
     },
     {
         path: "/profile",

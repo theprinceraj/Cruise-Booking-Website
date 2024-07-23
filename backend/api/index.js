@@ -25,7 +25,7 @@ app.use(cookieParser());
 initializeMongoDB();
 
 // FIXME: Fix endpoints to work with middleware; alr fixed: login,signup,logout,createBooking,deleteBooking,findBookings
-app.post("/api", UserRoute);
+app.use("/api", UserRoute);
 app.use("/api", BookingRoute);
 app.use("/api", ProfileRoute);
 app.use("/api", QRRoute);
