@@ -9,19 +9,19 @@ const signupUser = async (req, res) => {
     try {
         const { username, email, password, phone } = req.body;
         if (!username || !email || !password || !phone)
-            return res.status(400).json({ message: "Invalid field values provided" });
-        if (!validator.isEmail(email)) return res.status(400).json({ message: "Invalid email format" });
+            return res.status(400).json({ message: "Invalid field values provided", success: false });
+        if (!validator.isEmail(email)) return res.status(400).json({ message: "Invalid email format", success: false });
         if (!validator.isMobilePhone(phone.toString(), "any"))
-            return res.status(400).json({ message: "Invalid phone number" });
+            return res.status(400).json({ message: "Invalid phone number", success: false });
 
         const normalizedEmail = validator.normalizeEmail(email);
 
         const usernameExist = await User.findOne({ username });
-        if (usernameExist) return res.status(400).json({ message: "Username already in use" });
+        if (usernameExist) return res.status(400).json({ message: "Username already in use", success: false });
         const userEmailExist = await User.findOne({ email: normalizedEmail });
-        if (userEmailExist) return res.status(400).json({ message: "Email already in use" });
+        if (userEmailExist) return res.status(400).json({ message: "Email already in use", success: false });
         const userPhoneExist = await User.findOne({ phone });
-        if (userPhoneExist) return res.status(400).json({ message: "Phone number already in use" });
+        if (userPhoneExist) return res.status(400).json({ message: "Phone number already in use", success: false });
 
         const emailVerificationCode = Math.floor(100000 + Math.random() * 900000);
         const emailVerificationCodeExpiry = Date.now() + 605000;
@@ -35,10 +35,12 @@ const signupUser = async (req, res) => {
         });
         await user.save();
         await sendVerificationMail(email, emailVerificationCode);
-        res.status(200).json({ message: "Successfully created the user" });
+        const sessionId = await createSession(user._id);
+        res.cookie("sessionId", sessionId, { httpOnly: true, maxAge: 3600000 });
+        res.status(200).json({ message: "Successfully created the user", userId: user._id, success: true });
     } catch (error) {
         console.error(error);
-        res.status(404).json({ message: "Internal Error", details: error.message });
+        res.status(404).json({ message: "Internal Error", details: error.message, success: false });
     }
 };
 
@@ -57,10 +59,10 @@ const loginUser = async (req, res) => {
         const isPasswordValid = await userExist.comparePassword(password);
         if (isPasswordValid) {
             const sessionId = await createSession(userExist._id);
-            res.cookie("sessionId", sessionId, { httpOnly: true, maxAge: 3600000 });
             return res.status(200).json({ message: "Login Successful" });
         } else return res.status(401).json({ message: "Invalid email and/or password combination" });
     } catch (error) {
+        console.error(error);
         res.status(500).json({ message: "Internal Error", details: error.message });
     }
 };
