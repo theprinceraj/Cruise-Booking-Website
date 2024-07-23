@@ -13,7 +13,7 @@ export default function BookingStatus() {
                 "token": token,
             }),
             headers: {
-                "Accept": "*/*",
+                "Accept": "application/json",
                 "Content-Type": "application/json",
             },
         })
