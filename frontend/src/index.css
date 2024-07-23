@@ -48,3 +48,25 @@ body {
     border-radius: 10px;
     box-shadow: 10px 10px 10px black;
 }
+
+.scrollbar-css::-webkit-scrollbar {
+    width: 12px;
+}
+
+.scrollbar-css::-webkit-scrollbar-track {
+    border-radius: 12px;
+    background: rgba(11, 117, 117, 0.316);
+}
+
+.scrollbar-css::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background: rgb(34, 222, 222);
+}
+.scrollbar-css::-webkit-scrollbar-thumb:hover {
+    background: rgb(22, 138, 138);
+}
+
+.scrollbar-css::-webkit-scrollbar-button {
+    display: none;
+}
+

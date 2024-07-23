@@ -20,11 +20,12 @@ export const generateQRCode = async (bookingId) => {
     if (booking.paymentStatus !== "Paid") {
         throw new Error("Payment not confirmed for this booking");
     }
-    const payload = { bookingId, userId: booking.userId };
+    console.log(booking.userId.toString());
+    const payload = { bookingId, userId: booking.userId.toString() };
     const token = jwt.sign(payload, secretKey);
-    console.log(token);
     const qrCodeData = await QRCode.toDataURL(token);
     booking.qrCode = qrCodeData;
+    booking.jwtString = token;
     await booking.save();
 
     return qrCodeData;

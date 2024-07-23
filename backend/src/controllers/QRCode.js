@@ -11,7 +11,7 @@ const secret = process.env.QR_CODE_SECRET_KEY;
 
 export const getQRCode = async (req, res) => {
     try {
-        const { bookingId } = req.body;
+        const { bookingId } = req.params || req.body;
         if (!bookingId || !Types.ObjectId.isValid(bookingId))
             return res.status(401).json({ message: "Fetching QR failed", details: "Booking Id is invalid" });
         const booking = await Booking.findById(bookingId);
@@ -40,13 +40,14 @@ export const verifyQRCode = async (req, res) => {
     try {
         const { token } = req.body;
         const decoded = jwt.verify(token, secret);
+        console.log(decoded);
         if (!decoded)
             return res.status(400).json({
                 message: "QR verification failed",
                 details: "Failed to decode QR code",
                 verificationStatus: false,
             });
-        const { bookingId, decodedUserId } = decoded;
+        const { bookingId, userId: decodedUserId } = decoded;
         if (!(await validateUserId(decodedUserId)))
             return res.status(400).json({
                 message: "QR verification failed",
@@ -55,7 +56,7 @@ export const verifyQRCode = async (req, res) => {
             });
 
         const profile = await Profile.findOne({ decodedUserId });
-        const booking = await Booking.findOne({ _id: bookingId, decodedUserId });
+        const booking = await Booking.findOne({ _id: bookingId, userId: decodedUserId });
         if (!booking || booking.userId.toString() !== decodedUserId)
             return res.status(400).json({
                 message: "QR verification failed",
@@ -79,6 +80,7 @@ export const verifyQRCode = async (req, res) => {
                     numberOfPassengers: booking.numberOfPassengers,
                     passengerDetails: booking.passengerDetails,
                     totalCost: booking.totalCost,
+                    qrData: booking.qrCode,
                     paymentStatus: booking.paymentStatus,
                 },
                 verificationStatus: true,

@@ -1,10 +1,16 @@
 import express from "express";
+import cors from "cors";
 import cookieParser from "cookie-parser";
 import { configDotenv } from "dotenv";
 import { initializeMongoDB } from "../src/utilities/connectors.js";
 import { loginUser, signupUser, deleteUser, verifyUserEmail, logOutUser } from "../src/controllers/User.js";
 import { validateSession } from "../src/middlewares/sessionAuth.js";
-import { createBooking, deleteExistingBookingById, findBookingsByUserId, cancelBooking } from "../src/controllers/Booking.js";
+import {
+    createBooking,
+    deleteExistingBookingById,
+    findBookingsByUserId,
+    cancelBooking,
+} from "../src/controllers/Booking.js";
 import { createProfile, updateProfile } from "../src/controllers/Profile.js";
 import { getQRCode, verifyQRCode } from "../src/controllers/QRCode.js";
 
@@ -13,6 +19,13 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.static("public"));
 app.use(express.json({ limit: "2mb" }));
+const corsOptions = {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+};
+app.use(cors(corsOptions));
 app.use(cookieParser());
 
 initializeMongoDB();
@@ -33,7 +46,7 @@ app.get("/api/bookings/:userId", validateSession, findBookingsByUserId);
 app.post("/api/profile/:userId", createProfile);
 app.patch("/api/profile/update/:userId", updateProfile);
 
-app.get("/api/qr/", getQRCode);
+app.get("/api/qr/:bookingId", getQRCode);
 app.post("/api/qr/verify/", verifyQRCode);
 
 app.get("/api", (req, res) => res.status(200).json({ response: "API is running." }));
