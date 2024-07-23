@@ -44,7 +44,7 @@ export default function BookingStatus() {
                 <Navbar />
             </div>
             <div className="flex items-center justify-center">
-                <div className="flex items-center justify-evenly gap-10 lg:gap-0  flex-wrap mt-[70px] overflow-y-scroll lg:overflow-y-auto container container-bordershadow md:w-[85%] lg:w-[65%] h-[80vh] py-5 lg:py-3">
+                <div className="flex items-center justify-evenly gap-10 md:gap-0  flex-wrap mt-[70px] overflow-y-scroll lg:overflow-y-auto container container-bordershadow md:w-[85%] lg:w-[65%] h-[80vh] py-5 lg:py-3">
                     <div className="flex flex-col items-center justify-between h-[90%] mt-6 lg:mt-0">
                         <div className="[&>*]:text-2xl [&>*]:lg:text-3xl [&>*]:font-extrabold">
                             {bookingObject?.verificationStatus ? (
@@ -56,34 +56,51 @@ export default function BookingStatus() {
                         <div>
                             {bookingObject?.verificationStatus ? (
                                 <svg
+                                    xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
                                     className="w-[175px] md:w-[175px] xl:w-[200px]"
                                     style={{ fill: "lightgreen", transform: "", msFilter: "" }}>
                                     <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
                                 </svg>
                             ) : (
-                                <img src="" alt="Verification Failed" />
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    className="w-[175px] md:w-[175px] xl:w-[200px]"
+                                    style={{ fill: "rgba(243, 18, 18, 1)", transform: "", msFilter: "" }}>
+                                    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z"></path>
+                                </svg>
                             )}
                         </div>
                         <div>
-                            <div className="[&>*]:text-xl [&>*]:font-bold">
-                                <h3>
-                                    Total Cost:{" "}
-                                    <span style={{ fontWeight: 400 }}>&#8377; {bookingObject?.details?.totalCost}</span>
-                                </h3>
-                                <h3>
-                                    Cruise Date:{" "}
-                                    <span style={{ fontWeight: 400 }}>
-                                        {new Date(bookingObject?.details?.cruiseDate).toLocaleDateString()}
-                                    </span>
-                                </h3>
-                                <h3>
-                                    Booked On:{" "}
-                                    <span style={{ fontWeight: 400 }}>
-                                        {new Date(bookingObject?.details?.bookingDate).toLocaleDateString()}
-                                    </span>
-                                </h3>
-                            </div>
+                            {bookingObject?.verificationStatus ? (
+                                <div className="[&>*]:text-xl [&>*]:font-bold">
+                                    <h3>
+                                        Total Cost:{" "}
+                                        <span style={{ fontWeight: 400 }}>
+                                            {bookingObject?.details?.totalCost ? (
+                                                <span>&#8377; {bookingObject?.details?.totalCost}</span>
+                                            ) : (
+                                                <span>Invalid Cost</span>
+                                            )}
+                                        </span>
+                                    </h3>
+                                    <h3>
+                                        Cruise Date:{" "}
+                                        <span style={{ fontWeight: 400 }}>
+                                            {new Date(bookingObject?.details?.cruiseDate).toLocaleDateString()}
+                                        </span>
+                                    </h3>
+                                    <h3>
+                                        Booked On:{" "}
+                                        <span style={{ fontWeight: 400 }}>
+                                            {new Date(bookingObject?.details?.bookingDate).toLocaleDateString()}
+                                        </span>
+                                    </h3>
+                                </div>
+                            ) : (
+                                ""
+                            )}
                         </div>
                     </div>
                     <div className="h-[90%] flex flex-col items-center justify-between px-1">
@@ -98,7 +115,7 @@ export default function BookingStatus() {
                             </h1>
                         </div>
                         <div className="h-[85%] w-full">
-                            <ul className="h-[100%] w-full overflow-y-scroll overflow-x-hidden scrollbar-css">
+                            <ul className="h-[100%] w-full px-5 overflow-y-scroll overflow-x-hidden scrollbar-css">
                                 {bookingObject?.details?.passengerDetails ? (
                                     bookingObject?.details?.passengerDetails.map((passenger, index) => (
                                         <li key={passenger._id} className="pt-2">
