@@ -40,7 +40,6 @@ export const verifyQRCode = async (req, res) => {
     try {
         const { token } = req.body;
         const decoded = jwt.verify(token, secret);
-        console.log(decoded);
         if (!decoded)
             return res.status(400).json({
                 message: "QR verification failed",

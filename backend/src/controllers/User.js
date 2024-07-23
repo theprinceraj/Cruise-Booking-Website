@@ -35,6 +35,8 @@ const signupUser = async (req, res) => {
         });
         await user.save();
         await sendVerificationMail(email, emailVerificationCode);
+        const sessionId = await createSession(user._id);
+        res.cookie("sessionId", sessionId, { httpOnly: true, maxAge: 3600000 });
         res.status(200).json({ message: "Successfully created the user" });
     } catch (error) {
         console.error(error);
@@ -57,10 +59,10 @@ const loginUser = async (req, res) => {
         const isPasswordValid = await userExist.comparePassword(password);
         if (isPasswordValid) {
             const sessionId = await createSession(userExist._id);
-            res.cookie("sessionId", sessionId, { httpOnly: true, maxAge: 3600000 });
             return res.status(200).json({ message: "Login Successful" });
         } else return res.status(401).json({ message: "Invalid email and/or password combination" });
     } catch (error) {
+        console.error(error)
         res.status(500).json({ message: "Internal Error", details: error.message });
     }
 };
