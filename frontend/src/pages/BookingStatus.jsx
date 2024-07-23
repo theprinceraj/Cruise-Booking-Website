@@ -5,20 +5,17 @@ import { useParams } from "react-router-dom";
 export default function BookingStatus() {
     const [bookingObject, setBookingObject] = useState({});
     const { token } = useParams();
-    const URL = "http://localhost:3000/api/qr/verify/";
-    let headersList = {
-        "Accept": "*/*",
-        "Content-Type": "application/json",
-    };
-    let bodyContent = JSON.stringify({
-        "token": token,
-    });
 
     useEffect(() => {
-        fetch(URL, {
+        fetch(`${import.meta.env.BACKEND_VERIFICATION_BASE_URL}/`, {
             method: "POST",
-            body: bodyContent,
-            headers: headersList,
+            body: JSON.stringify({
+                "token": token,
+            }),
+            headers: {
+                "Accept": "*/*",
+                "Content-Type": "application/json",
+            },
         })
             .then((res) => {
                 if (res.status === 200) {
