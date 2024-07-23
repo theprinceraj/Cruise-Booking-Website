@@ -3,7 +3,7 @@ import { Profile } from "../models/profilemodel.js";
 import { User } from "../models/usermodel.js";
 import validator from "validator";
 
-export const createProfile = async (req, res) => {
+const createProfile = async (req, res) => {
     try {
         const { userId } = req.params;
         const { fullName, address, profilePicture, foodPreference } = req.body;
@@ -29,7 +29,7 @@ export const createProfile = async (req, res) => {
     }
 };
 
-export const updateProfile = async (req, res) => {
+const updateProfile = async (req, res) => {
     try {
         const { userId } = req.params;
         const { fullName, email, phone, address, profilePicture, foodPreference } = req.body;
@@ -92,3 +92,5 @@ export const updateProfile = async (req, res) => {
         return res.status(500).json({ message: "Internal Error", details: error.message });
     }
 };
+
+export { createProfile, updateProfile };

@@ -7,7 +7,7 @@ export default function BookingStatus() {
     const { token } = useParams();
 
     useEffect(() => {
-        fetch(`${import.meta.env.BACKEND_VERIFICATION_BASE_URL}/`, {
+        fetch(`${import.meta.env.VITE_BACKEND_VERIFICATION_BASE_URL}/`, {
             method: "POST",
             body: JSON.stringify({
                 "token": token,
@@ -21,7 +21,13 @@ export default function BookingStatus() {
                 if (res.status === 200) {
                     return res.json();
                 } else {
-                    setIsVerifiedBooking(false);
+                    setBookingObject((prevBookingObject) => ({
+                        ...prevBookingObject,
+                        verificationStatus: false,
+                        details: {
+                            numberOfPassengers: "NaN",
+                        },
+                    }));
                     console.log("Failed to verify booking");
                 }
             })
@@ -38,7 +44,7 @@ export default function BookingStatus() {
                 <Navbar />
             </div>
             <div className="flex items-center justify-center">
-                <div className="flex items-center justify-evenly gap-10 lg:gap-0  flex-wrap mt-[70px] overflow-y-scroll lg:overflow-y-auto container container-bordershadow md:w-[75%] lg:w-[65%] h-[80vh] py-5 lg:py-3">
+                <div className="flex items-center justify-evenly gap-10 lg:gap-0  flex-wrap mt-[70px] overflow-y-scroll lg:overflow-y-auto container container-bordershadow md:w-[85%] lg:w-[65%] h-[80vh] py-5 lg:py-3">
                     <div className="flex flex-col items-center justify-between h-[90%] mt-6 lg:mt-0">
                         <div className="[&>*]:text-2xl [&>*]:lg:text-3xl [&>*]:font-extrabold">
                             {bookingObject?.verificationStatus ? (
@@ -48,15 +54,15 @@ export default function BookingStatus() {
                             )}
                         </div>
                         <div>
-                            {bookingObject?.details?.qrData ? (
-                                <img
-                                    src={bookingObject.details.qrData}
-                                    alt="qrCode"
-                                    className="rounded-xl border-2 border-solid w-[175px] md:w-[150px] xl:w-[200px]"
-                                    style={{ borderColor: "cyan" }}
-                                />
+                            {bookingObject?.verificationStatus ? (
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    className="w-[175px] md:w-[175px] xl:w-[200px]"
+                                    style={{ fill: "lightgreen", transform: "", msFilter: "" }}>
+                                    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
+                                </svg>
                             ) : (
-                                <img src="" alt="Failed to fetch QR code" />
+                                <img src="" alt="Verification Failed" />
                             )}
                         </div>
                         <div>
@@ -83,20 +89,31 @@ export default function BookingStatus() {
                     <div className="h-[90%] flex flex-col items-center justify-between px-1">
                         <div>
                             <h1 className="text-2xl lg:text-3xl font-bold">
-                                Passenger Details ({bookingObject?.details?.numberOfPassengers})
+                                Passenger Details{" "}
+                                {bookingObject?.details?.numberOfPassengers ? (
+                                    <span>({bookingObject?.details?.numberOfPassengers})</span>
+                                ) : (
+                                    ""
+                                )}
                             </h1>
                         </div>
                         <div className="h-[85%] w-full">
                             <ul className="h-[100%] w-full overflow-y-scroll overflow-x-hidden scrollbar-css">
-                                {bookingObject?.details?.passengerDetails.map((passenger, index) => (
-                                    <li key={passenger._id} className="pt-2">
-                                        <h2 className="text-xl font-semibold">
-                                            {index + 1}. Passenger {index + 1}:
-                                        </h2>
-                                        <h5 className="text-lg">{passenger.name}</h5>
-                                        <p>Age - {passenger.age} years</p>
+                                {bookingObject?.details?.passengerDetails ? (
+                                    bookingObject?.details?.passengerDetails.map((passenger, index) => (
+                                        <li key={passenger._id} className="pt-2">
+                                            <h2 className="text-xl font-semibold">
+                                                {index + 1}. Passenger {index + 1}:
+                                            </h2>
+                                            <h5 className="text-lg">{passenger.name}</h5>
+                                            <p>Age - {passenger.age} years</p>
+                                        </li>
+                                    ))
+                                ) : (
+                                    <li key="xyz" className="pt-2">
+                                        <h2 className="text-xl font-semibold">No passengers found</h2>
                                     </li>
-                                ))}
+                                )}
                             </ul>
                         </div>
                     </div>
