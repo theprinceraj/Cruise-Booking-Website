@@ -3,8 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { configDotenv } from "dotenv";
 import { initializeMongoDB } from "../src/utilities/connectors.js";
-import { loginUser, signupUser, deleteUser, verifyUserEmail, logOutUser } from "../src/controllers/User.js";
-import { validateSession } from "../src/middlewares/sessionAuth.js";
+import UserRoute from "../src/routes/UserRoute.js";
 import BookingRoute from "../src/routes/BookingRoute.js";
 import ProfileRoute from "../src/routes/ProfileRoute.js";
 import QRRoute from "../src/routes/QRRoute.js";
@@ -25,15 +24,8 @@ app.use(cookieParser());
 
 initializeMongoDB();
 
-app.post("/api/user/login", loginUser);
-app.put("/api/user/signup", signupUser);
-app.post("/api/user/logout", logOutUser);
-
-app.delete("/api/user/:userId", validateSession, deleteUser);
-app.post("/api/user/verify/:userId", validateSession, verifyUserEmail);
-
 // FIXME: Fix endpoints to work with middleware; alr fixed: login,signup,logout,createBooking,deleteBooking,findBookings
-
+app.post("/api", UserRoute);
 app.use("/api", BookingRoute);
 app.use("/api", ProfileRoute);
 app.use("/api", QRRoute);
