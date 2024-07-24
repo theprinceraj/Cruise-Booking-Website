@@ -27,7 +27,10 @@ const validateSession = async (req, res, next) => {
             next();
         } else {
             console.log(givenUserId, session.userId.toString(), givenUserId == session.userId.toString());
-            return res.status(401).json({ message: "Unauthorized" });
+            return res.status(401).json({
+                message: "Unauthorized",
+                details: "Given user id differs from the one fetched from provided session id.",
+            });
         }
     } catch (error) {
         res.status(500).json({ message: "Internal server error", details: error.message });

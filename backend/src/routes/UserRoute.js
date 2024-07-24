@@ -9,6 +9,6 @@ router.put("/user/signup", UserController.signupUser);
 router.post("/user/logout", UserController.logOutUser);
 
 router.delete("/user/:userId", validateSession, UserController.deleteUser);
-router.post("/user/verify/:userId", validateSession, UserController.verifyUserEmail);
+router.post("/user/verify/:userId", UserController.verifyUserEmail);
 
 export default router;

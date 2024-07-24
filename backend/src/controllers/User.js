@@ -24,7 +24,7 @@ const signupUser = async (req, res) => {
         if (userPhoneExist) return res.status(400).json({ message: "Phone number already in use", success: false });
 
         const emailVerificationCode = Math.floor(100000 + Math.random() * 900000);
-        const emailVerificationCodeExpiry = Date.now() + 605000;
+        const emailVerificationCodeExpiry = Date.now() + 24 * 60 * 60 * 1000;
         const user = new User({
             username,
             email: normalizedEmail,
@@ -119,9 +119,9 @@ const verifyUserEmail = async (req, res) => {
         if (!user.emailVerificationCode || !oneTimeVerificationCode)
             return res.status(404).json({ message: "No valid verification code found" });
         if (user.emailVerificationCode != oneTimeVerificationCode)
-            return res.status(400).json({ message: "Invalid verification code" });
+            return res.status(400).json({ message: "Invalid verification code", codeExpiredOrIncorrect: true });
         if (Date.now() > new Date(user.emailVerificationCodeExpiry))
-            return res.status(400).json({ message: "Verification code expired" });
+            return res.status(400).json({ message: "Verification code expired", codeExpiredOrIncorrect: true });
         user.isEmailVerified = true;
         user.emailVerificationCode = null;
         user.emailVerificationCodeExpiry = null;
