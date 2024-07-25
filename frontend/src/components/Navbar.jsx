@@ -1,5 +1,12 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { checkIsLoggedIn } from "../utilities/checkIsLoggedIn.js";
 export default function Navbar() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    useEffect(() => {
+        setIsLoggedIn(checkIsLoggedIn());
+        console.log(checkIsLoggedIn());
+    }, []);
     return (
         <>
             <nav
@@ -16,12 +23,18 @@ export default function Navbar() {
                         <Link to="/bookings" className="px-4 sm:px-6 border-e-2 font-bold p-2">
                             BUY NOW
                         </Link>
-                        <Link to="/signup" className="px-4 sm:px-6 font-bold p-2 border-e-2">
-                            SIGN UP
-                        </Link>
-                        <Link to="/login" className="px-4 sm:px-6 font-bold p-2">
-                            LOG IN
-                        </Link>
+                        {isLoggedIn ? (
+                            ""
+                        ) : (
+                            <>
+                                <Link to="/signup" className="px-4 sm:px-6 font-bold p-2 border-e-2">
+                                    SIGN UP
+                                </Link>
+                                <Link to="/login" className="px-4 sm:px-6 font-bold p-2">
+                                    LOG IN
+                                </Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </nav>

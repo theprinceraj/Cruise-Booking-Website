@@ -10,7 +10,6 @@ export default function SignUp() {
         phone: "",
         password: "",
     };
-    const URL = "http://localhost:3000/api/user/signup";
 
     const [user, setUser] = useState(initialUserValues);
 

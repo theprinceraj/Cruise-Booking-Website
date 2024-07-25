@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 import Home from "./pages/Home.jsx";
-import Bookings from "./pages/Bookings.jsx";
+import Booking from "./pages/Booking.jsx";
 import Contact from "./pages/Contact";
 import Profile from "./pages/Profile.jsx";
 import BookingStatus from "./pages/BookingStatus.jsx";
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
         element: <Home />,
     },
     {
-        path: "/bookings",
-        element: <Bookings />,
+        path: "/booking",
+        element: <Booking />,
     },
     {
         path: "/contact",

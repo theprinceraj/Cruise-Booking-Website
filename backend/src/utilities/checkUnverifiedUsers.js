@@ -2,7 +2,7 @@ import cron from "node-cron";
 import { User } from "../models/usermodel.js";
 
 // Schedule a task to run every hour
-cron.schedule("* * * * *", async () => {
+cron.schedule("0 * * * *", async () => {
     try {
         const now = Date.now();
 
