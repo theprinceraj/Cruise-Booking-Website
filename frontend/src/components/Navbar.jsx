@@ -13,7 +13,7 @@ export default function Navbar() {
                     <div className="w-40 m-2 font-bold text-2xl">
                         <Link to="/">Lenin Cruise</Link>
                     </div>
-                    <div className="flex items-center m-3 [&>*]:px-4 [&>*]:font-bold [&>*]:p-2 [&>*]:sm:px-6">
+                    <div className="flex items-center justify-evenly m-3 [&>*]:font-bold [&>*]:p-2 [&>*]:sm:px-6">
                         <Link to="/" className=" border-e-2">
                             HOME
                         </Link>

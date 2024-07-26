@@ -8,19 +8,16 @@ export default function Home() {
             imageUrl: "/image2.avif",
             category: "FAMILY FUN",
             customText: "Create memories together",
-            author: "Ankur Das",
         },
         {
             imageUrl: "/image3.avif",
             category: "GOURMENT DINING",
             customText: "Taste the Finest",
-            author: "Ankit Das",
         },
         {
             imageUrl: "/image4.avif",
             category: "ONBOARD ENTERTAINMENT",
             customText: "Experience New Horizons",
-            author: "Prince Raj",
         },
     ]);
 
@@ -40,12 +37,11 @@ export default function Home() {
                             imageUrl={data.imageUrl}
                             category={data.category}
                             customText={data.customText}
-                            author={data.author}
                         />
                     ))}
                 </div>
-                <button
-                    className="border-solid border-2 rounded-3xl mx-2 mt-2 p-2 font-bold text-2xl"
+                <div
+                    className="border-solid border-2 rounded-3xl mx-2 mt-2 p-2 font-bold text-2xl transform hover:scale-1.05"
                     style={{
                         borderColor: isHovered ? "white" : "cyan",
                         color: isHovered ? "white" : "cyan",
@@ -54,7 +50,7 @@ export default function Home() {
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}>
                     <Link to="/booking">BOOK NOW</Link>
-                </button>
+                </div>
             </div>
         </>
     );

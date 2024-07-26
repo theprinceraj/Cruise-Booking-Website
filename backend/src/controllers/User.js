@@ -34,9 +34,18 @@ const signupUser = async (req, res) => {
             emailVerificationCodeExpiry,
         });
         await user.save();
+        await Profile.create({
+            userId: user._id,
+            email: user.email,
+            phone: user.phone,
+            fullName: "Your Full Name",
+            address: "India",
+            profilePicture: "https://avatars.githubusercontent.com/u/54814653",
+            foodPreference: "Veg",
+        });
         await sendVerificationMail(email, emailVerificationCode);
         const sessionId = await createSession(user._id);
-        res.cookie("sessionId", sessionId, { httpOnly: true, maxAge: 3600000 });
+        res.cookie("sessionId", sessionId, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
         res.status(200).json({ message: "Successfully created the user", userId: user._id, success: true });
     } catch (error) {
         console.error(error);
@@ -61,7 +70,11 @@ const loginUser = async (req, res) => {
             const sessionId = await createSession(userExist._id);
             res.cookie("sessionId", sessionId, {
                 httpOnly: true,
-                maxAge: 3600000,
+                maxAge: 24 * 60 * 60 * 1000,
+            });
+            res.cookie("userId", userExist._id, {
+                httpOnly: true,
+                maxAge: 24 * 60 * 60 * 1000,
             });
             return res.status(200).json({ message: "Login Successful" });
         } else return res.status(401).json({ message: "Invalid email and/or password combination" });
