@@ -13,23 +13,23 @@ export default function Navbar() {
                     <div className="w-40 m-2 font-bold text-2xl">
                         <Link to="/">Lenin Cruise</Link>
                     </div>
-                    <div className="flex items-center m-3">
-                        <Link to="/" className="px-4 sm:px-6 font-bold p-2 border-e-2">
+                    <div className="flex items-center m-3 [&>*]:px-4 [&>*]:font-bold [&>*]:p-2 [&>*]:sm:px-6">
+                        <Link to="/" className=" border-e-2">
                             HOME
                         </Link>
-                        <Link to="/bookings" className="px-4 sm:px-6 border-e-2 font-bold p-2">
+                        <Link to="/bookings" className=" border-e-2">
                             BUY NOW
                         </Link>
                         {isLoggedIn ? (
-                            <Link to="/profile" className="px-4 sm:px-6 font-bold p-2">
+                            <Link to="/profile" className=" ">
                                 PROFILE
                             </Link>
                         ) : (
                             <>
-                                <Link to="/signup" className="px-4 sm:px-6 font-bold p-2 border-e-2">
+                                <Link to="/signup" className=" border-e-2">
                                     SIGN UP
                                 </Link>
-                                <Link to="/login" className="px-4 sm:px-6 font-bold p-2">
+                                <Link to="/login" className="">
                                     LOG IN
                                 </Link>
                             </>

@@ -17,7 +17,7 @@ const validateSession = async (req, res, next) => {
     }
     try {
         console.log("Session ID:", sessionId);
-        const { userId: givenUserId } = { userId: req.params.userId.trim() };
+        const { userId: givenUserId } = { userId: req.params.userId?.trim() };
         const session = await Session.findById(sessionId);
         if (!session) {
             return res.status(401).json({ messag: "Unauthorized", details: "Session not found" });

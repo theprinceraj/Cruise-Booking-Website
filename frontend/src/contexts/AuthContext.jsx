@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { getCookie } from "../utilities/checkIsLoggedIn.js";
+import { fetchWithAuth } from "../utilities/fetchWithAuth.js";
 
 const AuthContext = createContext();
 
@@ -7,10 +8,17 @@ export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        const sessionId = getCookie("sessionId");
-        if (sessionId) {
-            console.log("session id:", sessionId);
-            setIsLoggedIn(true);
+        try {
+            fetchWithAuth(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/session-status`, {
+                method: "GET",
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    setIsLoggedIn(data?.isLoggedIn);
+                });
+        } catch (error) {
+            console.log("Error checking session status: ", error);
+            setIsLoggedIn(false);
         }
     }, []);
 

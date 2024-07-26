@@ -59,7 +59,10 @@ const loginUser = async (req, res) => {
         const isPasswordValid = await userExist.comparePassword(password);
         if (isPasswordValid) {
             const sessionId = await createSession(userExist._id);
-            res.cookie("sessionId", sessionId, { httpOnly: true, maxAge: 3600000 });
+            res.cookie("sessionId", sessionId, {
+                httpOnly: true,
+                maxAge: 3600000,
+            });
             return res.status(200).json({ message: "Login Successful" });
         } else return res.status(401).json({ message: "Invalid email and/or password combination" });
     } catch (error) {
