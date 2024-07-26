@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { fetchWithAuth } from "../utilities/fetchWithAuth.js";
+import AuthContext from "../contexts/AuthContext.jsx";
 
 export default function Login() {
+    const { setIsLoggedIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const initialUserValues = {
         email: "",
@@ -41,6 +43,7 @@ export default function Login() {
             .then(({ status, data }) => {
                 if (status === 200) {
                     alert(data.message);
+                    setIsLoggedIn(true);
                     navigate("/");
                 } else {
                     alert(data.message);

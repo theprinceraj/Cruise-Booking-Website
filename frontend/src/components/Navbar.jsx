@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { checkIsLoggedIn } from "../utilities/checkIsLoggedIn.js";
+import { useContext } from "react";
+import AuthContext from "../contexts/AuthContext.jsx";
 export default function Navbar() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    useEffect(() => {
-        setIsLoggedIn(checkIsLoggedIn());
-        console.log(checkIsLoggedIn());
-    }, []);
+    const { isLoggedIn } = useContext(AuthContext);
+
     return (
         <>
             <nav
@@ -24,7 +21,9 @@ export default function Navbar() {
                             BUY NOW
                         </Link>
                         {isLoggedIn ? (
-                            ""
+                            <Link to="/profile" className="px-4 sm:px-6 font-bold p-2">
+                                PROFILE
+                            </Link>
                         ) : (
                             <>
                                 <Link to="/signup" className="px-4 sm:px-6 font-bold p-2 border-e-2">

@@ -4,12 +4,12 @@ import { lazy, Suspense } from "react";
 
 import Home from "./pages/Home.jsx";
 import Booking from "./pages/Booking.jsx";
-import Contact from "./pages/Contact";
 import Profile from "./pages/Profile.jsx";
 import BookingStatus from "./pages/BookingStatus.jsx";
 import VerifyEmail from "./pages/VerifyEmail.jsx";
 import SignUp from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
+import PrivateRoute from "./routes/PrivateRoute.jsx";
 // import ErrorPage from "./pages/ErrorPage.jsx";
 const ErrorPage = lazy(() => import("./pages/ErrorPage.jsx"));
 
@@ -21,10 +21,6 @@ const router = createBrowserRouter([
     {
         path: "/booking",
         element: <Booking />,
-    },
-    {
-        path: "/contact",
-        element: <Contact />,
     },
     {
         path: "/signup",
@@ -40,7 +36,11 @@ const router = createBrowserRouter([
     },
     {
         path: "/profile",
-        element: <Profile />,
+        element: (
+            <PrivateRoute>
+                <Profile />
+            </PrivateRoute>
+        ),
     },
     {
         path: "/booking-status/:token",
