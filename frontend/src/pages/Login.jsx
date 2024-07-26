@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
+import { fetchWithAuth } from "../utilities/fetchWithAuth.js";
 
 export default function Login() {
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ export default function Login() {
 
         console.log(userObject);
 
-        fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/login`, {
+        fetchWithAuth(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/login`, {
             method: "POST",
             body: JSON.stringify(userObject),
             headers: {
