@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { checkIsLoggedIn } from "../utilities/checkIsLoggedIn.js";
+import { getCookie } from "../utilities/checkIsLoggedIn.js";
 
 const AuthContext = createContext();
 
@@ -7,10 +7,14 @@ export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        setIsLoggedIn(checkIsLoggedIn());
+        const sessionId = getCookie("sessionId");
+        if (sessionId) {
+            console.log("session id:", sessionId);
+            setIsLoggedIn(true);
+        }
     }, []);
 
     return <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>{children}</AuthContext.Provider>;
 };
 
-export default AuthContext;
+export { AuthContext };

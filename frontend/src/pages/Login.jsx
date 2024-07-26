@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { fetchWithAuth } from "../utilities/fetchWithAuth.js";
-import AuthContext from "../contexts/AuthContext.jsx";
+import { AuthContext } from "../contexts/AuthContext.jsx";
 
 export default function Login() {
     const { setIsLoggedIn } = useContext(AuthContext);
