@@ -59,7 +59,7 @@ const loginUser = async (req, res) => {
         if (!email || !password) return res.status(400).json({ message: "Invalid field values provided" });
         if (!validator.isEmail(email)) return res.status(400).json({ message: "Invalid email format" });
 
-        const normalizedEmail = validator.normalizeEmail(email);
+        const normalizedEmail = validator.normalizeEmail(email, { gmail_remove_dots: false });
         const userExist = await User.findOne({ email: normalizedEmail });
         if (!userExist) return res.status(400).json({ message: "Invalid email and/or password combination" });
         if (!userExist.isEmailVerified)

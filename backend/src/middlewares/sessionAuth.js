@@ -16,7 +16,7 @@ const validateSession = async (req, res, next) => {
         return res.status(401).json({ message: "Unauthorized", details: "Invalid values provided" });
     }
     try {
-        console.log("Session ID:", sessionId);
+        // console.log("Session ID:", sessionId);
         const givenUserId = req.params.userId?.trim() || req.cookies?.userId;
         const session = await Session.findById(sessionId);
         if (!session) {

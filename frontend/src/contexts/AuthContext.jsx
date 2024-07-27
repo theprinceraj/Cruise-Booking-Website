@@ -11,9 +11,14 @@ export const AuthProvider = ({ children }) => {
         try {
             fetchWithAuth(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/session-status`, {
                 method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                },
             })
                 .then((res) => res.json())
                 .then((data) => {
+                    console.log(data)
                     setIsLoggedIn(data?.isLoggedIn);
                 });
         } catch (error) {
