@@ -10,7 +10,6 @@ export default function SignUp() {
         phone: "",
         password: "",
     };
-    const URL = "http://localhost:3000/api/user/signup";
 
     const [user, setUser] = useState(initialUserValues);
 
@@ -32,7 +31,7 @@ export default function SignUp() {
             password: e.target[3].value,
         };
 
-        fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/signup`, {
+        fetch(`/api/user/signup`, {
             method: "PUT",
             body: JSON.stringify(userObject),
             headers: {

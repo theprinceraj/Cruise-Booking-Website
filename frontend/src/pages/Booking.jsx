@@ -1,9 +1,11 @@
 import Navbar from "../components/Navbar";
 
-export default function Bookings() {
+export default function Booking() {
     return (
         <>
-            <Navbar />
+            <div>
+                <Navbar />
+            </div>
             <div>Booking</div>
         </>
     );

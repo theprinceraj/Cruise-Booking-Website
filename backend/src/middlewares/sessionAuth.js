@@ -16,8 +16,8 @@ const validateSession = async (req, res, next) => {
         return res.status(401).json({ message: "Unauthorized", details: "Invalid values provided" });
     }
     try {
-        console.log("Session ID:", sessionId);
-        const { userId: givenUserId } = { userId: req.params.userId.trim() };
+        // console.log("Session ID:", sessionId);
+        const givenUserId = req.params.userId?.trim() || req.cookies?.userId;
         const session = await Session.findById(sessionId);
         if (!session) {
             return res.status(401).json({ messag: "Unauthorized", details: "Session not found" });
@@ -27,7 +27,10 @@ const validateSession = async (req, res, next) => {
             next();
         } else {
             console.log(givenUserId, session.userId.toString(), givenUserId == session.userId.toString());
-            return res.status(401).json({ message: "Unauthorized" });
+            return res.status(401).json({
+                message: "Unauthorized",
+                details: "Given user id differs from the one fetched from provided session id.",
+            });
         }
     } catch (error) {
         res.status(500).json({ message: "Internal server error", details: error.message });

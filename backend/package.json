@@ -10,6 +10,7 @@
         "express": "^4.19.2",
         "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.4.5",
+        "node-cron": "^3.0.3",
         "nodemailer": "^6.9.14",
         "qrcode": "^1.5.3",
         "validator": "^13.12.0"
@@ -17,7 +18,10 @@
     "type": "module",
     "scripts": {
         "dev": "nodemon api/index.js",
-        "seed": "node src/utilities/seed.js"
+        "seed": "node src/utilities/seed.js",
+        "open:browser": "start http://localhost:3000",
+        "start:backend": "node api/index.js",
+        "test": "npm run build --prefix ../frontend && start cmd /c \"npm run start:backend\" && npm run open:browser"
     },
     "author": "theprinceraj",
     "license": "ISC",
