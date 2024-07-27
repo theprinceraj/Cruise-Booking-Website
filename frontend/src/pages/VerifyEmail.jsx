@@ -11,7 +11,7 @@ export default function VerifyEmail() {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const inputVerificationCode = parseInt(e.target.verificationCode?.value);
-        fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/verify/${_userId}`, {
+        fetch(`/api/user/verify/${_userId}`, {
             method: "POST",
             body: JSON.stringify({
                 oneTimeVerificationCode: inputVerificationCode,

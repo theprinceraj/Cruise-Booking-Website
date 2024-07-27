@@ -5,7 +5,7 @@ import { fetchWithAuth } from "../utilities/fetchWithAuth";
 export default function Profile() {
     const [profile, setProfile] = useState(null);
     useEffect(() => {
-        fetchWithAuth(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/profile/`, {
+        fetchWithAuth(`/api/profile/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

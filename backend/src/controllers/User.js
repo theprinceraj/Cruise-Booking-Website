@@ -14,7 +14,7 @@ const signupUser = async (req, res) => {
         if (!validator.isMobilePhone(phone.toString(), "any"))
             return res.status(400).json({ message: "Invalid phone number", success: false });
 
-        const normalizedEmail = validator.normalizeEmail(email);
+        const normalizedEmail = validator.normalizeEmail(email, { gmail_remove_dots: false });
 
         const usernameExist = await User.findOne({ username });
         if (usernameExist) return res.status(400).json({ message: "Username already in use", success: false });

@@ -31,7 +31,7 @@ export default function SignUp() {
             password: e.target[3].value,
         };
 
-        fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/signup`, {
+        fetch(`/api/user/signup`, {
             method: "PUT",
             body: JSON.stringify(userObject),
             headers: {

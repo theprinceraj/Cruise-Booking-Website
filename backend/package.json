@@ -18,7 +18,10 @@
     "type": "module",
     "scripts": {
         "dev": "nodemon api/index.js",
-        "seed": "node src/utilities/seed.js"
+        "seed": "node src/utilities/seed.js",
+        "open:browser": "start http://localhost:3000",
+        "start:backend": "node api/index.js",
+        "test": "npm run build --prefix ../frontend && start cmd /c \"npm run start:backend\" && npm run open:browser"
     },
     "author": "theprinceraj",
     "license": "ISC",

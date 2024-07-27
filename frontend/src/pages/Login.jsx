@@ -31,7 +31,7 @@ export default function Login() {
 
         console.log(userObject);
 
-        fetchWithAuth(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/login`, {
+        fetchWithAuth(`/api/user/login`, {
             method: "POST",
             body: JSON.stringify(userObject),
             headers: {

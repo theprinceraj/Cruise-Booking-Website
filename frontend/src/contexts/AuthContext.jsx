@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         try {
-            fetchWithAuth(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/session-status`, {
+            fetchWithAuth(`/api/user/session-status`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data)
+                    console.log(data);
                     setIsLoggedIn(data?.isLoggedIn);
                 });
         } catch (error) {
