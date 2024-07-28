@@ -52,7 +52,7 @@ export default function Home() {
                     
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}>
-                        <Link to="/booking">BOOK NOW</Link>
+                        <Link to="/bookings">BOOK NOW</Link>
                     
                 </button>
             </div>
