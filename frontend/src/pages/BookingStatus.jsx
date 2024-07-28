@@ -1,14 +1,12 @@
 
-import { useState } from "react";
-import Navbar from "../components/Navbar";
-
-export default function BookingStatus() {
-    const [isVerifiedBooking, setIsVerifiedBooking] = useState(false);
-
-    const url = "";
-
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+
+// export default function BookingStatus() {
+//     const [isVerifiedBooking, setIsVerifiedBooking] = useState(false);
+
+//     const url = "";
+
 
 export default function BookingStatus() {
     const [bookingObject, setBookingObject] = useState({});
@@ -130,3 +128,4 @@ export default function BookingStatus() {
         </>
     );
 }
+
