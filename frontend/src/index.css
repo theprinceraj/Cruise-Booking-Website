@@ -48,6 +48,21 @@ body {
     border-radius: 10px;
     box-shadow: 10px 10px 10px black;
 }
+.container-borderbottom {
+    border-color: rgb(0, 103, 91);
+    border-style: solid;
+    border-width: 1px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+
+.dateselection{
+    color: rgb(0, 255, 255);
+    font-size: larger;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 
 .scrollbar-css::-webkit-scrollbar {
     width: 12px;
