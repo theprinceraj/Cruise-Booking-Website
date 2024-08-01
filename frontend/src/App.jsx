@@ -3,11 +3,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 import Home from "./pages/Home.jsx";
-import Bookings from "./pages/Bookings.jsx";
-import Contact from "./pages/Contact";
-import SignUpLogin from "./pages/SignUpLogin.jsx";
+import Booking from "./pages/Booking.jsx";
 import Profile from "./pages/Profile.jsx";
 import BookingStatus from "./pages/BookingStatus.jsx";
+import VerifyEmail from "./pages/VerifyEmail.jsx";
+import SignUp from "./pages/Signup.jsx";
+import Login from "./pages/Login.jsx";
+import PrivateRoute from "./routes/PrivateRoute.jsx";
 // import ErrorPage from "./pages/ErrorPage.jsx";
 const ErrorPage = lazy(() => import("./pages/ErrorPage.jsx"));
 
@@ -17,27 +19,31 @@ const router = createBrowserRouter([
         element: <Home />,
     },
     {
-        path: "/bookings",
-        element: <Bookings />,
-    },
-    {
-        path: "/contact",
-        element: <Contact />,
+        path: "/booking",
+        element: <Booking />,
     },
     {
         path: "/signup",
-        element: <SignUpLogin isLoginForm={false} />,
+        element: <SignUp />,
     },
     {
         path: "/login",
-        element: <SignUpLogin isLoginForm={true} />,
+        element: <Login />,
+    },
+    {
+        path: "/verify-email/:userId",
+        element: <VerifyEmail />,
     },
     {
         path: "/profile",
-        element: <Profile />,
+        element: (
+            <PrivateRoute>
+                <Profile />
+            </PrivateRoute>
+        ),
     },
     {
-        path: "/booking-status",
+        path: "/booking-status/:token",
         element: <BookingStatus />,
     },
     {

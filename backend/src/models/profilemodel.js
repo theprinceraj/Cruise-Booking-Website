@@ -10,7 +10,7 @@ const profileSchema = mongoose.Schema(
         },
         fullName: {
             type: String,
-            required: true,
+            default: "Your Full Name",
         },
         email: {
             type: String,
@@ -24,7 +24,7 @@ const profileSchema = mongoose.Schema(
         address: String,
         profilePicture: {
             type: String,
-            default: "",
+            default: "https://avatars.githubusercontent.com/u/54814653",
         },
         foodPreference: {
             type: String,
