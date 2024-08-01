@@ -17,7 +17,7 @@ export default function Navbar() {
                         <Link to="/" className=" border-e-2">
                             HOME
                         </Link>
-                        <Link to="/bookings" className=" border-e-2">
+                        <Link to="/booking" className=" border-e-2">
                             BUY NOW
                         </Link>
                         {isLoggedIn ? (
