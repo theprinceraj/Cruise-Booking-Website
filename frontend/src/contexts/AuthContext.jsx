@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import { getCookie } from "../utilities/checkIsLoggedIn.js";
 import { fetchWithAuth } from "../utilities/fetchWithAuth.js";
 
 const AuthContext = createContext();
