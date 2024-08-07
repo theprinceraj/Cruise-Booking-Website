@@ -22,9 +22,7 @@
     background-image: linear-gradient(0deg, rgb(0, 168, 154), rgb(0, 53, 59));
 }
 
-.react-calendar__viewContainer{
-    
-}
+
 
 .react-calendar__navigation__label:hover{
     border: 0px solid transparent;
@@ -54,9 +52,6 @@
     font-weight: 700;
 }
 
-.react-calendar__month-view__days{
-    
-}
 
 .react-calendar__tile{
     border: 1px solid transparent;
@@ -75,4 +70,65 @@
     color: rgb(255, 251, 0);
     font: 1em sans-serif;
 
+}
+
+
+
+.form{
+    display: flex;
+    width: 100%;
+}
+
+.formfield{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+
+.services-container{
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    align-items: center;
+    flex-wrap: wrap;
+    align-items:center;
+    flex-direction: column;
+    
+}
+
+.input-field{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content:stretch;
+    margin-bottom: 5px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+.inputstyle{
+    background-color: black;
+    color: white;
+    padding: 5px;
+    flex: 1;
+    margin: 2px;
+    font: 1.2em monospace;
+    border-radius: 5px;
+}
+
+
+
+.removebtn{
+    color: black;
+    background-color: rgb(255, 239, 219);
+    border-radius: 5px;
+    border: 1px solid violet;
+    margin: 2px;
+    flex: 0;
+    font: 1.5em monospace;
+    box-shadow: inset -2px -2px  15px red ;
 }

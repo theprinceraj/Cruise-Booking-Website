@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
+import { fetchWithAuth } from "../utilities/fetchWithAuth";
 
 export default function VerifyEmail() {
     const [errorMsg, setErrorMsg] = useState(null);
@@ -11,7 +12,7 @@ export default function VerifyEmail() {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const inputVerificationCode = parseInt(e.target.verificationCode?.value);
-        fetch(`/api/user/verify/${_userId}`, {
+        fetchWithAuth(`/api/user/verify/${_userId}`, {
             method: "POST",
             body: JSON.stringify({
                 oneTimeVerificationCode: inputVerificationCode,

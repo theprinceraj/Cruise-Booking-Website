@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
+import { fetchWithAuth } from "../utilities/fetchWithAuth";
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -31,7 +32,7 @@ export default function SignUp() {
             password: e.target[3].value,
         };
 
-        fetch(`/api/user/signup`, {
+        fetchWithAuth(`/api/user/signup`, {
             method: "PUT",
             body: JSON.stringify(userObject),
             headers: {
