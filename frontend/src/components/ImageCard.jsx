@@ -1,5 +1,4 @@
-export default function ImageCard({ imageUrl, category, customText }) {
-    const categoryBgColors = ["rgb(34 197 94)", "red", "rgb(2 132 199)", "rgb(192 38 211)"];
+export default function ImageCard({ imageUrl, category, customText, tagBgColor }) {
     return (
         <div
             className="rounded-xl overflow-hidden w-80 m-3 shadow-lg transition-transform transform container-bordershadow"
@@ -11,7 +10,7 @@ export default function ImageCard({ imageUrl, category, customText }) {
                         className="text-xs uppercase px-2 py-1"
                         style={{
                             color: "white",
-                            backgroundColor: categoryBgColors[Math.floor(Math.random() * categoryBgColors.length)],
+                            backgroundColor: tagBgColor,
                         }}>
                         {category}
                     </a>
@@ -19,7 +18,10 @@ export default function ImageCard({ imageUrl, category, customText }) {
                 <h1 className="text-xl mb-2" style={{ color: "black" }}>
                     {customText}
                 </h1>
-                <a href="https://www.instagram.com/lenincruises/" className="underline flex items-center" target="_blank">
+                <a
+                    href="https://www.instagram.com/lenincruises/"
+                    className="underline flex items-center"
+                    target="_blank">
                     <span className="font-normal underline" style={{ color: "rgba(0, 0, 0, 0.75)" }}>
                         VIEW MORE{" "}
                     </span>

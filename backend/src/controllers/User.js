@@ -84,7 +84,7 @@ const loginUser = async (req, res) => {
     }
 };
 
-const logOutUser = async (req, res) => {
+const logoutUser = async (req, res) => {
     try {
         const sessionId = req.cookies?.sessionId;
         if (!sessionId) return res.status(400).json({ message: "Invalid session id" });
@@ -150,4 +150,4 @@ const verifyUserEmail = async (req, res) => {
     }
 };
 
-export { signupUser, loginUser, logOutUser, deleteUser, verifyUserEmail };
+export { signupUser, loginUser, logoutUser, deleteUser, verifyUserEmail };

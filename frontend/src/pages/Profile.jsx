@@ -1,9 +1,13 @@
 import Navbar from "../components/Navbar";
 import man from "../assets/man.png";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { fetchWithAuth } from "../utilities/fetchWithAuth";
+import { AuthContext } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 export default function Profile() {
     const [profile, setProfile] = useState(null);
+    const { setIsLoggedIn } = useContext(AuthContext);
+    const navigate = useNavigate();
     useEffect(() => {
         fetchWithAuth(`/api/profile/`, {
             method: "POST",
@@ -20,6 +24,23 @@ export default function Profile() {
             });
         console.log(profile);
     }, []);
+
+    const handleLogout = () => {
+        fetchWithAuth("/api/user/logout", {
+            method: "POST",
+        })
+            .then((res) => res.json().then((data) => ({ status: res.status, data })))
+            .then(({ status, data }) => {
+                if (status == 200) {
+                    alert(data.message);
+                    setIsLoggedIn(false);
+                    navigate("/");
+                } else {
+                    alert(data.message);
+                }
+            });
+    };
+
     return (
         <>
             <div>
@@ -54,7 +75,8 @@ export default function Profile() {
                         </div>
                         <button
                             type="submit"
-                            className="container-bordershadow w-full mt-8 py-3 rounded-md font-semibold">
+                            className="container-bordershadow w-full mt-8 py-3 rounded-md font-semibold"
+                            onClick={handleLogout}>
                             Logout
                         </button>
                     </div>

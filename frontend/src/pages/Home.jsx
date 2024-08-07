@@ -8,16 +8,19 @@ export default function Home() {
             imageUrl: "/image2.avif",
             category: "FAMILY FUN",
             customText: "Create memories together",
+            tagBgColor: "rgb(34 197 94)",
         },
         {
             imageUrl: "/image3.avif",
             category: "GOURMENT DINING",
             customText: "Taste the Finest",
+            tagBgColor: "rgb(2 132 199)",
         },
         {
             imageUrl: "/image4.avif",
             category: "ONBOARD ENTERTAINMENT",
             customText: "Experience New Horizons",
+            tagBgColor: "rgb(192 38 211)",
         },
     ]);
 
@@ -37,6 +40,7 @@ export default function Home() {
                             imageUrl={data.imageUrl}
                             category={data.category}
                             customText={data.customText}
+                            tagBgColor={data.tagBgColor}
                         />
                     ))}
                 </div>
