@@ -2,8 +2,8 @@
     "rewrites": [
         { "source": "/api/(.*)", "destination": "/api" },
         {
-            "source": "/login",
-            "destination": "/login"
+            "source": "/(.*)",
+            "destination": "/"
         }
     ]
 }
