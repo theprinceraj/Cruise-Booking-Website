@@ -52,6 +52,11 @@ export default function Profile() {
                             }}>
                             <u>Your Bookings</u>
                         </div>
+                        <button
+                            type="submit"
+                            className="container-bordershadow w-full mt-8 py-3 rounded-md font-semibold">
+                            Logout
+                        </button>
                     </div>
                 </div>
             </div>
