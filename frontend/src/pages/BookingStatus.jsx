@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useParams } from "react-router-dom";
-
+ 
 export default function BookingStatus() {
     const [bookingObject, setBookingObject] = useState({});
     const { token } = useParams();
-
+ 
     useEffect(() => {
         fetch(`/api/qr/verify`, {
             method: "POST",
@@ -37,7 +37,7 @@ export default function BookingStatus() {
             })
             .catch((error) => console.log(error));
     }, []);
-
+ 
     return (
         <>
             <div>

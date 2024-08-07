@@ -1,12 +1,13 @@
-import Navbar from "../components/Navbar";
 
-export default function Booking() {
+import Navbar from '../components/Navbar';
+import CalendarUI from "../components/CalendarUI";
+export default function Bookings() {
     return (
         <>
+            <Navbar/>
             <div>
-                <Navbar />
+                <CalendarUI/>
             </div>
-            <div>Booking</div>
         </>
     );
 }

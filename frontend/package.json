@@ -27,6 +27,7 @@
         "react-dom": "^18.2.0"
     },
     "dependencies": {
+        "react-calendar": "^5.0.0",
         "react-router-dom": "^6.23.1",
         "react-simply-carousel": "^9.1.3"
     }

@@ -24,7 +24,6 @@ export default function Profile() {
             });
         console.log(profile);
     }, []);
-
     const handleLogout = () => {
         fetchWithAuth("/api/user/logout", {
             method: "POST",
@@ -40,7 +39,6 @@ export default function Profile() {
                 }
             });
     };
-
     return (
         <>
             <div>
