@@ -29,11 +29,11 @@ export default function Home() {
     const handleMouseLeave = () => setIsHovered(false);
     return (
         <>
-            <div>
-                <Navbar />
-            </div>
-            <div className="relative h-[89vh] w-100 flex flex-col items-center justify-center">
-                <div className="flex flex-wrap justify-center items-start">
+            
+            <Navbar />
+            
+            <div className="relative h-[100vh] w-100 flex flex-col items-center justify-center">
+                <div className="flex flex-wrap justify-center " style={{alignItems:"center"}}> 
                     {imageCardsData.map((data, index) => (
                         <ImageCard
                             key={index}
@@ -45,7 +45,7 @@ export default function Home() {
                     ))}
                 </div>
                 <div
-                    className="border-solid border-2 rounded-3xl mx-2 mt-2 p-2 font-bold text-2xl transform hover:scale-1.05"
+                    className="border-solid border-2 rounded-3xl mx-2 my-2 p-2 font-bold text-2xl transform hover:scale-1.05"
                     style={{
                         borderColor: isHovered ? "white" : "cyan",
                         color: isHovered ? "white" : "cyan",
