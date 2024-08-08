@@ -1,6 +1,6 @@
-.signup{
+.signupandlogin{
     display: flex;
-    height: 100%;
+    margin-top: calc(4rem + 2rem);
     width: 100%;
     justify-content: center;
     align-items: center;

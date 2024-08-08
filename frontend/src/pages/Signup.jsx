@@ -67,12 +67,12 @@ export default function SignUp() {
     return (
         <div className="overflow-y-scroll h-[100vh]">
             <Navbar />
-            <div className="signup" >
+            <div className="signupandlogin" >
 
                 <div className="flex items-center justify-center" >
                     <form
                         onSubmit={handleSignup}
-                        className=" w-[480px] h-[660px] bg-white/10 backdrop-blur-dk rounded-2xl container-bordershadow p-12">
+                        className=" w-[100%] md:w-[480px] h-[660px] bg-white/10 backdrop-blur-dk rounded-2xl container-bordershadow p-12">
                         <h3 className="text-3xl font-medium text-center">Signup</h3>
 
                         <label htmlFor="username" className="block mt-8 text-lg font-medium" style={{ color: "white" }}>
