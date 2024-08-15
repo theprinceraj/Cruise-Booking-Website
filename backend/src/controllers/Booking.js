@@ -24,8 +24,8 @@ const createBooking = async (req, res) => {
 
         const bookingObject = {
             userId,
-            cruiseDate: cruiseDate,
-            bookingDate: bookingDate,
+            cruiseDate: new Date(cruiseDate),
+            bookingDate: new Date(bookingDate),
             numberOfPassengers,
             passengerDetails,
             totalCost,

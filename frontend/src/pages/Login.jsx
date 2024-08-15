@@ -51,50 +51,52 @@ export default function Login() {
             });
     };
     return (
-        <div className="overflow-y-scroll">
-            <div>
-                <Navbar />
-            </div>
-            <div className="flex items-center justify-center" style={{ marginTop: 60 }}>
-                <form
-                    onSubmit={handleLogin}
-                    className="w-[100%] md:w-[420px] h-[400px] lg:h-[440px] max-h-[420px]  backdrop-blur-dk rounded-2xl p-8 container-bordershadow">
-                    <h3 className="text-3xl font-medium text-center">Login</h3>
+        <div className="overflow-y-scroll h-[100vh]" >
+           
+            <Navbar />
+            <div className="signupandlogin">
+                <div className="flex items-center justify-center" >
+                    <form
+                        onSubmit={handleLogin}
+                        className="w-[100%] md:w-[420px] h-[400px] lg:h-[440px] max-h-[420px]  backdrop-blur-dk rounded-2xl p-8 container-bordershadow">
+                        <h3 className="text-3xl font-medium text-center">Login</h3>
 
-                    <label htmlFor="email" className="block mt-4 text-lg font-medium">
-                        Email
-                    </label>
-                    <input
-                        type="email"
-                        style={{ backgroundColor: "lightcyan", color: "black" }}
-                        id="email"
-                        placeholder="Enter Email"
-                        name="email"
-                        value={user.email}
-                        onChange={userChangeListener}
-                        className="w-[100%] h-12 mt-2 rounded-md px-3 focus:outline-none"
-                    />
+                        <label htmlFor="email" className="block mt-4 text-lg font-medium">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            style={{ backgroundColor: "lightcyan", color: "black" }}
+                            id="email"
+                            placeholder="Enter Email"
+                            name="email"
+                            value={user.email}
+                            onChange={userChangeListener}
+                            className="w-[100%] h-12 mt-2 rounded-md px-3 focus:outline-none"
+                        />
 
-                    <label htmlFor="password" className="block mt-8 text-lg font-medium">
-                        {" "}
-                        Password
-                    </label>
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        style={{ backgroundColor: "lightcyan", color: "black" }}
-                        placeholder="Enter Password"
-                        value={user.password}
-                        onChange={userChangeListener}
-                        className="w-full h-12 mt-2 rounded-md px-3 focus:outline-none"
-                    />
+                        <label htmlFor="password" className="block mt-8 text-lg font-medium">
+                            {" "}
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            style={{ backgroundColor: "lightcyan", color: "black" }}
+                            placeholder="Enter Password"
+                            value={user.password}
+                            onChange={userChangeListener}
+                            className="w-full h-12 mt-2 rounded-md px-3 focus:outline-none"
+                        />
 
-                    <button type="submit" className="container-bordershadow w-full mt-8 py-3 rounded-md font-semibold">
-                        {" "}
-                        Submit
-                    </button>
-                </form>
+                        <button type="submit" className="container-bordershadow w-full mt-8 py-3 rounded-md font-semibold">
+                            {" "}
+                            Submit
+                        </button>
+                    </form>
+                </div>
+
             </div>
         </div>
     );

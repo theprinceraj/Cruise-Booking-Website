@@ -1,0 +1,7 @@
+.signupandlogin{
+    display: flex;
+    margin-top: calc(4rem + 2rem);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
