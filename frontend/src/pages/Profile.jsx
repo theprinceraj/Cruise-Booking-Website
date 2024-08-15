@@ -53,10 +53,16 @@ export default function Profile() {
                             <div className="flex w-[100%] items-center justify-center mt-10">
                                 <img src={profile?.profilePicture || man} alt="Error" width={"80%"} height={"80%"} />
                             </div>
-                            <div className="[&>*]:text-center [&>*]:mt-[30px]" style={{ wordWrap: "break-word" }}>
+                            <div className="[&>*]:text-center [&>*]:mt-[20px]" style={{ wordWrap: "break-word" }}>
                                 <h1 style={{ fontSize: "120%" }}>{profile?.fullName || "Full Name"}</h1>
                                 <h1 style={{ fontSize: "80%" }}>{profile?.email || "example@example.com"}</h1>
                                 <h1 style={{ fontSize: "80%" }}>{profile?.phone || "99999999"}</h1>
+                                <button
+                                    type="submit"
+                                    className="container-bordershadow w-full py-3 rounded-md font-semibold"
+                                    onClick={handleLogout}>
+                                    Logout
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -71,12 +77,6 @@ export default function Profile() {
                             }}>
                             <u>Your Bookings</u>
                         </div>
-                        <button
-                            type="submit"
-                            className="container-bordershadow w-full mt-8 py-3 rounded-md font-semibold"
-                            onClick={handleLogout}>
-                            Logout
-                        </button>
                     </div>
                 </div>
             </div>
