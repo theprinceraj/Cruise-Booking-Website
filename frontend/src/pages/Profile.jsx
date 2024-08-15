@@ -41,10 +41,10 @@ export default function Profile() {
     };
     return (
         <>
-            <div>
-                <Navbar />
-            </div>
-            <div className="flex items-center justify-center mt-[60px]">
+            
+            <Navbar />
+            
+            <div className="profiler">
                 <div className="flex container justify-between container-bordershadow w-[65%] h-[80vh] items-center">
                     <div
                         className="w-[30%] h-[78vh]"
