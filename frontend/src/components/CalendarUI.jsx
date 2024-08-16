@@ -5,7 +5,7 @@ import add from "../assets/add.png";
 import addfill from "../assets/addfill.png";
 import { fetchWithAuth } from "../utilities/fetchWithAuth";
 
-export default function CalendarUI() {
+function CalendarUI() {
     const [isAddHovered, setIsAddHovered] = useState(false);
     const AddHandleMouseEnter = () => setIsAddHovered(true);
     const AddHandleMouseLeave = () => setIsAddHovered(false);
@@ -188,3 +188,5 @@ export default function CalendarUI() {
         </>
     );
 }
+
+export default CalendarUI ;

@@ -88,3 +88,17 @@ body {
     display: none;
 }
 
+.userdata{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.userdata:hover{
+    background-color: rgb(0, 52, 49);
+}
+
+.userdatas{
+    height: 90%;
+    overflow-y: scroll;
+}

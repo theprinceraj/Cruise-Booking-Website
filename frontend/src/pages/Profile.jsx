@@ -4,6 +4,8 @@ import { useEffect, useState, useContext } from "react";
 import { fetchWithAuth } from "../utilities/fetchWithAuth";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import UserDataCardUI from "../components/UserDataCardUI";
+
 export default function Profile() {
     const [profile, setProfile] = useState(null);
     const { setIsLoggedIn } = useContext(AuthContext);
@@ -39,11 +41,32 @@ export default function Profile() {
                 }
             });
     };
+
+    const initialUserHistoryData = {
+        bookingDate: "Loading...",
+        passengerDetails: [],
+        numberOfPassengers: 0,
+        totalCost: 0,
+        paymentStatus: "Pending"
+    };
+
+    const [userHistoryData, setUserHistoryData] = useState([
+        initialUserHistoryData
+        
+    ]);
+
+    const fetchUserData=()=>{
+        // fetching method is needed to add new data to history list
+        setUserHistoryData([...userHistoryData]);
+    }
+
+
     return (
+        
         <>
-            
+
             <Navbar />
-            
+
             <div className="profiler">
                 <div className="flex container justify-between container-bordershadow w-[65%] h-[80vh] items-center">
                     <div
@@ -68,15 +91,39 @@ export default function Profile() {
                     </div>
                     <div
                         className="w-[66%] h-[78vh]"
-                        style={{ marginInlineEnd: "1%", color: "white", fontSize: "20px" }}>
+                        style={{ marginInlineEnd: "1%", color: "white", fontSize: "20px", }}>
                         <div
                             className="container w-[96%] m-[2%] font-bold"
                             style={{
                                 fontSize: "120%",
                                 color: "white",
+                                display:"flex",
+                                alignItems:"center",
+                                justifyContent:"space-between"
                             }}>
                             <u>Your Bookings</u>
+                            <button type="button" onClick={fetchUserData}>Refresh</button>
+
                         </div>
+                        {/* {userHistoryData.map((data, index)=>{
+                                    
+                        })
+                        } */}
+                        <div className="userdatas" >
+                            {
+                                userHistoryData.map((data, index) =>(
+                                    <UserDataCardUI
+                                        key={index}
+                                        bookingDate={data.bookingDate}
+                                        passengerDetails={data.passengerDetails}
+                                        numberOfPassengers={data.numberOfPassengers}
+                                        totalCost={data.totalCost}
+                                        paymentStatus={data.paymentStatus}
+                                    />
+                                ))
+                            }
+                        </div>
+
                     </div>
                 </div>
             </div>
