@@ -49,19 +49,9 @@ export default function Profile() {
         totalCost: 0,
         paymentStatus: "Pending"
     };
-    const initialUserHistoryData2 = {
-        bookingDate: "15/08/2024",
-        passengerDetails: [],
-        numberOfPassengers: 4,
-        totalCost: 4*799,
-        paymentStatus: "success"
-    };
 
     const [userHistoryData, setUserHistoryData] = useState([
         initialUserHistoryData,
-        initialUserHistoryData2,
-        
-        
     ]);
 
     const fetchUserData=()=>{
