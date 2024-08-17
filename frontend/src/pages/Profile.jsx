@@ -54,14 +54,16 @@ export default function Profile() {
         initialUserHistoryData,
     ]);
 
-    const fetchUserData=()=>{
+    const fetchUserData = () => {
         // fetching method is needed to add new data to history list
-        setUserHistoryData([...userHistoryData]);
+        const historyList = [...userHistoryData];
+
+        setUserHistoryData(historyList);
     }
 
 
     return (
-        
+
         <>
 
             <Navbar />
@@ -79,12 +81,15 @@ export default function Profile() {
                                 <h1 style={{ fontSize: "120%" }}>{profile?.fullName || "Full Name"}</h1>
                                 <h1 style={{ fontSize: "80%" }}>{profile?.email || "example@example.com"}</h1>
                                 <h1 style={{ fontSize: "80%" }}>{profile?.phone || "99999999"}</h1>
-                                <button
-                                    type="submit"
-                                    className="container-bordershadow w-full py-3 rounded-md font-semibold"
-                                    onClick={handleLogout}>
-                                    Logout
-                                </button>
+                                <div style={{width:"100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                    <button
+                                        type="submit"
+                                        className="logoutbtn container-bordershadow w-[80%] py-3 rounded-md font-semibold"
+                                        onClick={handleLogout}>
+                                        Logout
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -96,16 +101,16 @@ export default function Profile() {
                             style={{
                                 fontSize: "120%",
                                 color: "white",
-                                display:"flex",
-                                alignItems:"center",
-                                justifyContent:"space-between"
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between"
                             }}>
                             <u>Your Bookings</u>
                             <button type="button" onClick={fetchUserData}>Refresh</button>
 
                         </div>
                         <div className="table-column m-2 w-[96%]"
-                            style={{display:"flex", alignItems:"center", justifyContent:"space-evenly"}}
+                            style={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}
                         >
                             <div>
                                 Date
@@ -123,7 +128,7 @@ export default function Profile() {
                         </div>
                         <div className="userdatas" >
                             {
-                                userHistoryData.map((data, index) =>(
+                                userHistoryData.map((data, index) => (
                                     <UserDataCardUI
                                         key={index}
                                         bookingDate={data.bookingDate}

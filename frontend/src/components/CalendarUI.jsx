@@ -64,7 +64,7 @@ function CalendarUI() {
         setserviceList(list);
     };
 
-    const showAmount = (serviceList.length === 1 && (serviceList[0].name === "" || serviceList[0].age === -1)) ? 0 : serviceList.length * 799;
+    const showAmount = (serviceList.length >= 1 && (serviceList[0].name === "" || serviceList[0].age === -1)) ? 0 : serviceList.length * 799;
 
     const setData = () => {
         const finalBookingData = {
