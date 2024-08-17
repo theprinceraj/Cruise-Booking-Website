@@ -99,6 +99,15 @@ body {
 }
 
 .userdatas{
-    height: 90%;
+    height: 82%;
     overflow-y: scroll;
+}
+
+.table-column{
+    border: 2px solid rgb(0, 202, 179);
+    height: 8%;
+}
+
+.table-column div{
+    color: rgb(0, 255, 157);
 }
