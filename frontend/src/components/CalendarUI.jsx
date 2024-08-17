@@ -38,7 +38,7 @@ function CalendarUI() {
 
     let passengerSchema = {
         name: "",
-        age: 0,
+        age: -1,
     };
 
     const [serviceList, setserviceList] = useState([passengerSchema]);
@@ -64,6 +64,8 @@ function CalendarUI() {
         setserviceList(list);
     };
 
+    const showAmount = (serviceList.length === 1 && (serviceList[0].name === "" || serviceList[0].age === -1)) ? 0 : serviceList.length * 799;
+
     const setData = () => {
         const finalBookingData = {
             cruiseDate: value,
@@ -73,26 +75,44 @@ function CalendarUI() {
             totalCost: serviceList.length * 799,
             paymentStatus: "Pending",
         };
-        console.log(finalBookingData);
-        fetchWithAuth("/api/bookings", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(finalBookingData),
-        }).then((res) =>
-            res
-                .json()
-                .then((data) => ({ status: res.status, data }))
-                .then((status, data) => {
-                    console.log(data, status);
-                    if (status === 200) {
-                        alert(data.message);
-                    } else {
-                        alert(`An internal error occured: ${data.message}`);
-                    }
-                })
-        );
+
+        let flag = false;
+        for (let index = 0; index < serviceList.length; index++) {
+            const object = serviceList[index];
+            if (object["name"] === "" || object["age"] === -1) {
+                // console.log("yes", index);
+                flag = true;
+                break;
+            }
+
+        }
+        if (flag) {
+            alert("Name field or Age field is empty!");
+        }
+        else {
+            console.log(finalBookingData);
+            fetchWithAuth("/api/bookings", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(finalBookingData),
+            }).then((res) =>
+                res
+                    .json()
+                    .then((data) => ({ status: res.status, data }))
+                    .then((status, data) => {
+                        console.log(data, status);
+                        if (status === 200) {
+                            alert(data.message);
+                        } else {
+                            alert(`An internal error occured: ${data.message}`);
+                        }
+                    })
+            );
+        }
+
+
     };
 
     return (
@@ -163,10 +183,12 @@ function CalendarUI() {
                                 </div>
                             </form>
                         </div>
-
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "15px", fontSize: "25px", fontFamily: "monospace" }}>
+                            Amount : {showAmount} Rs
+                        </div>
                         <div
                             style={{
-                                marginTop: "50px",
+                                marginTop: "15px",
                                 width: "100%",
                                 display: "flex",
                                 justifyContent: "center",
@@ -189,4 +211,4 @@ function CalendarUI() {
     );
 }
 
-export default CalendarUI ;
+export default CalendarUI;
