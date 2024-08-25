@@ -5,7 +5,7 @@ import add from "../assets/add.png";
 import addfill from "../assets/addfill.png";
 import { fetchWithAuth } from "../utilities/fetchWithAuth";
 
-export default function CalendarUI() {
+function CalendarUI() {
     const [isAddHovered, setIsAddHovered] = useState(false);
     const AddHandleMouseEnter = () => setIsAddHovered(true);
     const AddHandleMouseLeave = () => setIsAddHovered(false);
@@ -38,7 +38,7 @@ export default function CalendarUI() {
 
     let passengerSchema = {
         name: "",
-        age: 0,
+        age: -1,
     };
 
     const [serviceList, setserviceList] = useState([passengerSchema]);
@@ -63,7 +63,7 @@ export default function CalendarUI() {
         // console.log(`${name} : ${value} in index : ${index}`);
         setserviceList(list);
     };
-
+    const showAmount = (serviceList.length >= 1 && (serviceList[0].name === "" || serviceList[0].age === -1)) ? 0 : serviceList.length * 799;
     const setData = () => {
         const finalBookingData = {
             cruiseDate: value,
@@ -73,8 +73,21 @@ export default function CalendarUI() {
             totalCost: serviceList.length * 799,
             paymentStatus: "Pending",
         };
-        console.log(finalBookingData);
-        fetchWithAuth("/api/bookings", {
+        let flag = false;
+        for (let index = 0; index < serviceList.length; index++) {
+            const object = serviceList[index];
+            if (object["name"] === "" || object["age"] === -1 || object["age"] == "") {
+                // console.log("yes", index);
+                flag = true;
+                break;
+            }
+
+        }
+        if (flag) {
+            alert("Name field or Age field is empty!");
+        }
+        else {
+            fetchWithAuth("/api/bookings", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -92,15 +105,15 @@ export default function CalendarUI() {
                         alert(`An internal error occured: ${data.message}`);
                     }
                 })
-        );
+        )}
     };
 
     return (
         <>
-            <div className="flex justify-center align-center " style={{ margin: "60px" }}>
+            <div className="flex justify-center align-center" style={{ marginTop: "calc(4rem + 2rem)" }}>
                 <div
                     className="flex second-container "
-                    style={{ justifyContent: "center", width: "40%", height: "auto" }}>
+                    style={{ justifyContent: "center" }}>
                     <div style={{ margin: "20px" }}>
                         <h1 className="dateselection"> Select Your Date</h1>
                         <br />
@@ -163,10 +176,15 @@ export default function CalendarUI() {
                                 </div>
                             </form>
                         </div>
-
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "15px", fontSize: "25px", fontFamily: "monospace" }}>
+                            Date : {`${value.getDate()}/${value.getMonth()+1}/${value.getFullYear()}`} 
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px", fontSize: "25px", fontFamily: "monospace" }}>
+                            Amount : {showAmount} Rs
+                        </div>
                         <div
                             style={{
-                                marginTop: "50px",
+                                marginTop: "15px",
                                 width: "100%",
                                 display: "flex",
                                 justifyContent: "center",
