@@ -179,6 +179,151 @@ body {
     font-weight: 700;
   }
 
+  .signupandlogin, .profiler{
+    display: flex;
+    margin-top: calc(4rem + 2rem);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.react-calendar__navigation{
+    display: flex;
+    color: black;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.react-calendar__navigation__arrow{
+    width: 20px;
+    margin: 5px;
+}
+
+.react-calendar__navigation__arrow:hover{
+    border: 0px solid transparent;
+    border-radius: 5px;
+    background-image: linear-gradient(0deg, rgb(0, 168, 154), rgb(0, 53, 59));
+}
+
+.react-calendar{    
+    border: 0px solid transparent;
+    border-radius: 5px;
+    background-image: linear-gradient(0deg, rgb(0, 168, 154), rgb(0, 53, 59));
+}
+
+
+
+.react-calendar__navigation__label:hover{
+    border: 0px solid transparent;
+    border-radius: 5px;
+    background-image: linear-gradient(0deg, rgb(0, 168, 154), rgb(0, 53, 59));
+}
+
+.react-calendar__month-view__weekdays{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+
+.react-calendar__month-view__weekdays__weekday{
+    text-align: center;
+    border: 1px solid green;
+}
+.react-calendar__month-view__weekdays__weekday:hover{
+    background-color: rgb(0, 115, 111);
+    
+}
+
+.react-calendar__month-view__weekdays__weekday abbr{
+    text-decoration: none;
+    color: darkorange;
+    font-size: larger;
+    font-weight: 700;
+}
+
+
+.react-calendar__tile{
+    border: 1px solid transparent;
+}
+
+.react-calendar__tile:hover{
+    border: 1px inset black;
+    box-shadow: 1px 1px 10px black ;
+}
+
+.react-calendar__tile:focus{
+    background-color: rgb(0, 77, 77);
+}
+
+.react-calendar__tile abbr{
+    color: rgb(255, 251, 0);
+    font: 1em sans-serif;
+
+}
+
+
+
+.form{
+    display: flex;
+    width: 100%;
+}
+
+.formfield{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+
+.services-container{
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    align-items: center;
+    flex-wrap: wrap;
+    align-items:center;
+    flex-direction: column;
+    
+}
+
+
+.input-field{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content:stretch;
+    margin-bottom: 5px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+.inputstyle{
+    background-color: black;
+    color: white;
+    padding: 5px;
+    flex: 1;
+    margin: 2px;
+    font: 1.2em monospace;
+    border-radius: 5px;
+}
+
+
+
+.removebtn{
+    color: black;
+    background-color: rgb(255, 239, 219);
+    border-radius: 5px;
+    border: 1px solid violet;
+    margin: 2px;
+    flex: 0;
+    font: 1.5em monospace;
+    box-shadow: inset -2px -2px  15px red ;
+}
+
+
 
 @media (max-width: 800px) {
     .second-container{
