@@ -1,11 +1,11 @@
-import { React, useState } from "react";
+import { useState } from "react";
 import Calendar from "react-calendar";
 import "../styles/React_Calendar_Style.css";
 import add from "../assets/add.png";
 import addfill from "../assets/addfill.png";
 import { fetchWithAuth } from "../utilities/fetchWithAuth";
 
-function CalendarUI() {
+export default function CalendarUI() {
     const [isAddHovered, setIsAddHovered] = useState(false);
     const AddHandleMouseEnter = () => setIsAddHovered(true);
     const AddHandleMouseLeave = () => setIsAddHovered(false);
