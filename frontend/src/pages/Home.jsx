@@ -31,7 +31,6 @@ export default function Home() {
         <>
             
             <Navbar />
-            
             <div className="relative h-[100vh] w-100 flex flex-col items-center justify-center homecontainer">
                 <div className="flex flex-wrap justify-center insidehomecontainer" style={{alignItems:"center"}}> 
                     {imageCardsData.map((data, index) => (

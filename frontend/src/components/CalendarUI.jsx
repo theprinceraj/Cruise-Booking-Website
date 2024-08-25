@@ -63,9 +63,7 @@ function CalendarUI() {
         // console.log(`${name} : ${value} in index : ${index}`);
         setserviceList(list);
     };
-
     const showAmount = (serviceList.length >= 1 && (serviceList[0].name === "" || serviceList[0].age === -1)) ? 0 : serviceList.length * 799;
-
     const setData = () => {
         const finalBookingData = {
             cruiseDate: value,
@@ -75,7 +73,6 @@ function CalendarUI() {
             totalCost: serviceList.length * 799,
             paymentStatus: "Pending",
         };
-
         let flag = false;
         for (let index = 0; index < serviceList.length; index++) {
             const object = serviceList[index];
@@ -90,30 +87,25 @@ function CalendarUI() {
             alert("Name field or Age field is empty!");
         }
         else {
-            console.log(finalBookingData);
             fetchWithAuth("/api/bookings", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(finalBookingData),
-            }).then((res) =>
-                res
-                    .json()
-                    .then((data) => ({ status: res.status, data }))
-                    .then((status, data) => {
-                        console.log(data, status);
-                        if (status === 200) {
-                            alert(data.message);
-                        } else {
-                            alert(`An internal error occured: ${data.message}`);
-                        }
-                    })
-            );
-            alert("Booking successfully completed");
-        }
-
-
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(finalBookingData),
+        }).then((res) =>
+            res
+                .json()
+                .then((data) => ({ status: res.status, data }))
+                .then((status, data) => {
+                    console.log(data, status);
+                    if (status === 200) {
+                        alert(data.message);
+                    } else {
+                        alert(`An internal error occured: ${data.message}`);
+                    }
+                })
+        )}
     };
 
     return (
@@ -122,7 +114,7 @@ function CalendarUI() {
                 <div
                     className="flex second-container "
                     style={{ justifyContent: "center" }}>
-                    <div  style={{ margin: "20px" }}>
+                    <div style={{ margin: "20px" }}>
                         <h1 className="dateselection"> Select Your Date</h1>
                         <br />
                         <div className="flex container" style={{ width: "100%", justifyContent: "center" }}>
@@ -214,5 +206,3 @@ function CalendarUI() {
         </>
     );
 }
-
-export default CalendarUI;
