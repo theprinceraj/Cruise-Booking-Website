@@ -4,6 +4,8 @@ import { useEffect, useState, useContext } from "react";
 import { fetchWithAuth } from "../utilities/fetchWithAuth";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import UserDataCardUI from "../components/UserDataCardUI";
+
 export default function Profile() {
     const [profile, setProfile] = useState(null);
     const { setIsLoggedIn } = useContext(AuthContext);
@@ -39,44 +41,136 @@ export default function Profile() {
                 }
             });
     };
+
+    const initialUserHistoryData = {
+        bookingDate: "Loading...",
+        passengerDetails: [],
+        numberOfPassengers: 0,
+        totalCost: 0,
+        paymentStatus: "Pending"
+    };
+
+    const [userHistoryData, setUserHistoryData] = useState([
+        initialUserHistoryData,
+    ]);
+
+    const fetchUserData = () => {
+        // fetching method is needed to add new data to history list
+        const historyList = [...userHistoryData];
+
+        setUserHistoryData(historyList);
+    }
+
+
     return (
+
         <>
-            <div>
-                <Navbar />
-            </div>
-            <div className="flex items-center justify-center mt-[60px]">
-                <div className="flex container justify-between container-bordershadow w-[65%] h-[80vh] items-center">
+
+            <Navbar />
+
+            <div className="profiler">
+                <div className="flex container justify-between container-bordershadow w-[65%] h-[80vh] items-center profile">
                     <div
-                        className="w-[30%] h-[78vh]"
+                        className="w-[30%] h-[78vh] profileviewside"
                         style={{ marginInlineStart: "1%", color: "white", fontSize: "20px" }}>
                         <div className="m-[10px]">
                             <div className="flex w-[100%] items-center justify-center mt-10">
                                 <img src={profile?.profilePicture || man} alt="Error" width={"80%"} height={"80%"} />
                             </div>
-                            <div className="[&>*]:text-center [&>*]:mt-[30px]" style={{ wordWrap: "break-word" }}>
+                            <div className="[&>*]:text-center [&>*]:mt-[20px]" style={{ wordWrap: "break-word" }}>
                                 <h1 style={{ fontSize: "120%" }}>{profile?.fullName || "Full Name"}</h1>
                                 <h1 style={{ fontSize: "80%" }}>{profile?.email || "example@example.com"}</h1>
                                 <h1 style={{ fontSize: "80%" }}>{profile?.phone || "99999999"}</h1>
+                                <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                    <button
+                                        type="submit"
+                                        className="logoutbtn container-bordershadow w-[80%] py-3 rounded-md font-semibold"
+                                        onClick={handleLogout}>
+                                        Logout
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                     <div
-                        className="w-[66%] h-[78vh]"
-                        style={{ marginInlineEnd: "1%", color: "white", fontSize: "20px" }}>
+                        className="w-[66%] h-[78vh] orderlistside"
+                        style={{ marginInlineEnd: "1%", color: "white", fontSize: "20px", }}>
+
+                        <div
+                            className="w-[30%] h-[78vh] profilemobileviewside"
+                            style={{ marginInlineStart: "1%", color: "white", fontSize: "20px" }}>
+                            <div className="" style={{
+                                display: "flex", alignItems: "center", justifyContent: "center", width: "100%"
+                            }}>
+
+                                <div className="flex justify-around" style={{ wordWrap: "break-word", width: "inherit", marginRight: "2px", marginLeft: "2px" }}>
+                                    <img src={profile?.profilePicture || man} alt="Error" width={47} height={40} />
+                                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}
+                                    >
+                                        <h1 style={{ fontSize: "100%", textAlign: "center" }}>{profile?.fullName || "Full Name"}</h1>
+                                        <h1 style={{ fontSize: "70%" }}>{profile?.email || "example@example.com"}</h1>
+                                        <h1 style={{ fontSize: "70%" }}>{profile?.phone || "99999999"}</h1>
+                                    </div>
+
+                                    <div style={{ width: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                        <button
+                                            type="submit"
+                                            className="logoutbtn container-bordershadow w-[100%] py-3 rounded-md font-semibold"
+                                            onClick={handleLogout}>
+                                            Logout
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
                         <div
                             className="container w-[96%] m-[2%] font-bold"
                             style={{
                                 fontSize: "120%",
                                 color: "white",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between"
                             }}>
                             <u>Your Bookings</u>
+                            <button type="button" onClick={fetchUserData}>Refresh</button>
+
                         </div>
-                        <button
-                            type="submit"
-                            className="container-bordershadow w-full mt-8 py-3 rounded-md font-semibold"
-                            onClick={handleLogout}>
-                            Logout
-                        </button>
+                        <div className="table-column m-2 w-[96%]"
+                            style={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}
+                        >
+                            <div>
+                                Date
+                            </div>
+                            <div>
+                                Passengers
+                            </div>
+                            <div>
+                                Total Cost
+                            </div>
+                            <div>
+                                Status
+                            </div>
+
+                        </div>
+                        <div className="userdatas" >
+                            {
+                                userHistoryData.map((data, index) => (
+                                    <UserDataCardUI
+                                        key={index}
+                                        bookingDate={data.bookingDate}
+                                        passengerDetails={data.passengerDetails}
+                                        numberOfPassengers={data.numberOfPassengers}
+                                        totalCost={data.totalCost}
+                                        paymentStatus={data.paymentStatus}
+                                    />
+                                ))
+                            }
+                        </div>
+
                     </div>
                 </div>
             </div>

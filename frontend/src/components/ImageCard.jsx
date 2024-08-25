@@ -1,7 +1,7 @@
 export default function ImageCard({ imageUrl, category, customText, tagBgColor }) {
     return (
         <div
-            className="rounded-xl overflow-hidden w-80 m-3 shadow-lg transition-transform transform container-bordershadow"
+            className="rounded-xl overflow-hidden m-3 w-80 shadow-lg transition-transform transform container-bordershadow"
             style={{ backgroundColor: "white", color: "black" }}>
             <div className="bg-cover bg-center h-52" style={{ backgroundImage: `url('${imageUrl}')` }}></div>
             <div className="p-4 relative">
