@@ -31,6 +31,9 @@ export default function Profile() {
         const showLoadingSVG = document.getElementById("loadingsvg");
         showLoadingSVG.setAttribute("src", Dual_Ring);
         showLoadingSVG.style.display="inline";
+        const showLoadingSVG2 = document.getElementById("loadingsvg2");
+        showLoadingSVG2.setAttribute("src", Dual_Ring);
+        showLoadingSVG2.style.display="inline";
 
         fetchWithAuth("/api/user/logout", {
             method: "POST",
@@ -41,6 +44,7 @@ export default function Profile() {
                     alert(data.message);
                     setIsLoggedIn(false);
                     showLoadingSVG.style.display="none";
+                    showLoadingSVG2.style.display="none";
                     navigate("/");
                 } else {
                     alert(data.message);
@@ -129,9 +133,10 @@ export default function Profile() {
                                     <div style={{ width: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
                                         <button
                                             type="submit"
-                                            className="logoutbtn container-bordershadow w-[100%] py-3 rounded-md font-semibold"
+                                            className="logoutbtn container-bordershadow w-[95%] py-3 rounded-md font-semibold"
                                             onClick={handleLogout}>
                                             Logout
+                                            <img id="loadingsvg2" style={{display:"none"}}  alt="" width={20} height={20}/>
                                         </button>
                                     </div>
 
