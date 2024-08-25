@@ -1,6 +1,4 @@
 import "./index.css";
-import "./styles/Fix_Style.css";
-import "./styles/React_Calendar_Style.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
