@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { fetchWithAuth } from "../utilities/fetchWithAuth";
 import '../styles/Fix_Style.css';
-
+import Dual_Ring from "../../public/Dual_Ring.svg";
 export default function SignUp() {
     const navigate = useNavigate();
     const initialUserValues = {
@@ -26,6 +26,11 @@ export default function SignUp() {
 
     const handleSignup = (e) => {
         e.preventDefault();
+
+        const showLoadingSVG = document.getElementById("loadingsvg");
+        showLoadingSVG.setAttribute("src", Dual_Ring);
+        showLoadingSVG.style.display="inline";
+
         const userObject = {
             username: e.target[0].value,
             email: e.target[1].value,
@@ -45,6 +50,7 @@ export default function SignUp() {
             .then(({ status, data }) => {
                 if (status === 200) {
                     alert(data.message);
+                    showLoadingSVG.style.display="none";
                     navigate(`/verify-email/${data.userId}`);
                 } else {
                     alert(data.message);
@@ -135,9 +141,10 @@ export default function SignUp() {
 
                         <button
                             type="submit"
-                            className="container-bordershadow w-full mt-6 py-3 rounded-md font-semibold hover:bg-gray-200"
+                            className="flex justify-center align-center container-bordershadow w-full mt-6 py-3 rounded-md font-semibold hover:bg-gray-200"
                             style={{ color: "white" }}>
-                            Submit
+                            Submit 
+                            <img id="loadingsvg" style={{display:"none"}}  alt="" width={25} height={25}/>
                         </button>
                     </form>
                 </div>

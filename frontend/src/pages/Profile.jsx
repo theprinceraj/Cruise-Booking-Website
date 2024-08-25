@@ -5,6 +5,7 @@ import { fetchWithAuth } from "../utilities/fetchWithAuth";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import UserDataCardUI from "../components/UserDataCardUI";
+import Dual_Ring from "../../public/Dual_Ring.svg";
 
 export default function Profile() {
     const [profile, setProfile] = useState(null);
@@ -27,6 +28,10 @@ export default function Profile() {
         console.log(profile);
     }, []);
     const handleLogout = () => {
+        const showLoadingSVG = document.getElementById("loadingsvg");
+        showLoadingSVG.setAttribute("src", Dual_Ring);
+        showLoadingSVG.style.display="inline";
+
         fetchWithAuth("/api/user/logout", {
             method: "POST",
         })
@@ -35,11 +40,14 @@ export default function Profile() {
                 if (status == 200) {
                     alert(data.message);
                     setIsLoggedIn(false);
+                    showLoadingSVG.style.display="none";
                     navigate("/");
                 } else {
                     alert(data.message);
                 }
             });
+
+            
     };
 
     const initialUserHistoryData = {
@@ -82,12 +90,17 @@ export default function Profile() {
                                 <h1 style={{ fontSize: "80%" }}>{profile?.email || "example@example.com"}</h1>
                                 <h1 style={{ fontSize: "80%" }}>{profile?.phone || "99999999"}</h1>
                                 <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                    <button
-                                        type="submit"
-                                        className="logoutbtn container-bordershadow w-[80%] py-3 rounded-md font-semibold"
-                                        onClick={handleLogout}>
-                                        Logout
-                                    </button>
+                                        <button
+                                            type="submit"
+                                            className="flex justify-center align-center logoutbtn container-bordershadow w-[80%] py-3 rounded-md font-semibold"
+                                            onClick={handleLogout}>
+                                            Logout
+                                            <img id="loadingsvg" style={{display:"none"}}  alt="" width={30} height={30}/>
+
+                                        </button>
+                                    
+
+
                                 </div>
 
                             </div>

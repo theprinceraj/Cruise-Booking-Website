@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { fetchWithAuth } from "../utilities/fetchWithAuth.js";
 import { AuthContext } from "../contexts/AuthContext.jsx";
-
+import Dual_Ring from "../../public/Dual_Ring.svg";
 export default function Login() {
     const { setIsLoggedIn } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -24,6 +24,11 @@ export default function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
+
+        const showLoadingSVG = document.getElementById("loadingsvg");
+        showLoadingSVG.setAttribute("src", Dual_Ring);
+        showLoadingSVG.style.display="inline";
+
         const userObject = {
             email: e.target[0].value,
             password: e.target[1].value,
@@ -44,6 +49,7 @@ export default function Login() {
                 if (status === 200) {
                     alert(data.message);
                     setIsLoggedIn(true);
+                    showLoadingSVG.style.display="none";
                     navigate("/");
                 } else {
                     alert(data.message);
@@ -90,9 +96,10 @@ export default function Login() {
                             className="w-full h-12 mt-2 rounded-md px-3 focus:outline-none"
                         />
 
-                        <button type="submit" className="container-bordershadow w-full mt-8 py-3 rounded-md font-semibold">
-                            {" "}
-                            Submit
+                        <button type="submit" className="flex align-center justify-center container-bordershadow w-full mt-8 py-3 rounded-md font-semibold">
+                            
+                            Submit 
+                            <img id="loadingsvg" style={{display:"none"}}  alt="" width={25} height={25}/>
                         </button>
                     </form>
                 </div>
