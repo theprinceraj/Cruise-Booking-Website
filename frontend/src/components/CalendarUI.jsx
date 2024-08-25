@@ -79,7 +79,7 @@ function CalendarUI() {
         let flag = false;
         for (let index = 0; index < serviceList.length; index++) {
             const object = serviceList[index];
-            if (object["name"] === "" || object["age"] === -1) {
+            if (object["name"] === "" || object["age"] === -1 || object["age"] == "") {
                 // console.log("yes", index);
                 flag = true;
                 break;
@@ -110,6 +110,7 @@ function CalendarUI() {
                         }
                     })
             );
+            alert("Booking successfully completed");
         }
 
 
@@ -117,11 +118,11 @@ function CalendarUI() {
 
     return (
         <>
-            <div className="flex justify-center align-center " style={{ margin: "60px" }}>
+            <div className="flex justify-center align-center" style={{ marginTop: "calc(4rem + 2rem)" }}>
                 <div
                     className="flex second-container "
-                    style={{ justifyContent: "center", width: "40%", height: "auto" }}>
-                    <div style={{ margin: "20px" }}>
+                    style={{ justifyContent: "center" }}>
+                    <div  style={{ margin: "20px" }}>
                         <h1 className="dateselection"> Select Your Date</h1>
                         <br />
                         <div className="flex container" style={{ width: "100%", justifyContent: "center" }}>
@@ -184,6 +185,9 @@ function CalendarUI() {
                             </form>
                         </div>
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "15px", fontSize: "25px", fontFamily: "monospace" }}>
+                            Date : {`${value.getDate()}/${value.getMonth()+1}/${value.getFullYear()}`} 
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px", fontSize: "25px", fontFamily: "monospace" }}>
                             Amount : {showAmount} Rs
                         </div>
                         <div

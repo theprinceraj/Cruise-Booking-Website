@@ -33,18 +33,23 @@ body {
 }
 
 .backdrop-blur-dk {
-    backdrop-filter: blur(50px);
+    backdrop-filter: blur(30px);
 }
 
 .container {
-    backdrop-filter: blur(300px);
+    backdrop-filter: blur(30px);
 }
 
 .second-container {
-    backdrop-filter: blur(500px);
+    backdrop-filter: blur(20px);
     border-radius: 10px;
     box-shadow: 5px 5px 10px black;
+    width: 50%;
+    height: auto;
+    border: 2px solid rgb(0, 202, 179);
 }
+
+
 
 .container-bordershadow {
     border: 2px solid rgb(0, 202, 179);
@@ -67,27 +72,6 @@ body {
 }
 
 
-.scrollbar-css::-webkit-scrollbar {
-    width: 7px;
-}
-
-.scrollbar-css::-webkit-scrollbar-track {
-    border-radius: 12px;
-    background: rgba(11, 117, 117, 0.316);
-}
-
-.scrollbar-css::-webkit-scrollbar-thumb {
-    border-radius: 12px;
-    background: rgb(34, 222, 222);
-}
-.scrollbar-css::-webkit-scrollbar-thumb:hover {
-    background: rgb(22, 138, 138);
-}
-
-.scrollbar-css::-webkit-scrollbar-button {
-    display: none;
-}
-
 .userdata{
     display: flex;
     align-items: center;
@@ -99,9 +83,26 @@ body {
 }
 
 .userdatas{
-    height: 82%;
+    height: 80%;
     overflow-y: scroll;
 }
+
+.userdatas::-webkit-scrollbar{
+    width: 5px;
+}
+.userdatas::-webkit-scrollbar-track{
+  background-color: transparent;
+}
+.userdatas::-webkit-scrollbar-thumb{
+  background-image: linear-gradient(100deg, rgb(0, 255, 229),rgb(0, 98, 91));
+}
+.userdatas::-webkit-scrollbar-track-piece{
+  background-color: transparent;
+} 
+
+.userdatas::-webkit-scrollbar:horizontal{
+    visibility: hidden;
+  }
 
 .table-column{
     border: 2px solid rgb(0, 202, 179);
@@ -121,3 +122,132 @@ body {
     background-color: rgba(0, 81, 84, 0.657);
     box-shadow: 5px 5px 5px black;
 }
+
+.menuUL{
+    list-style: none;
+    display: flex;
+    padding: 0%;
+    flex-direction: column;
+    margin: 0%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    height: 30%;
+   
+}
+
+.profilemobileviewside{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 10%;
+    width: 100%;
+}
+
+.menus{
+    height: 100vh;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-image: linear-gradient(180deg, rgb(0, 157, 136), black);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 100px;
+  }
+  
+  .menuopener{
+    cursor: pointer;
+  }
+  
+  .menus .closebtn {
+    position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 36px;
+  }
+  
+  .closebtn{
+    margin: 15px;
+    cursor: pointer;
+  }
+
+  .listfont{
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+
+@media (max-width: 800px) {
+    .second-container{
+        width: 100%;
+        border-radius: 0;
+        backdrop-filter: blur(30px);
+        box-shadow: 2px 2px 10px black ;
+        
+    }
+}
+
+@media (max-width: 1080px) {
+    .homecontainer{
+        margin-top: calc(4rem + 2rem);
+        width: 100%;
+
+    }
+    
+}
+
+@media (max-width:700px){
+    .insidehomecontainer{
+        margin-top: calc(4rem + 16rem);
+        width: 100%;
+    }
+}
+
+@media (max-width:768px) {
+    .navbarlist{
+        display: none;
+    }
+    .hamburgernavbarlist{
+        display: flex;
+    }
+    .profileviewside{
+        display: none;
+    }
+    .orderlistside{
+        width: 100%;
+    }
+    .orderlistside div{
+        font-size:small;
+    }
+    .profilemobileviewside{
+        display: flex;
+    }
+    .userdatas{
+        height: 70%;
+    }
+    
+}
+@media (min-width:769px) {
+    .navbarlist{
+        display: flex;
+    }
+
+    .hamburgernavbarlist{
+        display: none;
+    }
+    .profilemobileviewside{
+        display: none;
+    }
+
+    
+}
+
+@media (max-width:1024px) {
+    .profile{
+        width: 90%;
+    }
+}
+
