@@ -146,6 +146,7 @@ function CalendarUI() {
                                                     onChange={(e) => {
                                                         handleServiceChanges(e, index);
                                                     }}
+                                                    required
                                                 />
 
                                                 <label htmlFor={`age`}></label>
@@ -159,6 +160,7 @@ function CalendarUI() {
                                                     onChange={(e) => {
                                                         handleServiceChanges(e, index);
                                                     }}
+                                                    required
                                                 />
 
                                                 {serviceList.length > 1 && (
