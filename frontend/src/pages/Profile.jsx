@@ -82,6 +82,7 @@ export default function Profile() {
     const handleProfilePhoto = ()=>{
         const uploadedFile = fileRef.current.files[0];
         setAvatar(URL.createObjectURL(uploadedFile));
+        // use backend to store the user profile photo
     }
 
     return (
@@ -100,8 +101,8 @@ export default function Profile() {
                                 
                                 {
                                    (avatar==undefined)? (<img src={profile?.profilePicture || man} alt="Error" width={"80%"} height={"80%"}
-                                   style={{ borderRadius: "50%" }} />) : <img src={avatar} alt="Error" width={"80%"} height={"80%"}
-                                   style={{ borderRadius: "50%" }} />
+                                   style={{ borderRadius: "50%" }} />) : <img src={avatar} alt="Error" 
+                                   style={{backgroundColor:"black", borderRadius: "50%", width:"250px",height:"250px", objectFit:"contain"  }} />
                                 }
 
                                 <button type="submit" onClick={handleProfilePhotoEdit}>
@@ -110,7 +111,7 @@ export default function Profile() {
                                         style={{ position: "absolute", bottom: "0%", right: "10%"}}
                                     />
                                 </button>
-                                <input type="file" ref={fileRef} onChange={handleProfilePhoto} hidden/>
+                                <input type="file" ref={fileRef} onChange={handleProfilePhoto} accept="image/*" hidden/>
 
                             </div>
                             <div className="[&>*]:text-center [&>*]:mt-[20px]" style={{ wordWrap: "break-word" }}>
