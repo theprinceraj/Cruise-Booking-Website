@@ -63,13 +63,45 @@ export default function CalendarUI() {
         // console.log(`${name} : ${value} in index : ${index}`);
         setserviceList(list);
     };
+
+    const foods = [
+        {
+            category: "veg",
+            food: [
+                "paneer tikka", "paneer butter masala"
+            ]
+        },
+        {
+            category: "non-veg",
+            food: [
+                "chicken tikka", "chicken butter masala"
+            ]
+        }
+    ];
+
+    const initialfoodcategory = foods[0].category;
+    const [selectCategory, setSelectCategory] = useState(initialfoodcategory);
+    const [selectFood, setSelectFood] = useState("");
+    const handleCategoryChange = (e) => {
+        setSelectCategory(e.target.value);
+    };
+    const handleFoodChange = (e) => {
+        setSelectFood(e.target.value);
+    };
+
+
     const showAmount = (serviceList.length >= 1 && (serviceList[0].name === "" || serviceList[0].age === -1)) ? 0 : serviceList.length * 799;
     const setData = () => {
+        const foodList = {
+            foodType:selectCategory,
+            selectedFood:selectFood
+        }
         const finalBookingData = {
             cruiseDate: value,
             bookingDate: new Date(Date.now()),
             numberOfPassengers: serviceList.length,
             passengerDetails: serviceList,
+            foodDetails:foodList,
             totalCost: serviceList.length * 799,
             paymentStatus: "Pending",
         };
@@ -138,6 +170,7 @@ export default function CalendarUI() {
                                                     onChange={(e) => {
                                                         handleServiceChanges(e, index);
                                                     }}
+                                                    required
                                                 />
 
                                                 <label htmlFor={`age`}></label>
@@ -151,6 +184,7 @@ export default function CalendarUI() {
                                                     onChange={(e) => {
                                                         handleServiceChanges(e, index);
                                                     }}
+                                                    required
                                                 />
 
                                                 {serviceList.length > 1 && (
@@ -176,8 +210,32 @@ export default function CalendarUI() {
                                 </div>
                             </form>
                         </div>
+
+                        <div className="foodsection" >
+                                <select style={{ fontFamily:"monospace",fontSize:"15px" , color: "white", backgroundColor: "black" ,padding:"5px", marginRight:"2px", cursor:"pointer", borderRadius:"5px"}} onChange={(e) => handleCategoryChange(e)}>
+                                    {foods.map((item, index) => (
+                                        <option key={index} value={item.category}>
+                                            {item.category}
+                                        </option>
+                                    ))}
+                                </select>
+
+                                <select style={{fontFamily:"monospace", fontSize:"15px" ,color: "white", backgroundColor: "black", marginLeft:"2px",padding:"5px" ,cursor:"pointer", borderRadius:"5px"}} onChange={(e) => handleFoodChange(e)}>
+                                    {foods.map((item) =>
+                                        selectCategory === item.category
+                                            ? item.food.map((items) => (
+                                                <option value={items} key={items}>
+                                                    {items}
+                                                </option>
+                                            ))
+                                            : ""
+                                    )}
+                                </select>
+
+                        </div>
+
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "15px", fontSize: "25px", fontFamily: "monospace" }}>
-                            Date : {`${value.getDate()}/${value.getMonth()+1}/${value.getFullYear()}`} 
+                            Date : {`${value.getDate()}/${value.getMonth() + 1}/${value.getFullYear()}`}
                         </div>
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px", fontSize: "25px", fontFamily: "monospace" }}>
                             Amount : {showAmount} Rs

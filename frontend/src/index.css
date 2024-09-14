@@ -179,6 +179,15 @@ body {
     font-weight: 700;
   }
 
+.foodsection{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+
+}
+
 
 @media (max-width: 800px) {
     .second-container{
