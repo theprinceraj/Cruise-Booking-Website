@@ -21,9 +21,9 @@ const router = createBrowserRouter([
     {
         path: "/booking",
         element: (
-            // <PrivateRoute>
+            <PrivateRoute>
                 <Booking />
-            // </PrivateRoute>
+            </PrivateRoute>
         ),
     },
     {
@@ -41,9 +41,9 @@ const router = createBrowserRouter([
     {
         path: "/profile",
         element: (
-            // <PrivateRoute>
+            <PrivateRoute>
                 <Profile />
-            // </PrivateRoute>
+            </PrivateRoute>
         ),
     },
     {
