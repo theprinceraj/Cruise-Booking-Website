@@ -1,11 +1,11 @@
-import { React, useState } from "react";
+import { useState } from "react";
 import Calendar from "react-calendar";
 import "../styles/React_Calendar_Style.css";
 import add from "../assets/add.png";
 import addfill from "../assets/addfill.png";
 import { fetchWithAuth } from "../utilities/fetchWithAuth";
 
-function CalendarUI() {
+export default function CalendarUI() {
     const [isAddHovered, setIsAddHovered] = useState(false);
     const AddHandleMouseEnter = () => setIsAddHovered(true);
     const AddHandleMouseLeave = () => setIsAddHovered(false);
@@ -90,10 +90,7 @@ function CalendarUI() {
     };
 
 
-
-
     const showAmount = (serviceList.length >= 1 && (serviceList[0].name === "" || serviceList[0].age === -1)) ? 0 : serviceList.length * 799;
-
     const setData = () => {
         const foodList = {
             foodType:selectCategory,
@@ -108,7 +105,6 @@ function CalendarUI() {
             totalCost: serviceList.length * 799,
             paymentStatus: "Pending",
         };
-
         let flag = false;
         for (let index = 0; index < serviceList.length; index++) {
             const object = serviceList[index];
@@ -123,30 +119,25 @@ function CalendarUI() {
             alert("Name field or Age field is empty!");
         }
         else {
-            console.log(finalBookingData);
             fetchWithAuth("/api/bookings", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(finalBookingData),
-            }).then((res) =>
-                res
-                    .json()
-                    .then((data) => ({ status: res.status, data }))
-                    .then((status, data) => {
-                        console.log(data, status);
-                        if (status === 200) {
-                            alert(data.message);
-                        } else {
-                            alert(`An internal error occured: ${data.message}`);
-                        }
-                    })
-            );
-            alert("Booking successfully completed");
-        }
-
-
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(finalBookingData),
+        }).then((res) =>
+            res
+                .json()
+                .then((data) => ({ status: res.status, data }))
+                .then((status, data) => {
+                    console.log(data, status);
+                    if (status === 200) {
+                        alert(data.message);
+                    } else {
+                        alert(`An internal error occured: ${data.message}`);
+                    }
+                })
+        )}
     };
 
     return (
@@ -273,5 +264,3 @@ function CalendarUI() {
         </>
     );
 }
-
-export default CalendarUI;

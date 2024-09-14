@@ -118,7 +118,6 @@ export default function Profile() {
                             <div className="[&>*]:text-center [&>*]:mt-[20px]" style={{ wordWrap: "break-word" }}>
                                 <h1 style={{ fontSize: "120%" }}>{profile?.fullName || "Full Name"}</h1>
                                 <h1 style={{ fontSize: "80%" }}>{profile?.email || "example@example.com"}</h1>
-                                <h1 style={{ fontSize: "80%" }}>{profile?.phone || "99999999"}</h1>
                                 <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
                                     <button
                                         type="submit"
@@ -132,7 +131,6 @@ export default function Profile() {
 
 
                                 </div>
-
                             </div>
                         </div>
                     </div>
