@@ -4,6 +4,16 @@ export default function UserDataCardUI(props) {
 
   // const arrayOfPassengerDetails = props.passengerDetails;
   // console.log(arrayOfPassengerDetails);
+  // console.log("object : ",{  // check this console when fetching is done of the user order history
+  //   bookingDate: props.bookingDate ,
+  //   passengerDetails:props.passengerDetails ,
+  //   foodDetails:props.foodLists,
+  //    numberOfPassengers: props.numberOfPassengers ,
+  //     totalCost: props.totalCost ,
+  //    paymentStatus:props.paymentStatus 
+  // });
+
+
 
   return (
     <>

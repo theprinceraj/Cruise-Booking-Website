@@ -57,6 +57,7 @@ export default function Profile() {
     const initialUserHistoryData = {
         bookingDate: "Loading...",
         passengerDetails: [],
+        foodLists:{},
         numberOfPassengers: 0,
         totalCost: 0,
         paymentStatus: "Pending"
@@ -73,13 +74,13 @@ export default function Profile() {
         setUserHistoryData(historyList);
     }
 
-   const fileRef = useRef();
+    const fileRef = useRef();
     const [avatar, setAvatar] = useState();
     const handleProfilePhotoEdit = (e) => {
         e.preventDefault();
         fileRef.current.click();
     }
-    const handleProfilePhoto = ()=>{
+    const handleProfilePhoto = () => {
         const uploadedFile = fileRef.current.files[0];
         setAvatar(URL.createObjectURL(uploadedFile));
         // use backend to store the user profile photo
@@ -98,20 +99,20 @@ export default function Profile() {
                         style={{ marginInlineStart: "1%", color: "white", fontSize: "20px" }}>
                         <div className="m-[10px]">
                             <div className="flex w-[100%] items-center justify-center mt-10 relative" >
-                                
+
                                 {
-                                   (avatar==undefined)? (<img src={profile?.profilePicture || man} alt="Error" width={"80%"} height={"80%"}
-                                   style={{ borderRadius: "50%" }} />) : <img src={avatar} alt="Error" 
-                                   style={{backgroundColor:"black", borderRadius: "50%", width:"250px",height:"250px", objectFit:"contain"  }} />
+                                    (avatar == undefined) ? (<img src={profile?.profilePicture || man} alt="Error" width={"80%"} height={"80%"}
+                                        style={{ borderRadius: "50%" }} />) : <img src={avatar} alt="Error"
+                                            style={{ backgroundColor: "black", borderRadius: "50%", width: "250px", height: "250px", objectFit: "contain" }} />
                                 }
 
                                 <button type="submit" onClick={handleProfilePhotoEdit}>
 
-                                    <img src={edit} alt="edit" width={20} height={20} 
-                                        style={{ position: "absolute", bottom: "0%", right: "10%"}}
+                                    <img src={edit} alt="edit" width={20} height={20}
+                                        style={{ position: "absolute", bottom: "0%", right: "10%" }}
                                     />
                                 </button>
-                                <input type="file" ref={fileRef} onChange={handleProfilePhoto} accept="image/*" hidden/>
+                                <input type="file" ref={fileRef} onChange={handleProfilePhoto} accept="image/*" hidden />
 
                             </div>
                             <div className="[&>*]:text-center [&>*]:mt-[20px]" style={{ wordWrap: "break-word" }}>
@@ -147,7 +148,18 @@ export default function Profile() {
                             }}>
 
                                 <div className="flex justify-around" style={{ wordWrap: "break-word", width: "inherit", marginRight: "2px", marginLeft: "2px" }}>
-                                    <img src={profile?.profilePicture || man} alt="Error" width={47} height={40} style={{ borderRadius: "50%" }} />
+                                    {/* <img src={profile?.profilePicture || man} alt="Error" width={47} height={40} style={{ borderRadius: "50%" }} /> */}
+
+                                    <button type="submit" onDoubleClick={handleProfilePhotoEdit}  >
+                                    {
+                                        (avatar == undefined) ? (<img src={profile?.profilePicture || man} alt="Error" width={47} height={40}
+                                            style={{ borderRadius: "50%" ,backgroundColor: "black", objectFit: "contain"}} />) : <img src={avatar} alt="Error"
+                                                style={{ backgroundColor: "black", borderRadius: "50%", width: "47px", height: "40px", objectFit: "contain" }} />
+                                    }
+
+                                    </button>
+                                    <input type="file" ref={fileRef} onChange={handleProfilePhoto} accept="image/*" hidden />
+
                                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}
                                     >
                                         <h1 style={{ fontSize: "90%", textAlign: "center" }}>{profile?.fullName || "Full Name"}</h1>
@@ -202,10 +214,12 @@ export default function Profile() {
                         <div className="userdatas" >
                             {
                                 userHistoryData.map((data, index) => (
+                                    //after fetching user data from backend send these props to this component
                                     <UserDataCardUI
                                         key={index}
                                         bookingDate={data.bookingDate}
                                         passengerDetails={data.passengerDetails}
+                                        foodDetails={data.foodLists}
                                         numberOfPassengers={data.numberOfPassengers}
                                         totalCost={data.totalCost}
                                         paymentStatus={data.paymentStatus}
